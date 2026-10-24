@@ -1,0 +1,1377 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rushikesh Jagtap — Systems, Backend & Applied ML Engineer</title>
+  <meta name="description" content="Portfolio of Rushikesh Jagtap — Information Technology engineering student & software developer specializing in multi-tenant RAG systems, asynchronous FastAPI architectures, and applied machine learning pipelines." />
+  <meta name="author" content="Rushikesh Jagtap" />
+  <meta name="keywords" content="Rushikesh Jagtap, Backend Engineer, Machine Learning, FastAPI, Python, PostgreSQL, RAG, PyTorch, Portfolio" />
+
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Rushikesh Jagtap — Systems, Backend & Applied ML Engineer" />
+  <meta property="og:description" content="Consistent. Curious. Building with Intelligence. High-performance backend architectures and applied ML systems." />
+  <meta property="og:image" content="MyImage.jpeg" />
+
+  <!-- Twitter / X Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Rushikesh Jagtap — Systems & Applied ML Engineer" />
+  <meta name="twitter:description" content="Consistent. Curious. Building with Intelligence." />
+  <meta name="twitter:image" content="MyImage.jpeg" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23060913'/%3E%3Ctext y='70' x='18' font-size='60' font-family='sans-serif' font-weight='bold' fill='%2338bdf8'%3ERJ%3C/text%3E%3C/svg%3E" />
+
+  <!-- Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Poppins:wght@500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+            display: ['"Space Grotesk"', 'sans-serif'],
+          },
+          colors: {
+            brandCyan: '#38bdf8',
+            brandIndigo: '#818cf8',
+            brandBlue: '#3b82f6',
+            brandEmerald: '#10b981',
+            brandAmber: '#f59e0b',
+            brandPurple: '#c084fc',
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="style.css?v=folder_clean_v2">
+</head>
+<body class="selection:bg-cyan-500/20 selection:text-cyan-300">
+
+  <!-- ==================== WELCOME PRELOADER SCREEN (UIVERSE LOADER BY DEXTER-ST) ==================== -->
+  <div id="portfolio-preloader" class="fixed inset-0 z-[999999] flex flex-col items-center justify-center bg-[#05070c] cursor-pointer">
+    <div class="loader-wrapper">
+      <span class="loader-word">
+        <span class="loader-letter" style="animation-delay: 0.10s;">W</span>
+        <span class="loader-letter" style="animation-delay: 0.18s;">e</span>
+        <span class="loader-letter" style="animation-delay: 0.25s;">l</span>
+        <span class="loader-letter" style="animation-delay: 0.33s;">c</span>
+        <span class="loader-letter" style="animation-delay: 0.40s;">o</span>
+        <span class="loader-letter" style="animation-delay: 0.48s;">m</span>
+        <span class="loader-letter" style="animation-delay: 0.55s;">e</span>
+      </span>
+      <span class="loader-space">&nbsp;</span>
+      <span class="loader-word">
+        <span class="loader-letter" style="animation-delay: 0.68s;">t</span>
+        <span class="loader-letter" style="animation-delay: 0.75s;">o</span>
+      </span>
+      <span class="loader-space">&nbsp;</span>
+      <span class="loader-word">
+        <span class="loader-letter" style="animation-delay: 0.88s;">R</span>
+        <span class="loader-letter" style="animation-delay: 0.95s;">u</span>
+        <span class="loader-letter" style="animation-delay: 1.03s;">s</span>
+        <span class="loader-letter" style="animation-delay: 1.10s;">h</span>
+        <span class="loader-letter" style="animation-delay: 1.18s;">i</span>
+        <span class="loader-letter" style="animation-delay: 1.25s;">k</span>
+        <span class="loader-letter" style="animation-delay: 1.33s;">e</span>
+        <span class="loader-letter" style="animation-delay: 1.40s;">s</span>
+        <span class="loader-letter" style="animation-delay: 1.48s;">h</span>
+        <span class="loader-letter" style="animation-delay: 1.55s;">'</span>
+        <span class="loader-letter" style="animation-delay: 1.63s;">s</span>
+      </span>
+      <span class="loader-space">&nbsp;</span>
+      <span class="loader-word">
+        <span class="loader-letter" style="animation-delay: 1.75s;">P</span>
+        <span class="loader-letter" style="animation-delay: 1.83s;">o</span>
+        <span class="loader-letter" style="animation-delay: 1.90s;">r</span>
+        <span class="loader-letter" style="animation-delay: 1.98s;">t</span>
+        <span class="loader-letter" style="animation-delay: 2.05s;">f</span>
+        <span class="loader-letter" style="animation-delay: 2.13s;">o</span>
+        <span class="loader-letter" style="animation-delay: 2.20s;">l</span>
+        <span class="loader-letter" style="animation-delay: 2.28s;">i</span>
+        <span class="loader-letter" style="animation-delay: 2.35s;">o</span>
+      </span>
+      <div class="loader"></div>
+    </div>
+
+    <!-- Status / Skip telemetry pill -->
+    <div class="mt-8 flex items-center space-x-3 font-mono text-xs text-slate-500 tracking-wider">
+      <span class="inline-block w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
+      <span class="text-slate-400 uppercase">SYSTEMS INITIALIZING</span>
+      <span class="text-slate-600">•</span>
+      <span class="text-slate-500 hover:text-cyan-400 transition-colors">CLICK ANYWHERE TO ENTER</span>
+    </div>
+  </div>
+
+  <!-- ==================== UIVERSE GOOEY LAVA LOADER MASK DEFS ==================== -->
+  <svg class="loader-svg-defs" aria-hidden="true" focusable="false">
+    <defs>
+      <mask id="clipping">
+        <polygon points="0,0 100,0 100,100 0,100" fill="black"></polygon>
+        <polygon points="25,25 75,25 50,75" fill="white"></polygon>
+        <polygon points="50,25 75,75 25,75" fill="white"></polygon>
+        <polygon points="35,35 65,35 50,65" fill="white"></polygon>
+        <polygon points="35,35 65,35 50,65" fill="white"></polygon>
+        <polygon points="35,35 65,35 50,65" fill="white"></polygon>
+        <polygon points="35,35 65,35 50,65" fill="white"></polygon>
+      </mask>
+    </defs>
+  </svg>
+
+  <!-- ==================== SUPERMODELS PRECISION CURSOR ==================== -->
+  <div id="cursor-dot"></div>
+  <div id="cursor-ring"></div>
+  <div id="cursor-badge">NAVIGATE</div>
+
+  <!-- ==================== DYNAMIC AMBIENT LIGHTING CONTAINER ==================== -->
+  <div id="ambient-light-container">
+    <div id="blob-primary" class="ambient-aurora-blob"></div>
+    <div id="blob-secondary" class="ambient-aurora-blob"></div>
+    <div id="blob-accent" class="ambient-aurora-blob"></div>
+  </div>
+
+  <!-- ==================== GLOBAL AMBIENT CONTOUR CANVAS ==================== -->
+  <canvas id="ambient-canvas" class="fixed inset-0 w-full h-full pointer-events-none z-0 opacity-45"></canvas>
+
+  <!-- ==================== PINNED SECTION HUD ==================== -->
+  <div id="section-stepper-hud">
+    <a href="#hero" class="hud-pip active interactive-target" data-badge="NEXUS" data-target="hero">
+      <span class="pip-tooltip">Nexus</span>
+    </a>
+    <a href="#about" class="hud-pip interactive-target" data-badge="ABOUT" data-target="about">
+      <span class="pip-tooltip">About Me</span>
+    </a>
+    <a href="#education" class="hud-pip interactive-target" data-badge="EXPEDITION" data-target="education">
+      <span class="pip-tooltip">Education</span>
+    </a>
+    <a href="#stack" class="hud-pip interactive-target" data-badge="STACK" data-target="stack">
+      <span class="pip-tooltip">Tech Stack</span>
+    </a>
+    <a href="#projects" class="hud-pip interactive-target" data-badge="PROJECTS" data-target="projects">
+      <span class="pip-tooltip">Projects</span>
+    </a>
+    <a href="#achievements" class="hud-pip interactive-target" data-badge="HONORS" data-target="achievements">
+      <span class="pip-tooltip">Achievements</span>
+    </a>
+    <a href="#certifications" class="hud-pip interactive-target" data-badge="CERTS" data-target="certifications">
+      <span class="pip-tooltip">Certifications</span>
+    </a>
+    <a href="#contact" class="hud-pip interactive-target" data-badge="DISPATCH" data-target="contact">
+      <span class="pip-tooltip">Contact</span>
+    </a>
+  </div>
+
+  <!-- ==========================================================================
+       CLEAN NAVIGATION BAR (ZERO SECTION NUMBERING)
+       ========================================================================== -->
+  <header class="fixed top-0 left-0 w-full z-40 border-b border-white/10 bg-[#060913]/70 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between text-xs font-mono">
+      
+      <!-- Brand & Status -->
+      <a href="#hero" class="interactive-target flex items-center space-x-2.5 group" data-badge="HOME">
+        <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span class="font-bold text-slate-100 tracking-tight text-sm font-sans hover:text-white transition-colors">Rushikesh Jagtap</span>
+      </a>
+
+      <!-- Apple Tahoe Liquid Glass Navigation Dock -->
+      <nav id="navbar-liquid-nav" class="hidden lg:flex items-center relative p-1 rounded-full text-slate-300 font-medium text-xs">
+        <!-- Tahoe Liquid Glass Sliding Pill Indicator -->
+        <div id="liquid-glass-indicator" class="liquid-glass-pill"></div>
+
+        <a href="#hero" class="nav-tab-link interactive-target px-3.5 py-1.5 rounded-full" data-target="hero" data-badge="HOME">Home</a>
+        <a href="#about" class="nav-tab-link interactive-target px-3.5 py-1.5 rounded-full" data-target="about" data-badge="ABOUT">About</a>
+        <a href="#education" class="nav-tab-link interactive-target px-3.5 py-1.5 rounded-full" data-target="education" data-badge="EXPEDITION">Education</a>
+        <a href="#stack" class="nav-tab-link interactive-target px-3.5 py-1.5 rounded-full" data-target="stack" data-badge="STACK">Stack</a>
+        <a href="#projects" class="nav-tab-link interactive-target px-3.5 py-1.5 rounded-full" data-target="projects" data-badge="PROJECTS">Projects</a>
+        <a href="#achievements" class="nav-tab-link interactive-target px-3.5 py-1.5 rounded-full" data-target="achievements" data-badge="HONORS">Achievements</a>
+        <a href="#certifications" class="nav-tab-link interactive-target px-3.5 py-1.5 rounded-full" data-target="certifications" data-badge="CERTS">Certifications</a>
+        <a href="#contact" class="nav-tab-link interactive-target px-3.5 py-1.5 rounded-full" data-target="contact" data-badge="DISPATCH">Contact</a>
+      </nav>
+
+      <!-- Quick Status / Dispatch Link -->
+      <a href="#contact" class="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.08] backdrop-blur-xl hover:border-white/20 text-slate-300 hover:text-white transition-all text-[11px] font-mono interactive-target" data-badge="CONNECT">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span>Open to Roles</span>
+      </a>
+
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       MAIN CONTENT CONTAINER (SEAMLESS ATMOSPHERIC TRANSITIONS)
+       ========================================================================== -->
+  <main class="relative z-10 pt-20">
+
+    <!-- ========================================================================
+         HERO SECTION — DEEP COSMIC OBSIDIAN & ELECTRIC SKY
+         ======================================================================== -->
+    <section id="hero" class="seamless-section section-theme-hero relative w-full pt-12 pb-28 overflow-hidden container-scroll-wrapper">
+      <div class="ambient-section-veil veil-bottom"></div>
+      <div class="max-w-7xl mx-auto px-6 relative z-10 container-scroll-card">
+      
+      <!-- Telemetry Tag -->
+      <div class="reveal-node inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full glass-panel-subtle text-[11px] font-mono text-cyan-400 mb-8 border border-cyan-500/30">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span>OPEN FOR BACKEND & APPLIED ML ROLES</span>
+        <span class="text-slate-600">|</span>
+        <span>MUMBAI / NAVI MUMBAI / REMOTE</span>
+        <span class="text-slate-600">|</span>
+        <span class="text-emerald-400">LATENCY: 1.2ms</span>
+      </div>
+
+      <!-- Split Hero Layout -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        
+        <!-- Left Column -->
+        <div class="lg:col-span-7">
+          <div class="reveal-node delay-1 text-xl sm:text-2xl font-mono text-slate-300 font-medium mb-3">
+            Hi, I'm <span class="text-white font-bold">Rushikesh</span> 👋
+          </div>
+
+          <h1 class="reveal-node delay-1 text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-slate-100 leading-[1.08] mb-5">
+            <span id="hero-typewriter"></span><span class="typewriter-cursor"></span>
+          </h1>
+
+          <p class="reveal-node delay-2 text-xl sm:text-2xl text-cyan-400 font-mono tracking-tight mb-4">
+            Consistent. Curious. Building with Intelligence.
+          </p>
+
+          <p class="reveal-node delay-2 text-base sm:text-lg text-slate-300 max-w-2xl leading-relaxed mb-8 font-sans">
+            Information Technology engineering student at Pillai College of Engineering . Specializing in multi-tenant RAG systems, asynchronous FastAPI architectures, and applied machine learning pipelines.
+          </p>
+
+          <!-- CTAs & Social Links -->
+          <div class="reveal-node delay-3 flex flex-wrap items-center gap-4 mb-10">
+            <a href="#projects" class="interactive-target px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-bold text-xs font-mono tracking-wider transition-all transform active:scale-95 shadow-lg shadow-cyan-500/25 flex items-center gap-2" data-badge="PROJECTS">
+              <span>VIEW PROJECTS</span>
+              <i data-lucide="arrow-down-right" class="w-4 h-4"></i>
+            </a>
+            <a href="#contact" class="interactive-target px-6 py-3 rounded-xl bg-white/5 hover:bg-white/10 text-slate-200 border border-white/10 hover:border-cyan-500/40 text-xs font-mono tracking-wider transition-all flex items-center gap-2" data-badge="CONTACT">
+              <span>CONTACT ME</span>
+              <i data-lucide="mail" class="w-4 h-4"></i>
+            </a>
+
+          </div>
+
+          <!-- Clean Frosted Obsidian Search Bar (NO RADAR) -->
+          <div class="reveal-node delay-3 max-w-2xl relative mb-8">
+            <div class="glass-search-shell p-2.5 sm:p-3 flex items-center gap-3">
+              <div class="pl-2 text-slate-400 flex items-center">
+                <i data-lucide="search" class="w-5 h-5 text-cyan-400"></i>
+              </div>
+              <input 
+                type="text" 
+                id="hero-search-input"
+                autocomplete="off"
+                spellcheck="false"
+                placeholder="Search RAG, Bi-GRU, California Housing, Stack, Hackathons, Education..."
+                class="interactive-target bg-transparent flex-1 text-sm sm:text-base text-slate-100 placeholder-slate-400 font-mono focus:outline-none border-none py-1"
+                data-badge="QUERY"
+              />
+              <button 
+                id="hero-search-exec"
+                class="interactive-target px-4 py-2 sm:px-5 sm:py-2.5 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-bold text-xs font-mono tracking-wider transition-all transform active:scale-95 shadow-md shadow-cyan-500/25 flex items-center gap-1.5"
+                data-badge="EXECUTE"
+              >
+                <span>EXECUTE</span>
+                <i data-lucide="corner-down-left" class="w-3.5 h-3.5"></i>
+              </button>
+            </div>
+
+            <!-- Quick Filter Pills -->
+            <div class="mt-3 flex flex-wrap gap-2 text-[11px] font-mono text-slate-300">
+              <span class="text-slate-500 self-center">Try:</span>
+              <button class="quick-pill interactive-target px-2.5 py-0.5 rounded-md glass-panel-subtle hover:text-cyan-300 hover:border-cyan-500/40 transition-colors" data-badge="RAG">Multi-Tenant RAG</button>
+              <button class="quick-pill interactive-target px-2.5 py-0.5 rounded-md glass-panel-subtle hover:text-cyan-300 hover:border-cyan-500/40 transition-colors" data-badge="NLP">Emotion Scanner</button>
+              <button class="quick-pill interactive-target px-2.5 py-0.5 rounded-md glass-panel-subtle hover:text-cyan-300 hover:border-cyan-500/40 transition-colors" data-badge="HOUSING">House Price Predictor</button>
+              <button class="quick-pill interactive-target px-2.5 py-0.5 rounded-md glass-panel-subtle hover:text-cyan-300 hover:border-cyan-500/40 transition-colors" data-badge="ACADEMIC">Pillai CGPA 9.7</button>
+            </div>
+
+            <div id="search-instant-results" class="hidden absolute left-0 right-0 top-full mt-2 glass-panel-translucent rounded-xl border border-white/10 p-2 z-50 max-h-64 overflow-y-auto font-mono text-xs shadow-2xl"></div>
+          </div>
+
+        </div>
+
+        <!-- Right: Clean Portrait Framing Card (NO RADAR) -->
+        <div class="reveal-node delay-2 lg:col-span-5 flex justify-center">
+          <div class="w-full max-w-md portrait-photo-card p-3 relative group">
+
+            <!-- Portrait Frame -->
+            <div class="relative overflow-hidden rounded-xl border border-white/10 bg-black/60 aspect-[4/5] flex items-center justify-center">
+              <img 
+                src="MyImage.jpeg" 
+                alt="Rushikesh Jagtap — Systems, Backend & Applied ML Engineer" 
+                class="w-full h-full object-cover object-top origin-top filter saturate-[1.08] contrast-[1.04] transition-transform duration-500 group-hover:scale-105"
+                style="object-position: center top;"
+                onerror="this.onerror=null; this.src='https://placehold.co/600x750/090e18/38bdf8?text=Rushikesh+Jagtap';"
+              />
+
+              <!-- Sleek Corner Bracket Accents -->
+              <div class="absolute inset-0 pointer-events-none p-4 flex flex-col justify-between">
+                <div class="flex justify-between items-start">
+                  <div class="w-5 h-5 border-t-2 border-l-2 border-cyan-400/80 rounded-tl-sm"></div>
+                  <div class="w-5 h-5 border-t-2 border-r-2 border-cyan-400/80 rounded-tr-sm"></div>
+                </div>
+
+                <div class="flex justify-between items-end">
+                  <div class="w-5 h-5 border-b-2 border-l-2 border-cyan-400/80 rounded-bl-sm"></div>
+                  <div class="w-5 h-5 border-b-2 border-r-2 border-cyan-400/80 rounded-br-sm"></div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         ABOUT ME — ULTRA-TRANSLUCENT GLASS & HIGH-VISIBILITY NEURAL CONSTELLATION
+         (No harsh border line: Seamless ambient gradient blend)
+         ======================================================================== -->
+    <section id="about" class="seamless-section section-theme-about py-28 relative overflow-hidden container-scroll-wrapper">
+      
+      <!-- Interactive Neural Constellation Background Canvas (45+ nodes, bright and visible) -->
+      <canvas id="about-neural-canvas" class="absolute inset-0 w-full h-full pointer-events-auto z-0 opacity-90"></canvas>
+      <div class="absolute inset-0 pointer-events-none z-0 bg-[radial-gradient(circle_at_50%_40%,transparent_0%,rgba(11,12,34,0.45)_85%)]"></div>
+      <div class="ambient-section-veil veil-top"></div>
+      <div class="ambient-section-veil veil-bottom"></div>
+
+      <div class="max-w-7xl mx-auto px-6 relative z-10 pointer-events-none container-scroll-card">
+        
+        <h2 class="reveal-node delay-1 text-3xl sm:text-4xl font-bold text-slate-100 tracking-tight mb-8 font-sans pointer-events-auto">
+          About Me
+        </h2>
+
+        <!-- Ultra-Translucent Bento Grid (Lets the interactive canvas shine through cleanly) -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start pointer-events-auto">
+          
+          <!-- Bio Card: Ultra-Translucent Glass -->
+          <div class="reveal-node delay-2 lg:col-span-7 glass-panel-ultra-translucent rounded-2xl p-6 sm:p-8 space-y-4 leading-relaxed font-sans text-slate-100">
+            <p class="text-base sm:text-lg text-white font-medium">
+              I am an IT Engineering student at Pillai College of Engineering (CGPA: 9.7/10) with hands-on experience designing end-to-end machine learning pipelines and full-stack web applications.
+            </p>
+            <p class="text-sm sm:text-base text-slate-200">
+              Skilled in Python, FastAPI, and SQL with a demonstrated ability to build secure, production-style systems—from ML-powered REST APIs to role-based platforms. Recognized in national-level hackathons and backed by industry certifications in AI and software development, I am looking to contribute backend engineering and applied ML expertise to a team solving real-world technical problems.
+            </p>
+            
+            <div class="pt-4 border-t border-indigo-400/20 flex flex-wrap gap-4 text-xs font-mono text-slate-200">
+              <div class="flex items-center space-x-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-indigo-400 shadow-sm shadow-indigo-400"></span>
+                <span class="font-semibold">College: Pillai College of Engineering, Panvel</span>
+              </div>
+              <div class="flex items-center space-x-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-sm shadow-emerald-400"></span>
+                <span class="font-semibold">Branch: Information Technology (Rank #2)</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Current Focus Bento Grid: Ultra-Translucent Glass -->
+          <div class="reveal-node delay-3 lg:col-span-5 glass-panel-ultra-translucent rounded-2xl p-6 sm:p-8 space-y-5 font-mono text-xs">
+            <div class="flex items-center justify-between pb-3 border-b border-indigo-400/20">
+              <span class="text-indigo-300 font-bold tracking-wider">CURRENT FOCUS & RADAR</span>
+              <span class="text-[10px] text-slate-300 px-2 py-0.5 rounded bg-indigo-500/20 border border-indigo-400/30">ACTIVE</span>
+            </div>
+
+            <div class="space-y-4">
+              <div class="p-3.5 rounded-xl bg-indigo-950/20 border border-indigo-400/30 hover:border-indigo-400/70 transition-colors">
+                <div class="flex items-center space-x-2 text-white font-bold mb-1">
+                  <span>💻</span>
+                  <span>BUILDING</span>
+                </div>
+                <p class="text-slate-200 leading-snug">
+                  Multi-tenant RAG systems and full-stack web applications with isolated vector indexes.
+                </p>
+              </div>
+
+              <div class="p-3.5 rounded-xl bg-indigo-950/20 border border-indigo-400/30 hover:border-indigo-400/70 transition-colors">
+                <div class="flex items-center space-x-2 text-white font-bold mb-1">
+                  <span>🧠</span>
+                  <span>LEARNING</span>
+                </div>
+                <p class="text-slate-200 leading-snug">
+                  Graph Neural Networks (GNNs) for high-frequency UPI transaction fraud detection.
+                </p>
+              </div>
+
+              <div class="p-3.5 rounded-xl bg-indigo-950/20 border border-indigo-400/30 hover:border-indigo-400/70 transition-colors">
+                <div class="flex items-center space-x-2 text-white font-bold mb-1">
+                  <span>🛠️</span>
+                  <span>ENVIRONMENT</span>
+                </div>
+                <p class="text-slate-200 leading-snug">
+                  VS Code + Local Ollama engine running quantized DeepSeek-R1 and Qwen 2.5 models.
+                </p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         EDUCATION — ACADEMIC HORIZON RUNWAY (PORTED FROM 3D VERSION THEME)
+         ======================================================================== -->
+    <section id="education" class="seamless-section section-theme-education py-28 relative container-scroll-wrapper">
+      <div class="ambient-section-veil veil-top"></div>
+      <div class="ambient-section-veil veil-bottom"></div>
+
+      <div class="max-w-7xl mx-auto px-6 relative z-10 container-scroll-card">
+        
+        <div class="mb-12">
+          <h2 class="reveal-node delay-1 text-3xl sm:text-4xl font-bold text-slate-100 tracking-tight font-sans">
+            Education Runway &amp; Milestones
+          </h2>
+        </div>
+
+        <!-- Runway Track -->
+        <div class="reveal-node delay-1 relative mb-10 hidden md:block">
+          <div class="runway-track-glow">
+            <div class="runway-photon-pulse"></div>
+          </div>
+          
+          <div class="flex justify-between text-xs font-mono pt-3 text-slate-400">
+            <div class="flex items-center space-x-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-cyan-400 shadow-md shadow-cyan-400/50"></span>
+              <span class="font-bold text-slate-200">2024 – 2028 (Undergraduate B.E.)</span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-cyan-400 shadow-md shadow-cyan-400/50"></span>
+              <span class="font-bold text-slate-200">2023 – 2024 (HSC — 12th)</span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-cyan-400 shadow-md shadow-cyan-400/50"></span>
+              <span class="font-bold text-slate-200">2021 – 2022 (SSC — 10th)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3 Cohesive Sapphire Stations -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          <!-- Station 01: Pillai College of Engineering -->
+          <div class="academic-station-card interactive-target reveal-node delay-2 p-6 sm:p-7 flex flex-col justify-between group" data-badge="PILLAI ENGG">
+            <div>
+              <div class="flex items-center justify-between pb-3 border-b border-white/10 mb-5 font-mono text-xs">
+                <span class="px-2.5 py-0.5 rounded-full bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 font-semibold text-[10px]">
+                  ACTIVE // UNDERGRADUATE
+                </span>
+                <span class="text-slate-400">2024 – 2028</span>
+              </div>
+
+              <h3 class="text-xl font-bold text-slate-100 font-sans mb-1 group-hover:text-cyan-300 transition-colors">
+                Pillai College of Engineering
+              </h3>
+              <div class="text-xs font-mono text-cyan-400 mb-3">Panvel, Raigad, Maharashtra</div>
+              <div class="text-sm font-semibold text-slate-200 mb-4 font-sans">
+                Bachelor of Engineering, Information Technology
+              </div>
+
+              <div class="p-3.5 rounded-xl bg-black/40 border border-cyan-500/20 mb-4 font-mono text-xs space-y-2">
+                <div class="flex justify-between items-center">
+                  <span class="text-slate-400">CUMULATIVE CGPA:</span>
+                  <span class="text-base font-bold text-cyan-300">9.7 / 10.0</span>
+                </div>
+                <div class="flex justify-between items-center text-[11px] pt-1 border-t border-white/5">
+                  <span class="text-slate-400">HONORS / STANDING:</span>
+                  <span class="font-bold text-white flex items-center space-x-1">
+                    <span>🏆</span>
+                    <span>Rank #2 in IT Branch</span>
+                  </span>
+                </div>
+              </div>
+
+              <p class="text-slate-400 text-xs leading-relaxed font-sans">
+                Ranked 2nd across the IT branch in both First and Second Year cohorts. Core focus on Operating Systems, Database Management Systems, Data Structures, and Applied Machine Learning pipelines.
+              </p>
+            </div>
+
+            <div class="pt-5 mt-4 border-t border-white/5 flex items-center justify-between font-mono text-[10px] text-slate-500">
+              <span>LOC: 18.9894° N, 73.1175° E</span>
+              <span class="text-cyan-400 font-semibold">STATION 01</span>
+            </div>
+          </div>
+
+          <!-- Station 02: ICLES' College -->
+          <div class="academic-station-card interactive-target reveal-node delay-3 p-6 sm:p-7 flex flex-col justify-between group" data-badge="ICLES HSC">
+            <div>
+              <div class="flex items-center justify-between pb-3 border-b border-white/10 mb-5 font-mono text-xs">
+                <span class="px-2.5 py-0.5 rounded-full bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 font-semibold text-[10px]">
+                  COMPLETED // HSC
+                </span>
+                <span class="text-slate-400">2023 – 2024</span>
+              </div>
+
+              <h3 class="text-xl font-bold text-slate-100 font-sans mb-1 group-hover:text-cyan-300 transition-colors">
+                ICLES' College of Arts, Commerce and Science
+              </h3>
+              <div class="text-xs font-mono text-cyan-400 mb-3">Vashi, Navi Mumbai, Maharashtra</div>
+              <div class="text-sm font-semibold text-slate-200 mb-4 font-sans">
+                Higher Secondary Certificate (HSC) — PCMB
+              </div>
+
+              <div class="p-3.5 rounded-xl bg-black/40 border border-cyan-500/20 mb-4 font-mono text-xs space-y-2">
+                <div class="flex justify-between items-center">
+                  <span class="text-slate-400">EXAMINATION SCORE:</span>
+                  <span class="text-base font-bold text-cyan-300">85.0%</span>
+                </div>
+                <div class="flex justify-between items-center text-[11px] pt-1 border-t border-white/5">
+                  <span class="text-slate-400">DISCIPLINE:</span>
+                  <span class="font-bold text-white">First Class Distinction</span>
+                </div>
+              </div>
+
+              <p class="text-slate-400 text-xs leading-relaxed font-sans">
+                Rigorous science curriculum encompassing Physics, Chemistry, Mathematics, and Biology. Built solid quantitative mathematical foundations in calculus, vectors, and analytical problem-solving.
+              </p>
+            </div>
+
+            <div class="pt-5 mt-4 border-t border-white/5 flex items-center justify-between font-mono text-[10px] text-slate-500">
+              <span>LOC: 19.0771° N, 72.9986° E</span>
+              <span class="text-cyan-400 font-semibold">STATION 02</span>
+            </div>
+          </div>
+
+          <!-- Station 03: Dnyan Pushpa Vidya Niketan -->
+          <div class="academic-station-card interactive-target reveal-node delay-4 p-6 sm:p-7 flex flex-col justify-between group" data-badge="DPVN SSC">
+            <div>
+              <div class="flex items-center justify-between pb-3 border-b border-white/10 mb-5 font-mono text-xs">
+                <span class="px-2.5 py-0.5 rounded-full bg-cyan-500/15 text-cyan-300 border border-cyan-500/30 font-semibold text-[10px]">
+                  COMPLETED // SSC BOARDS
+                </span>
+                <span class="text-slate-400">Class of 2022</span>
+              </div>
+
+              <h3 class="text-xl font-bold text-slate-100 font-sans mb-1 group-hover:text-cyan-300 transition-colors">
+                Dnyan Pushpa Vidya Niketan
+              </h3>
+              <div class="text-xs font-mono text-cyan-400 mb-3">CBD Belapur, Navi Mumbai, Maharashtra</div>
+              <div class="text-sm font-semibold text-slate-200 mb-4 font-sans">
+                Secondary School Certificate (SSC) — 10th Boards
+              </div>
+
+              <div class="p-3.5 rounded-xl bg-black/40 border border-cyan-500/20 mb-4 font-mono text-xs space-y-2">
+                <div class="flex justify-between items-center">
+                  <span class="text-slate-400">EXAMINATION SCORE:</span>
+                  <span class="text-base font-bold text-cyan-300">89.6%</span>
+                </div>
+                <div class="flex justify-between items-center text-[11px] pt-1 border-t border-white/5">
+                  <span class="text-slate-400">BOARD RECOGNITION:</span>
+                  <span class="font-bold text-white flex items-center space-x-1">
+                    <span>🏆</span>
+                    <span>Ranked 3rd in Boards</span>
+                  </span>
+                </div>
+              </div>
+
+              <p class="text-slate-400 text-xs leading-relaxed font-sans">
+                Secured 89.6% across comprehensive board assessments, ranking 3rd in the school 10th standard board examinations with distinction in mathematics, computer concepts, and natural sciences.
+              </p>
+            </div>
+
+            <div class="pt-5 mt-4 border-t border-white/5 flex items-center justify-between font-mono text-[10px] text-slate-500">
+              <span>LOC: 19.0178° N, 73.0416° E</span>
+              <span class="text-cyan-400 font-semibold">STATION 03</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         TECH STACK — INTERACTIVE 3D ROTATING SKILL SPHERE (3D TAG BALL)
+         (Seamless atmosphere blend, Fibonacci sphere, clean inspector specs)
+         ======================================================================== -->
+    <section id="stack" class="seamless-section section-theme-stack py-28 relative container-scroll-wrapper">
+      <div class="ambient-section-veil veil-top"></div>
+      <div class="ambient-section-veil veil-bottom"></div>
+
+      <div class="max-w-7xl mx-auto px-6 relative z-10 container-scroll-card">
+        
+        <div class="mb-6">
+          <h2 class="reveal-node delay-1 text-3xl sm:text-4xl font-bold text-slate-100 tracking-tight font-sans">
+            Tech Stack &amp; Capabilities
+          </h2>
+        </div>
+
+        <!-- Category Filter Bar -->
+        <div class="reveal-node delay-1 flex flex-wrap items-center gap-2 mb-8 font-mono text-xs">
+          <button class="sphere-filter-btn interactive-target px-3.5 py-1.5 rounded-lg bg-purple-500/20 text-purple-200 border border-purple-500/40 font-semibold transition-all" data-filter="all" data-badge="FILTER ALL">ALL (14)</button>
+          <button class="sphere-filter-btn interactive-target px-3.5 py-1.5 rounded-lg bg-white/5 text-slate-300 border border-white/10 hover:border-purple-400/40 transition-all" data-filter="languages" data-badge="LANGUAGES">LANGUAGES (2)</button>
+          <button class="sphere-filter-btn interactive-target px-3.5 py-1.5 rounded-lg bg-white/5 text-slate-300 border border-white/10 hover:border-purple-400/40 transition-all" data-filter="frameworks" data-badge="FRAMEWORKS">FRAMEWORKS (2)</button>
+          <button class="sphere-filter-btn interactive-target px-3.5 py-1.5 rounded-lg bg-white/5 text-slate-300 border border-white/10 hover:border-purple-400/40 transition-all" data-filter="data_ml" data-badge="AI / DATA">AI / ML &amp; DATA (6)</button>
+          <button class="sphere-filter-btn interactive-target px-3.5 py-1.5 rounded-lg bg-white/5 text-slate-300 border border-white/10 hover:border-purple-400/40 transition-all" data-filter="databases" data-badge="DB / TOOLS">DATABASES &amp; TOOLS (4)</button>
+        </div>
+
+        <!-- 3D Sphere & Clean Inspector Split Layout -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          
+          <!-- Left: Interactive 3D Sphere Canvas Container -->
+          <div class="reveal-node delay-2 lg:col-span-7 relative sphere-container-glass p-3 sm:p-5 overflow-hidden">
+            
+            <!-- Sphere Top HUD -->
+            <div class="flex items-center justify-between font-mono text-[11px] text-purple-300 pb-2 px-3 border-b border-purple-500/20">
+              <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-purple-400 animate-ping"></span>
+                <span class="font-bold tracking-wider">3D ROTATING SKILL SPHERE</span>
+              </div>
+              <div class="flex items-center gap-2 text-[10px] text-slate-400">
+                <i data-lucide="rotate-cw" class="w-3.5 h-3.5 text-purple-400"></i>
+                <span>Drag to Rotate &bull; Click to Inspect</span>
+              </div>
+            </div>
+
+            <!-- The 3D Canvas -->
+            <div class="relative w-full flex items-center justify-center">
+              <canvas id="tech-sphere-canvas" class="interactive-target" data-badge="ROTATE SPHERE"></canvas>
+            </div>
+
+            <!-- Sphere Bottom Telemetry -->
+            <div class="flex flex-wrap items-center justify-between gap-2 pt-2 px-3 border-t border-purple-500/20 font-mono text-[10.5px] text-slate-400">
+              <div class="flex items-center gap-2">
+                <span class="text-purple-300 font-semibold" id="sphere-active-count">19 Skills Active</span>
+                <span class="text-slate-600">|</span>
+                <span>Trackball Inertia Active</span>
+              </div>
+              <button id="reset-sphere-rot-btn" class="interactive-target text-slate-400 hover:text-purple-300 transition-colors flex items-center gap-1" data-badge="RESET">
+                <i data-lucide="refresh-cw" class="w-3 h-3"></i>
+                <span>Reset View</span>
+              </button>
+            </div>
+
+          </div>
+
+          <!-- Right: Clean Skill Inspector Card (NO CODE BLOCKS) -->
+          <div class="reveal-node delay-3 lg:col-span-5 rounded-2xl glass-panel-translucent border-purple-500/30 p-6 sm:p-7 relative">
+            <div class="flex items-center justify-between pb-3 border-b border-white/10 font-mono text-xs text-slate-400 mb-4">
+              <div class="flex items-center space-x-2">
+                <span class="w-2 h-2 rounded-full bg-purple-400 animate-pulse"></span>
+                <span class="font-bold text-slate-200">SKILL DOSSIER & APPLICATION</span>
+              </div>
+              <span id="inspector-category-badge" class="px-2 py-0.5 rounded bg-purple-500/15 text-purple-300 border border-purple-500/30 text-[10px] font-semibold uppercase">
+                FRAMEWORK
+              </span>
+            </div>
+
+            <!-- Clean Skill Card Content (Zero Code Snippets) -->
+            <div id="stack-inspector-body" class="space-y-4 font-mono text-xs">
+              <!-- Rendered cleanly via JavaScript -->
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         FEATURED SYSTEMS — CYBER EMERALD FLIGHT DECK (LIVE SIMULATORS)
+         (Seamless blend, zero harsh border line)
+         ======================================================================== -->
+    <section id="projects" class="seamless-section section-theme-projects py-28 relative container-scroll-wrapper">
+      <div class="ambient-section-veil veil-top"></div>
+      <div class="ambient-section-veil veil-bottom"></div>
+
+      <div class="max-w-7xl mx-auto px-6 relative z-10 container-scroll-card">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+          <div>
+            <h2 class="reveal-node delay-1 text-3xl sm:text-4xl font-bold text-slate-100 tracking-tight font-sans">
+              Featured Projects
+            </h2>
+          </div>
+
+          <!-- Controls -->
+          <div class="reveal-node delay-1 flex items-center space-x-3 font-mono text-xs">
+            <div class="flex items-center space-x-1">
+              <button id="proj-prev-btn" class="interactive-target p-2.5 rounded-lg glass-panel-translucent hover:border-emerald-400/50 text-slate-300 hover:text-white transition-all active:scale-95" data-badge="PREV">
+                <i data-lucide="chevron-left" class="w-4 h-4"></i>
+              </button>
+              <button id="proj-next-btn" class="interactive-target p-2.5 rounded-lg glass-panel-translucent hover:border-emerald-400/50 text-slate-300 hover:text-white transition-all active:scale-95" data-badge="NEXT">
+                <i data-lucide="chevron-right" class="w-4 h-4"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Glass Folder Cards Desk (21st.dev Component Specification) -->
+        <div class="glass-folder-desk relative">
+          <!-- Radial Dotted Desk Overlay -->
+          <div class="glass-folder-desk-dots" aria-hidden="true"></div>
+
+          <!-- 3D Glass Folders Grid -->
+          <div id="glass-folder-cards-grid" class="glass-folder-grid">
+            <!-- Rendered dynamically with 3D hover lean & expandable file drawers -->
+          </div>
+
+          <!-- Desk Prompt Footer -->
+          <p class="relative mt-12 text-center font-mono text-[11px] tracking-[0.18em] text-emerald-400/80 uppercase">
+            Hover folder to open &amp; fan out files &bull; Click to load flight deck &bull; Live Demo &amp; GitHub linked
+          </p>
+        </div>
+
+        <!-- Active Project Interactive Workbench (Flight Deck) -->
+        <div id="project-flight-deck" class="reveal-node delay-3 clean-project-deck rounded-2xl p-6 sm:p-8 lg:p-10 transition-all mt-8">
+          <!-- Rendered via JS -->
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         HACKATHONS & ACHIEVEMENTS — WARM GOLDEN AMBER
+         (Seamless transition, honors grid)
+         ======================================================================== -->
+    <section id="achievements" class="seamless-section section-theme-achievements py-28 relative container-scroll-wrapper overflow-hidden">
+      <!-- Fluid Particles Background Engine (Bundui 21st.dev Component - Warm Golden Amber Theme) -->
+      <div class="fluid-particles-container pointer-events-none">
+        <canvas id="hackathons-fluid-canvas"></canvas>
+        <div class="fluid-particles-vignette"></div>
+      </div>
+
+      <div class="ambient-section-veil veil-top"></div>
+      <div class="ambient-section-veil veil-bottom"></div>
+
+      <div class="max-w-7xl mx-auto px-6 relative z-10 container-scroll-card">
+        
+        <h2 class="reveal-node delay-1 text-3xl sm:text-4xl font-bold text-slate-100 tracking-tight mb-8 font-sans">
+          Hackathons & Achievements
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          
+          <!-- SIH -->
+          <div class="reveal-node delay-2 glass-panel-translucent rounded-2xl p-6 sm:p-7 relative group hover:border-amber-400/50 transition-all border-amber-500/30">
+            <div class="flex items-center justify-between pb-3 border-b border-white/10 mb-4 font-mono text-xs">
+              <span class="text-amber-400 font-bold flex items-center space-x-1.5">
+                <span>🏆</span>
+                <span>NATIONAL COMPETITION</span>
+              </span>
+              <span class="text-slate-400">2025 & 2026</span>
+            </div>
+            <h3 class="text-xl font-bold text-slate-100 font-sans mb-2">
+              Smart India Hackathon (SIH 2025 & 2026)
+            </h3>
+            <p class="text-slate-200 text-sm leading-relaxed mb-4">
+              <strong class="text-amber-300">2x Shortlisted</strong>, ranked in the top 50 competing engineering teams in the college internal qualifier rounds. Designed architecture prototypes addressing complex civic and national software problem statements under rigorous time constraints.
+            </p>
+            <div class="flex flex-wrap gap-2 text-[11px] font-mono text-amber-400">
+              <span class="px-2 py-0.5 rounded bg-amber-500/15 border border-amber-500/30 font-semibold">Top 50 Qualifier</span>
+              <span class="px-2 py-0.5 rounded bg-white/10 border border-white/15 text-slate-300">National Level</span>
+            </div>
+          </div>
+
+          <!-- Hack & Track -->
+          <div class="reveal-node delay-3 glass-panel-translucent rounded-2xl p-6 sm:p-7 relative group hover:border-amber-400/50 transition-all border-amber-500/30">
+            <div class="flex items-center justify-between pb-3 border-b border-white/10 mb-4 font-mono text-xs">
+              <span class="text-amber-300 font-bold flex items-center space-x-1.5">
+                <span>🏆</span>
+                <span>FINALIST RECOGNITION</span>
+              </span>
+              <span class="text-slate-400">Fr. Agnel College, Vashi</span>
+            </div>
+            <h3 class="text-xl font-bold text-slate-100 font-sans mb-2">
+              Hack & Track Hackathon — Top-10 Finalist
+            </h3>
+            <p class="text-slate-200 text-sm leading-relaxed mb-4">
+              Selected among the <strong class="text-amber-300">Top-10 teams</strong> in the regional hackathon organized by Fr. Agnel College, Vashi. Developed full-stack software and machine learning models with rapid prototype deployment within a 24-hour sprint.
+            </p>
+            <div class="flex flex-wrap gap-2 text-[11px] font-mono text-amber-400">
+              <span class="px-2 py-0.5 rounded bg-amber-500/15 border border-amber-500/30 font-semibold">Top 10 Finalist</span>
+              <span class="px-2 py-0.5 rounded bg-white/10 border border-white/15 text-slate-300">Fr. Agnel, Vashi</span>
+            </div>
+          </div>
+
+          <!-- Academic Award -->
+          <div class="reveal-node delay-2 glass-panel-translucent rounded-2xl p-6 sm:p-7 relative group hover:border-amber-400/50 transition-all border-amber-500/30">
+            <div class="flex items-center justify-between pb-3 border-b border-white/10 mb-4 font-mono text-xs">
+              <span class="text-amber-400 font-bold flex items-center space-x-1.5">
+                <span>🎓</span>
+                <span>INSTITUTIONAL RANK</span>
+              </span>
+              <span class="text-slate-400">Pillai College of Engineering</span>
+            </div>
+            <h3 class="text-xl font-bold text-slate-100 font-sans mb-2">
+              Academic Excellence Award — Rank #2
+            </h3>
+            <p class="text-slate-200 text-sm leading-relaxed mb-4">
+              Secured <strong class="text-amber-300">2nd rank across the IT branch</strong> in both the First Year and Second Year of undergraduate engineering studies, maintaining a cumulative CGPA of 9.7/10 across core computer science curricula.
+            </p>
+            <div class="flex flex-wrap gap-2 text-[11px] font-mono text-amber-400">
+              <span class="px-2 py-0.5 rounded bg-amber-500/15 border border-amber-500/30 font-semibold">Rank 2 IT Branch</span>
+              <span class="px-2 py-0.5 rounded bg-white/10 border border-white/15 text-slate-300">CGPA 9.7 / 10.0</span>
+            </div>
+          </div>
+
+          <!-- Problem Solving -->
+          <div class="reveal-node delay-3 glass-panel-translucent rounded-2xl p-6 sm:p-7 relative group hover:border-amber-400/50 transition-all border-amber-500/30">
+            <div class="flex items-center justify-between pb-3 border-b border-white/10 mb-4 font-mono text-xs">
+              <span class="text-amber-400 font-bold flex items-center space-x-1.5">
+                <span>💡</span>
+                <span>ALGORITHMIC FOUNDATIONS</span>
+              </span>
+              <span class="text-slate-400">LeetCode & NeetCode</span>
+            </div>
+            <h3 class="text-xl font-bold text-slate-100 font-sans mb-2">
+              100+ DSA Problems Solved
+            </h3>
+            <p class="text-slate-200 text-sm leading-relaxed mb-4">
+              Solved over <strong class="text-amber-300">100+ Data Structures & Algorithms problems</strong> focusing on Sliding Window patterns, Two Pointers, Binary Search trees, Graph traversals (BFS/DFS), and Dynamic Programming in Python & Java.
+            </p>
+            <div class="flex flex-wrap gap-2 text-[11px] font-mono text-amber-400">
+              <span class="px-2 py-0.5 rounded bg-amber-500/15 border border-amber-500/30 font-semibold">LeetCode + NeetCode</span>
+              <span class="px-2 py-0.5 rounded bg-white/10 border border-white/15 text-slate-300">Python / Java</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         CERTIFICATIONS — CYAN & SAPPHIRE VAULT
+         (Seamless transition, credential badges)
+         ======================================================================== -->
+    <section id="certifications" class="seamless-section section-theme-certifications py-28 relative container-scroll-wrapper overflow-hidden">
+      <!-- Gradient Dots Background Engine (Efferd 21st.dev Component - Duration: 20s, Cyan & Sapphire Theme) -->
+      <div class="gradient-dots-container pointer-events-none">
+        <div class="gradient-dots-mask">
+          <div class="gradient-dots-mesh"></div>
+          <div id="cert-cursor-glow" class="gradient-dots-cursor-glow"></div>
+        </div>
+        <div class="gradient-dots-vignette"></div>
+      </div>
+
+      <div class="ambient-section-veil veil-top"></div>
+      <div class="ambient-section-veil veil-bottom"></div>
+
+      <div class="max-w-7xl mx-auto px-6 relative z-10 container-scroll-card">
+        
+        <h2 class="reveal-node delay-1 text-3xl sm:text-4xl font-bold text-slate-100 tracking-tight mb-8 font-sans">
+          Industry Certifications
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          
+          <!-- Card 01: Agentic AI -->
+          <div class="uiverse-cert-card interactive-target reveal-node delay-2" data-badge="AGENTIC AI">
+            <div class="card__border"></div>
+            <div class="card_title__container">
+              <span class="card_title">Agentic AI</span>
+              <p class="card_paragraph">GeeksforGeeks • Autonomous Systems</p>
+            </div>
+            <hr class="line" />
+            <ul class="card__list">
+              <li class="card__list_item">
+                <span class="check">
+                  <svg class="check_svg" fill="currentColor" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                    <path clip-rule="evenodd" d="M12.416 3.376a.75.75 0 0 1 .208 1.04l-5 7.5a.75.75 0 0 1-1.154.114l-3-3a.75.75 0 0 1 1.06-1.06l2.353 2.353 4.493-6.74a.75.75 0 0 1 1.04-.207Z" fill-rule="evenodd"></path>
+                  </svg>
+                </span>
+                <span class="list_text">Autonomous Agent Workflows &amp; Tool Calling</span>
+              </li>
+              <li class="card__list_item">
+                <span class="check">
+                  <svg class="check_svg" fill="currentColor" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                    <path clip-rule="evenodd" d="M12.416 3.376a.75.75 0 0 1 .208 1.04l-5 7.5a.75.75 0 0 1-1.154.114l-3-3a.75.75 0 0 1 1.06-1.06l2.353 2.353 4.493-6.74a.75.75 0 0 1 1.04-.207Z" fill-rule="evenodd"></path>
+                  </svg>
+                </span>
+                <span class="list_text">Multi-Agent Coordination Architectures</span>
+              </li>
+              <li class="card__list_item">
+                <span class="check">
+                  <svg class="check_svg" fill="currentColor" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                    <path clip-rule="evenodd" d="M12.416 3.376a.75.75 0 0 1 .208 1.04l-5 7.5a.75.75 0 0 1-1.154.114l-3-3a.75.75 0 0 1 1.06-1.06l2.353 2.353 4.493-6.74a.75.75 0 0 1 1.04-.207Z" fill-rule="evenodd"></path>
+                  </svg>
+                </span>
+                <span class="list_text">LangChain &amp; LangGraph Orchestrations</span>
+              </li>
+              <li class="card__list_item">
+                <span class="check">
+                  <svg class="check_svg" fill="currentColor" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                    <path clip-rule="evenodd" d="M12.416 3.376a.75.75 0 0 1 .208 1.04l-5 7.5a.75.75 0 0 1-1.154.114l-3-3a.75.75 0 0 1 1.06-1.06l2.353 2.353 4.493-6.74a.75.75 0 0 1 1.04-.207Z" fill-rule="evenodd"></path>
+                  </svg>
+                </span>
+                <span class="list_text">Vector Search &amp; Dynamic Retrieval</span>
+              </li>
+            </ul>
+            <a href="https://drive.google.com/file/d/1gS9C5xCZ6qOAW1Q2eEbmleV_nv1zH-b2/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="button cert-action-btn" data-cert="agentic-ai" data-badge="VIEW CERT">
+              <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+              <span>View Certificate</span>
+            </a>
+          </div>
+
+          <!-- Card 02: Programming in Java -->
+          <div class="uiverse-cert-card interactive-target reveal-node delay-3" data-badge="JAVA NPTEL">
+            <div class="card__border"></div>
+            <div class="card_title__container">
+              <span class="card_title">Programming in Java</span>
+              <p class="card_paragraph">Swayam NPTEL • IIT Kharagpur</p>
+            </div>
+            <hr class="line" />
+            <ul class="card__list">
+              <li class="card__list_item">
+                <span class="check">
+                  <svg class="check_svg" fill="currentColor" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                    <path clip-rule="evenodd" d="M12.416 3.376a.75.75 0 0 1 .208 1.04l-5 7.5a.75.75 0 0 1-1.154.114l-3-3a.75.75 0 0 1 1.06-1.06l2.353 2.353 4.493-6.74a.75.75 0 0 1 1.04-.207Z" fill-rule="evenodd"></path>
+                  </svg>
+                </span>
+                <span class="list_text">Object-Oriented Software Architecture</span>
+              </li>
+              <li class="card__list_item">
+                <span class="check">
+                  <svg class="check_svg" fill="currentColor" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                    <path clip-rule="evenodd" d="M12.416 3.376a.75.75 0 0 1 .208 1.04l-5 7.5a.75.75 0 0 1-1.154.114l-3-3a.75.75 0 0 1 1.06-1.06l2.353 2.353 4.493-6.74a.75.75 0 0 1 1.04-.207Z" fill-rule="evenodd"></path>
+                  </svg>
+                </span>
+                <span class="list_text">Multithreading, Locks &amp; Concurrency</span>
+              </li>
+              <li class="card__list_item">
+                <span class="check">
+                  <svg class="check_svg" fill="currentColor" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                    <path clip-rule="evenodd" d="M12.416 3.376a.75.75 0 0 1 .208 1.04l-5 7.5a.75.75 0 0 1-1.154.114l-3-3a.75.75 0 0 1 1.06-1.06l2.353 2.353 4.493-6.74a.75.75 0 0 1 1.04-.207Z" fill-rule="evenodd"></path>
+                  </svg>
+                </span>
+                <span class="list_text">JVM Memory Model &amp; Garbage Collection</span>
+              </li>
+              <li class="card__list_item">
+                <span class="check">
+                  <svg class="check_svg" fill="currentColor" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                    <path clip-rule="evenodd" d="M12.416 3.376a.75.75 0 0 1 .208 1.04l-5 7.5a.75.75 0 0 1-1.154.114l-3-3a.75.75 0 0 1 1.06-1.06l2.353 2.353 4.493-6.74a.75.75 0 0 1 1.04-.207Z" fill-rule="evenodd"></path>
+                  </svg>
+                </span>
+                <span class="list_text">Java Collections &amp; Stream Processing</span>
+              </li>
+            </ul>
+            <a href="https://drive.google.com/file/d/1i2nReLBUBwtYYidDDJeFLvlmQxHPd99-/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="button cert-action-btn" data-cert="java-nptel" data-badge="VIEW CERT">
+              <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+              <span>View Certificate</span>
+            </a>
+          </div>
+
+          <!-- Card 03: Python Programming -->
+          <div class="uiverse-cert-card interactive-target reveal-node delay-4" data-badge="PYTHON CERT">
+            <div class="card__border"></div>
+            <div class="card_title__container">
+              <span class="card_title">Python Programming</span>
+              <p class="card_paragraph">Edupyramids • Certified Specialist</p>
+            </div>
+            <hr class="line" />
+            <ul class="card__list">
+              <li class="card__list_item">
+                <span class="check">
+                  <svg class="check_svg" fill="currentColor" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                    <path clip-rule="evenodd" d="M12.416 3.376a.75.75 0 0 1 .208 1.04l-5 7.5a.75.75 0 0 1-1.154.114l-3-3a.75.75 0 0 1 1.06-1.06l2.353 2.353 4.493-6.74a.75.75 0 0 1 1.04-.207Z" fill-rule="evenodd"></path>
+                  </svg>
+                </span>
+                <span class="list_text">Advanced Functional Paradigms &amp; Decorators</span>
+              </li>
+              <li class="card__list_item">
+                <span class="check">
+                  <svg class="check_svg" fill="currentColor" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                    <path clip-rule="evenodd" d="M12.416 3.376a.75.75 0 0 1 .208 1.04l-5 7.5a.75.75 0 0 1-1.154.114l-3-3a.75.75 0 0 1 1.06-1.06l2.353 2.353 4.493-6.74a.75.75 0 0 1 1.04-.207Z" fill-rule="evenodd"></path>
+                  </svg>
+                </span>
+                <span class="list_text">Generators, Iterators &amp; Async Coroutines</span>
+              </li>
+              <li class="card__list_item">
+                <span class="check">
+                  <svg class="check_svg" fill="currentColor" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                    <path clip-rule="evenodd" d="M12.416 3.376a.75.75 0 0 1 .208 1.04l-5 7.5a.75.75 0 0 1-1.154.114l-3-3a.75.75 0 0 1 1.06-1.06l2.353 2.353 4.493-6.74a.75.75 0 0 1 1.04-.207Z" fill-rule="evenodd"></path>
+                  </svg>
+                </span>
+                <span class="list_text">Modular System Design &amp; Backend Pipelines</span>
+              </li>
+              <li class="card__list_item">
+                <span class="check">
+                  <svg class="check_svg" fill="currentColor" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                    <path clip-rule="evenodd" d="M12.416 3.376a.75.75 0 0 1 .208 1.04l-5 7.5a.75.75 0 0 1-1.154.114l-3-3a.75.75 0 0 1 1.06-1.06l2.353 2.353 4.493-6.74a.75.75 0 0 1 1.04-.207Z" fill-rule="evenodd"></path>
+                  </svg>
+                </span>
+                <span class="list_text">Memory Profiling &amp; Algorithmic Optimization</span>
+              </li>
+            </ul>
+            <a href="https://drive.google.com/file/d/1FRncLVouXSQhnHOo19U5rN52r3i2A8R0/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="button cert-action-btn" data-cert="python-edupyramids" data-badge="VIEW CERT">
+              <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+              <span>View Certificate</span>
+            </a>
+          </div>
+
+          <!-- Card 04: REST API -->
+          <div class="uiverse-cert-card interactive-target reveal-node delay-2" data-badge="REST API">
+            <div class="card__border"></div>
+            <div class="card_title__container">
+              <span class="card_title">REST API Design</span>
+              <p class="card_paragraph">HackerRank • Industry Skills Standard</p>
+            </div>
+            <hr class="line" />
+            <ul class="card__list">
+              <li class="card__list_item">
+                <span class="check">
+                  <svg class="check_svg" fill="currentColor" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                    <path clip-rule="evenodd" d="M12.416 3.376a.75.75 0 0 1 .208 1.04l-5 7.5a.75.75 0 0 1-1.154.114l-3-3a.75.75 0 0 1 1.06-1.06l2.353 2.353 4.493-6.74a.75.75 0 0 1 1.04-.207Z" fill-rule="evenodd"></path>
+                  </svg>
+                </span>
+                <span class="list_text">RESTful Architectural Design Patterns</span>
+              </li>
+              <li class="card__list_item">
+                <span class="check">
+                  <svg class="check_svg" fill="currentColor" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                    <path clip-rule="evenodd" d="M12.416 3.376a.75.75 0 0 1 .208 1.04l-5 7.5a.75.75 0 0 1-1.154.114l-3-3a.75.75 0 0 1 1.06-1.06l2.353 2.353 4.493-6.74a.75.75 0 0 1 1.04-.207Z" fill-rule="evenodd"></path>
+                  </svg>
+                </span>
+                <span class="list_text">HTTP Response Protocols &amp; Status Semantics</span>
+              </li>
+              <li class="card__list_item">
+                <span class="check">
+                  <svg class="check_svg" fill="currentColor" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                    <path clip-rule="evenodd" d="M12.416 3.376a.75.75 0 0 1 .208 1.04l-5 7.5a.75.75 0 0 1-1.154.114l-3-3a.75.75 0 0 1 1.06-1.06l2.353 2.353 4.493-6.74a.75.75 0 0 1 1.04-.207Z" fill-rule="evenodd"></path>
+                  </svg>
+                </span>
+                <span class="list_text">Token Authentication, Headers &amp; Rate Limiting</span>
+              </li>
+              <li class="card__list_item">
+                <span class="check">
+                  <svg class="check_svg" fill="currentColor" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                    <path clip-rule="evenodd" d="M12.416 3.376a.75.75 0 0 1 .208 1.04l-5 7.5a.75.75 0 0 1-1.154.114l-3-3a.75.75 0 0 1 1.06-1.06l2.353 2.353 4.493-6.74a.75.75 0 0 1 1.04-.207Z" fill-rule="evenodd"></path>
+                  </svg>
+                </span>
+                <span class="list_text">Endpoint Testing, Validation &amp; Documentation</span>
+              </li>
+            </ul>
+            <a href="https://www.hackerrank.com/certificates/b73849592031" target="_blank" rel="noopener noreferrer" class="button cert-action-btn" data-cert="rest-api-hackerrank" data-badge="VIEW CERT">
+              <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+              <span>View Certificate</span>
+            </a>
+          </div>
+
+          <!-- Card 05: Deep Learning -->
+          <div class="uiverse-cert-card interactive-target reveal-node delay-3" data-badge="DEEP LEARNING">
+            <div class="card__border"></div>
+            <div class="card_title__container">
+              <span class="card_title">Introduction to Deep Learning</span>
+              <p class="card_paragraph">Kaggle • Applied AI Certification</p>
+            </div>
+            <hr class="line" />
+            <ul class="card__list">
+              <li class="card__list_item">
+                <span class="check">
+                  <svg class="check_svg" fill="currentColor" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                    <path clip-rule="evenodd" d="M12.416 3.376a.75.75 0 0 1 .208 1.04l-5 7.5a.75.75 0 0 1-1.154.114l-3-3a.75.75 0 0 1 1.06-1.06l2.353 2.353 4.493-6.74a.75.75 0 0 1 1.04-.207Z" fill-rule="evenodd"></path>
+                  </svg>
+                </span>
+                <span class="list_text">Feedforward Networks &amp; Deep Layer Design</span>
+              </li>
+              <li class="card__list_item">
+                <span class="check">
+                  <svg class="check_svg" fill="currentColor" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                    <path clip-rule="evenodd" d="M12.416 3.376a.75.75 0 0 1 .208 1.04l-5 7.5a.75.75 0 0 1-1.154.114l-3-3a.75.75 0 0 1 1.06-1.06l2.353 2.353 4.493-6.74a.75.75 0 0 1 1.04-.207Z" fill-rule="evenodd"></path>
+                  </svg>
+                </span>
+                <span class="list_text">Loss Optimizers: Adam, RMSProp &amp; SGD</span>
+              </li>
+              <li class="card__list_item">
+                <span class="check">
+                  <svg class="check_svg" fill="currentColor" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                    <path clip-rule="evenodd" d="M12.416 3.376a.75.75 0 0 1 .208 1.04l-5 7.5a.75.75 0 0 1-1.154.114l-3-3a.75.75 0 0 1 1.06-1.06l2.353 2.353 4.493-6.74a.75.75 0 0 1 1.04-.207Z" fill-rule="evenodd"></path>
+                  </svg>
+                </span>
+                <span class="list_text">Backpropagation &amp; Activation Mathematics</span>
+              </li>
+              <li class="card__list_item">
+                <span class="check">
+                  <svg class="check_svg" fill="currentColor" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                    <path clip-rule="evenodd" d="M12.416 3.376a.75.75 0 0 1 .208 1.04l-5 7.5a.75.75 0 0 1-1.154.114l-3-3a.75.75 0 0 1 1.06-1.06l2.353 2.353 4.493-6.74a.75.75 0 0 1 1.04-.207Z" fill-rule="evenodd"></path>
+                  </svg>
+                </span>
+                <span class="list_text">Regularization, Dropout &amp; BatchNorm</span>
+              </li>
+            </ul>
+            <a href="https://drive.google.com/file/d/14mEz6Daa9LdMOGm9QNllqkuqqnXH73Gs/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="button cert-action-btn" data-cert="deep-learning-kaggle" data-badge="VIEW CERT">
+              <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+              <span>View Certificate</span>
+            </a>
+          </div>
+
+          <!-- Card 06: Computer Vision -->
+          <div class="uiverse-cert-card interactive-target reveal-node delay-4" data-badge="COMPUTER VISION">
+            <div class="card__border"></div>
+            <div class="card_title__container">
+              <span class="card_title">Computer Vision</span>
+              <p class="card_paragraph">Kaggle • Deep Learning &amp; Vision Specialist</p>
+            </div>
+            <hr class="line" />
+            <ul class="card__list">
+              <li class="card__list_item">
+                <span class="check">
+                  <svg class="check_svg" fill="currentColor" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                    <path clip-rule="evenodd" d="M12.416 3.376a.75.75 0 0 1 .208 1.04l-5 7.5a.75.75 0 0 1-1.154.114l-3-3a.75.75 0 0 1 1.06-1.06l2.353 2.353 4.493-6.74a.75.75 0 0 1 1.04-.207Z" fill-rule="evenodd"></path>
+                  </svg>
+                </span>
+                <span class="list_text">Convolutional Neural Networks &amp; Feature Extraction</span>
+              </li>
+              <li class="card__list_item">
+                <span class="check">
+                  <svg class="check_svg" fill="currentColor" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                    <path clip-rule="evenodd" d="M12.416 3.376a.75.75 0 0 1 .208 1.04l-5 7.5a.75.75 0 0 1-1.154.114l-3-3a.75.75 0 0 1 1.06-1.06l2.353 2.353 4.493-6.74a.75.75 0 0 1 1.04-.207Z" fill-rule="evenodd"></path>
+                  </svg>
+                </span>
+                <span class="list_text">Transfer Learning with Pretrained Models</span>
+              </li>
+              <li class="card__list_item">
+                <span class="check">
+                  <svg class="check_svg" fill="currentColor" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                    <path clip-rule="evenodd" d="M12.416 3.376a.75.75 0 0 1 .208 1.04l-5 7.5a.75.75 0 0 1-1.154.114l-3-3a.75.75 0 0 1 1.06-1.06l2.353 2.353 4.493-6.74a.75.75 0 0 1 1.04-.207Z" fill-rule="evenodd"></path>
+                  </svg>
+                </span>
+                <span class="list_text">Data Augmentation &amp; Spatial Invariance</span>
+              </li>
+              <li class="card__list_item">
+                <span class="check">
+                  <svg class="check_svg" fill="currentColor" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+                    <path clip-rule="evenodd" d="M12.416 3.376a.75.75 0 0 1 .208 1.04l-5 7.5a.75.75 0 0 1-1.154.114l-3-3a.75.75 0 0 1 1.06-1.06l2.353 2.353 4.493-6.74a.75.75 0 0 1 1.04-.207Z" fill-rule="evenodd"></path>
+                  </svg>
+                </span>
+                <span class="list_text">Custom Visual Classifiers &amp; Edge Detectors</span>
+              </li>
+            </ul>
+            <a href="https://drive.google.com/file/d/1PBfh3--qi8BxO_Y3HVabPxQlM0_YYROy/view?usp=drive_link" target="_blank" rel="noopener noreferrer" class="button cert-action-btn" data-cert="computer-vision-kaggle" data-badge="VIEW CERT">
+              <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+              <span>View Certificate</span>
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================
+         CONTACT & DISPATCH — FOCUSED SLATE-OBSIDIAN WITH PULSING GREEN SOCKET
+         (Seamless atmosphere blend, direct terminal)
+         ======================================================================== -->
+    <section id="contact" class="seamless-section section-theme-contact py-28 relative container-scroll-wrapper overflow-hidden">
+      <!-- Aceternity UI Aurora Background Engine -->
+      <div class="aurora-bg-container pointer-events-none">
+        <div class="aurora-bg-mesh"></div>
+      </div>
+
+      <div class="ambient-section-veil veil-top"></div>
+
+      <div class="max-w-2xl mx-auto px-6 text-center relative z-10 container-scroll-card">
+        
+        <div class="reveal-node inline-flex items-center space-x-2 px-3.5 py-1 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-300 text-xs font-mono mb-4">
+          <span class="w-2 h-2 rounded-full bg-purple-400 animate-pulse"></span>
+          <span>GET IN TOUCH</span>
+        </div>
+        <h2 class="reveal-node delay-1 text-3xl sm:text-4xl font-bold text-slate-100 tracking-tight mb-3 font-sans">
+          Let's Build Something Intelligent
+        </h2>
+        
+        <p class="reveal-node delay-1 text-slate-300 text-sm sm:text-base leading-relaxed mb-8 font-sans">
+          Always open to collaborating on backend architectures, applied ML projects, or engineering roles. Reach out directly or drop a message below.
+        </p>
+
+        <!-- Direct Contact Card -->
+        <div class="reveal-node delay-2 glass-panel-translucent rounded-2xl p-6 sm:p-8 text-left border-purple-500/30 shadow-[0_20px_50px_rgba(0,0,0,0.8),0_0_35px_rgba(192,132,252,0.12)]">
+          <!-- Availability Status Bar -->
+          <div class="flex items-center justify-between pb-4 border-b border-white/10 mb-6">
+            <div class="flex items-center space-x-2.5">
+              <span class="relative flex h-2.5 w-2.5">
+                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-400"></span>
+              </span>
+              <span class="text-xs font-medium text-slate-200 font-sans">Available for New Opportunities</span>
+            </div>
+            <span class="text-xs font-mono text-purple-300/80 hidden sm:inline-block">Panvel / Navi Mumbai • Remote</span>
+          </div>
+
+          <!-- Direct Channels: Official Logos Only -->
+          <div class="flex items-center justify-center gap-4 sm:gap-6 mb-8">
+            <!-- Email -->
+            <a href="mailto:28rushikeshjagtap@gmail.com" class="interactive-target w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-white/[0.04] hover:bg-red-500/[0.12] border border-white/[0.08] hover:border-red-500/50 flex items-center justify-center transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 shadow-md hover:shadow-[0_0_25px_rgba(239,68,68,0.3)] group" data-badge="EMAIL" title="Email: 28rushikeshjagtap@gmail.com">
+              <svg class="w-6 h-6 sm:w-7 sm:h-7 transition-transform group-hover:scale-110" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+                <path fill="#4caf50" d="M45 16.2l-5 2.75-5 4.75L35 40h7c1.657 0 3-1.343 3-3V16.2z"/>
+                <path fill="#1e88e5" d="M3 16.2l3.614 1.71L13 23.7V40H6c-1.657 0-3-1.343-3-3V16.2z"/>
+                <polygon fill="#e53935" points="35,11.2 24,19.45 13,11.2 12,17 13,23.7 24,31.95 35,23.7 36,17"/>
+                <path fill="#c62828" d="M3 12.298V16.2l10 7.5V11.2L9.876 8.859C9.132 8.301 8.228 8 7.298 8 4.924 8 3 9.924 3 12.298z"/>
+                <path fill="#fbc02d" d="M45 12.298V16.2l-10 7.5V11.2l3.124-2.341C38.868 8.301 39.772 8 40.702 8 43.076 8 45 9.924 45 12.298z"/>
+              </svg>
+            </a>
+
+            <!-- Phone -->
+            <a href="tel:+918291251633" class="interactive-target w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-white/[0.04] hover:bg-emerald-500/[0.12] border border-white/[0.08] hover:border-emerald-500/50 flex items-center justify-center transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 shadow-md hover:shadow-[0_0_25px_rgba(16,185,129,0.3)] group" data-badge="PHONE" title="Phone / Call Direct">
+              <i data-lucide="phone" class="w-6 h-6 sm:w-7 sm:h-7 text-emerald-400 transition-transform group-hover:scale-110"></i>
+            </a>
+
+            <!-- LinkedIn -->
+            <a href="https://www.linkedin.com/in/rushikesh-jagtap-07b787376" target="_blank" rel="noreferrer" class="interactive-target w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-white/[0.04] hover:bg-[#0a66c2]/[0.15] border border-white/[0.08] hover:border-[#0a66c2]/60 flex items-center justify-center transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 shadow-md hover:shadow-[0_0_25px_rgba(10,102,194,0.3)] group" data-badge="LINKEDIN" title="LinkedIn Profile">
+              <svg class="w-6 h-6 sm:w-7 sm:h-7 text-[#0a66c2] transition-transform group-hover:scale-110" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z"/>
+              </svg>
+            </a>
+
+            <!-- GitHub -->
+            <a href="https://github.com/Rushikesh282006" target="_blank" rel="noreferrer" class="interactive-target w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-white/[0.04] hover:bg-white/[0.12] border border-white/[0.08] hover:border-white/40 flex items-center justify-center transition-all duration-300 transform hover:scale-110 hover:-translate-y-1 shadow-md hover:shadow-[0_0_25px_rgba(255,255,255,0.2)] group" data-badge="GITHUB" title="GitHub Profile">
+              <svg class="w-6 h-6 sm:w-7 sm:h-7 text-white transition-transform group-hover:scale-110" viewBox="0 0 24 24" fill="currentColor">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+              </svg>
+            </a>
+          </div>
+
+          <!-- Clean Professional Contact Form -->
+          <form id="contact-form" class="space-y-4 pt-5 border-t border-white/10 font-sans">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="contact-name" class="block text-slate-300 text-xs font-medium mb-1.5">Your Name</label>
+                <input type="text" id="contact-name" required placeholder="John Doe" class="interactive-target w-full bg-black/40 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-slate-100 placeholder:text-slate-500 focus:outline-none focus:border-purple-400/80 focus:ring-2 focus:ring-purple-500/20 transition-all font-sans" data-badge="NAME" />
+              </div>
+              <div>
+                <label for="contact-email" class="block text-slate-300 text-xs font-medium mb-1.5">Your Email</label>
+                <input type="email" id="contact-email" required placeholder="name@example.com" class="interactive-target w-full bg-black/40 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-slate-100 placeholder:text-slate-500 focus:outline-none focus:border-purple-400/80 focus:ring-2 focus:ring-purple-500/20 transition-all font-sans" data-badge="EMAIL" />
+              </div>
+            </div>
+            <div>
+              <label for="contact-message" class="block text-slate-300 text-xs font-medium mb-1.5">Your Message</label>
+              <textarea rows="4" id="contact-message" required placeholder="Hi Rushikesh, I'd like to talk about..." class="interactive-target w-full bg-black/40 border border-white/10 rounded-xl px-4 py-2.5 text-sm text-slate-100 placeholder:text-slate-500 focus:outline-none focus:border-purple-400/80 focus:ring-2 focus:ring-purple-500/20 transition-all font-sans resize-none" data-badge="MESSAGE"></textarea>
+            </div>
+            <button type="submit" class="interactive-target w-full py-3.5 rounded-xl bg-gradient-to-r from-purple-500 via-fuchsia-500 to-indigo-600 hover:from-purple-400 hover:to-indigo-500 text-white font-semibold text-sm tracking-wide transition-all transform active:scale-[0.99] flex items-center justify-center gap-2 shadow-lg shadow-purple-500/25 cursor-pointer" data-badge="SEND">
+              <span>Send Message</span>
+              <i data-lucide="send" class="w-4 h-4"></i>
+            </button>
+          </form>
+
+          <div class="mt-6 pt-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-4 text-slate-400 text-xs font-sans">
+            <span>© 2026 Rushikesh Jagtap. Engineered with precision.</span>
+            <span>Navi Mumbai / Panvel, MH</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+       HALFTONE WORDMARK FOOTER (KEDHARESWER NAIDU 21ST.DEV COMPONENT)
+       Features oversized interactive halftone wordmark with spring physics,
+       cursor repulsion, click shockwaves, directory columns & back-to-top
+       ========================================================================== -->
+  <footer id="site-footer" class="relative w-full overflow-hidden bg-[#05070c] border-t border-white/10 pt-16 pb-0 z-20">
+    <div class="ambient-footer-glow"></div>
+
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+      
+      <!-- Studio Line & Tracked Navigation Columns -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-white/10">
+        
+        <!-- Column 1: Brand & Status -->
+        <div class="md:col-span-2 space-y-4">
+          <div class="flex items-center space-x-2.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span class="font-bold text-slate-100 tracking-tight text-base font-sans">Rushikesh Jagtap</span>
+            <span class="text-slate-600 font-mono text-xs">/</span>
+            <span class="text-xs font-mono text-purple-400 font-medium">Systems & Applied ML</span>
+          </div>
+          <p class="text-slate-400 text-xs font-sans leading-relaxed max-w-md">
+            Architecting high-concurrency asynchronous backend microservices, enterprise multi-tenant RAG systems, and robust machine learning pipelines.
+          </p>
+          <div class="flex flex-wrap items-center gap-3 text-[11px] font-mono text-slate-500 pt-1">
+            <span class="inline-flex items-center gap-1.5 text-slate-400">
+              <i data-lucide="map-pin" class="w-3.5 h-3.5 text-purple-400"></i>
+              <span>Navi Mumbai / Panvel, MH</span>
+            </span>
+            <span>•</span>
+            <span class="text-emerald-400 flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+              <span>Available for 2026 Roles</span>
+            </span>
+          </div>
+        </div>
+
+        <!-- Column 2: Directory Links -->
+        <div>
+          <h4 class="text-[10px] font-mono uppercase tracking-wider text-slate-400 mb-3">Directory</h4>
+          <ul class="space-y-2 text-xs font-mono text-slate-300">
+            <li><a href="#hero" class="footer-nav-link hover:text-cyan-400 transition-colors flex items-center gap-1.5" data-target="hero"><span>Nexus / Home</span></a></li>
+            <li><a href="#about" class="footer-nav-link hover:text-cyan-400 transition-colors flex items-center gap-1.5" data-target="about"><span>About Me</span></a></li>
+            <li><a href="#projects" class="footer-nav-link hover:text-cyan-400 transition-colors flex items-center gap-1.5" data-target="projects"><span>Projects</span></a></li>
+            <li><a href="#stack" class="footer-nav-link hover:text-cyan-400 transition-colors flex items-center gap-1.5" data-target="stack"><span>Tech Stack</span></a></li>
+            <li><a href="#certifications" class="footer-nav-link hover:text-cyan-400 transition-colors flex items-center gap-1.5" data-target="certifications"><span>Certifications</span></a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Connect & Back to Top -->
+        <div class="flex flex-col justify-between">
+          <div>
+            <h4 class="text-[10px] font-mono uppercase tracking-wider text-slate-400 mb-3">Network</h4>
+            <ul class="space-y-2 text-xs font-mono text-slate-300">
+              <li><a href="https://www.linkedin.com/in/rushikesh-jagtap-07b787376" target="_blank" rel="noreferrer" class="hover:text-[#0a66c2] transition-colors flex items-center gap-1.5"><span>LinkedIn</span><i data-lucide="arrow-up-right" class="w-3 h-3 text-slate-500"></i></a></li>
+              <li><a href="https://github.com/Rushikesh282006" target="_blank" rel="noreferrer" class="hover:text-white transition-colors flex items-center gap-1.5"><span>GitHub</span><i data-lucide="arrow-up-right" class="w-3 h-3 text-slate-500"></i></a></li>
+              <li><a href="mailto:28rushikeshjagtap@gmail.com" class="hover:text-red-400 transition-colors flex items-center gap-1.5"><span>Email Direct</span><i data-lucide="arrow-up-right" class="w-3 h-3 text-slate-500"></i></a></li>
+              <li><a href="tel:+918291251633" class="hover:text-emerald-400 transition-colors flex items-center gap-1.5"><span>Phone Call</span><i data-lucide="arrow-up-right" class="w-3 h-3 text-slate-500"></i></a></li>
+            </ul>
+          </div>
+
+          <div class="pt-6">
+            <button id="footer-back-to-top" class="interactive-target inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 hover:border-purple-500/40 text-xs font-mono text-slate-300 hover:text-white transition-all transform active:scale-95 group cursor-pointer" data-badge="TOP">
+              <span>BACK TO TOP</span>
+              <i data-lucide="arrow-up" class="w-3.5 h-3.5 group-hover:-translate-y-0.5 transition-transform text-purple-400"></i>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Telemetry Status Bar -->
+      <div class="pt-4 pb-2 flex flex-wrap items-center justify-between text-[10.5px] font-mono text-slate-500">
+        <span>© 2026 RUSHIKESH JAGTAP • ALL RIGHTS RESERVED</span>
+        <span class="flex items-center space-x-2 text-purple-400/90">
+          <span class="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse"></span>
+          <span>INTERACTIVE HALFTONE WORDMARK • CLICK OR HOVER</span>
+        </span>
+      </div>
+
+    </div>
+
+    <!-- Interactive Halftone Wordmark Canvas Container (Properly Centered & Aligned) -->
+    <div class="relative w-full h-[160px] sm:h-[220px] md:h-[270px] mt-2 mb-6 overflow-hidden select-none cursor-pointer" id="halftone-wordmark-container">
+      <canvas id="halftone-wordmark-canvas" class="w-full h-full block"></canvas>
+      <div class="halftone-wordmark-fade pointer-events-none"></div>
+    </div>
+  </footer>
+
+  <!-- Toast Notification (Zero alert usage) -->
+  <div id="toast-element" class="fixed bottom-6 right-6 z-50 transform translate-y-24 opacity-0 transition-all duration-300 flex items-center gap-2.5 px-4 py-3 rounded-xl bg-slate-900/95 border border-cyan-500/60 text-white font-mono text-xs shadow-2xl backdrop-blur-xl pointer-events-none">
+    <i data-lucide="info" class="w-4 h-4 text-cyan-400"></i>
+    <span id="toast-message">Notification</span>
+  </div>
+
+  <!-- ==========================================================================
+       JAVASCRIPT LOGIC ENGINE
+       ========================================================================== -->
+  <script src="script.js?v=folder_clean_v2"></script>
+</body>
+</html>
