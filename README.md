@@ -2,8 +2,6 @@
 
 > An interactive, cyberpunk/dark-themed developer portfolio featuring dynamic Three.js 3D canvas visuals, custom mouse physics, interactive certification showcases, and responsive telemetry design.
 
-![Portfolio Preview](./MyImage.jpeg)
-
 ---
 
 ## 🛠️ Tech Stack & Highlights
