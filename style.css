@@ -619,7 +619,7 @@
       display: grid;
       grid-template-columns: repeat(1, minmax(0, 1fr));
       gap: 3.5rem 2rem;
-      align-items: end;
+      align-items: stretch;
       justify-items: center;
       position: relative;
       z-index: 10;
@@ -646,7 +646,10 @@
     .glass-folder-card {
       position: relative;
       width: 100%;
-      max-width: 375px;
+      max-width: 380px;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
       perspective: 1000px;
       user-select: none;
       transition: transform 0.3s ease;
@@ -662,6 +665,9 @@
     .glass-folder-wrapper {
       position: relative;
       width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
       transform-style: preserve-3d;
       transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
     }
@@ -670,14 +676,16 @@
     .glass-folder-back {
       position: relative;
       width: 100%;
-      border-radius: 1.25rem 1.25rem 1rem 1rem;
+      height: 100%;
+      min-height: 520px;
+      border-radius: 1.25rem;
       background: #060914;
       border: 1px solid rgba(255, 255, 255, 0.12);
-      box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.7);
+      box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.75);
       overflow: hidden;
-      min-height: 480px;
       display: flex;
       flex-direction: column;
+      justify-content: space-between;
       transition: border-color 0.35s ease, box-shadow 0.35s ease;
     }
 
@@ -685,34 +693,65 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 0.5rem;
       padding: 0.75rem 1rem;
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       background: rgba(255, 255, 255, 0.03);
+      position: relative;
+      z-index: 6;
     }
 
     .glass-folder-tab-pill {
       display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
+      gap: 0.45rem;
       font-family: 'JetBrains Mono', monospace;
       font-size: 10.5px;
       font-weight: 700;
-      padding: 0.2rem 0.6rem;
+      padding: 0.22rem 0.65rem;
       border-radius: 0.5rem;
-      letter-spacing: 0.02em;
+      letter-spacing: 0.025em;
+      white-space: nowrap;
     }
 
     /* Art Print Plate (Long-Exposure Print) */
     .glass-folder-art {
       position: absolute;
       top: 3.2rem;
-      left: 0.85rem;
-      right: 0.85rem;
-      height: 175px;
+      left: 0.65rem;
+      right: 0.65rem;
+      height: 185px;
       border-radius: 0.85rem;
       overflow: hidden;
       box-shadow: inset 0 0 35px rgba(0, 0, 0, 0.6);
-      transition: transform 0.3s ease;
+      transition: transform 0.4s ease, filter 0.4s ease;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .glass-folder-art-dots {
+      position: absolute;
+      inset: 0;
+      opacity: 0.15;
+      background-image: radial-gradient(#ffffff 1px, transparent 1.2px);
+      background-size: 14px 14px;
+      pointer-events: none;
+    }
+
+    .glass-folder-art-badge {
+      position: relative;
+      z-index: 2;
+      transition: opacity 0.35s ease, transform 0.35s ease;
+      pointer-events: none;
+    }
+
+    /* When folder opens on hover: the closed indicator fades away */
+    .glass-folder-card:hover .glass-folder-art-badge,
+    .glass-folder-card.is-open .glass-folder-art-badge {
+      opacity: 0;
+      transform: scale(0.92);
     }
 
     .glass-folder-art.art-aurora {
@@ -727,18 +766,18 @@
       background: radial-gradient(circle at 35% 25%, rgba(245, 158, 11, 0.95) 0%, rgba(220, 38, 38, 0.75) 45%, rgba(251, 191, 36, 0.5) 75%, #180903 100%);
     }
 
-    /* Nested Files Container - Hidden & tucked inside folder by default */
+    /* Nested Files Container - CLOSED BY DEFAULT (hidden tucked inside folder pocket) */
     .glass-folder-files {
       position: absolute;
-      top: 4.8rem;
-      left: 1rem;
-      right: 1rem;
+      top: 3.6rem;
+      left: 0.9rem;
+      right: 0.9rem;
       display: flex;
       flex-direction: column;
-      gap: 0.45rem;
+      gap: 0.35rem;
       z-index: 5;
       opacity: 0;
-      transform: translateY(22px) scale(0.96);
+      transform: translateY(32px) scale(0.95);
       pointer-events: none;
       transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease;
     }
@@ -747,65 +786,66 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 0.45rem 0.75rem;
-      border-radius: 0.6rem;
-      background: rgba(10, 15, 25, 0.94);
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6);
+      gap: 0.5rem;
+      padding: 0.42rem 0.75rem;
+      border-radius: 0.55rem;
+      background: rgba(10, 15, 25, 0.96);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.7);
       font-family: 'JetBrains Mono', monospace;
       font-size: 10px;
-      transition: all 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
       transform: translateY(0);
     }
 
-    /* OPEN ON HOVER: files reveal and fan out upward */
+    /* OPEN ON HOVER: Files reveal and fan out upward from inside the folder */
     .glass-folder-card:hover .glass-folder-files,
     .glass-folder-card.is-open .glass-folder-files {
       opacity: 1;
       pointer-events: auto;
-      transform: translateY(-2.2rem);
+      transform: translateY(-0.95rem) scale(1);
     }
 
     .glass-folder-card:hover .glass-folder-file-item:nth-child(1),
-    .glass-folder-card.is-open .glass-folder-file-item:nth-child(1) { transform: translateY(-20px); }
+    .glass-folder-card.is-open .glass-folder-file-item:nth-child(1) { transform: translateY(-16px); }
     .glass-folder-card:hover .glass-folder-file-item:nth-child(2),
-    .glass-folder-card.is-open .glass-folder-file-item:nth-child(2) { transform: translateY(-10px); }
+    .glass-folder-card.is-open .glass-folder-file-item:nth-child(2) { transform: translateY(-8px); }
     .glass-folder-card:hover .glass-folder-file-item:nth-child(3),
     .glass-folder-card.is-open .glass-folder-file-item:nth-child(3) { transform: translateY(0px); }
     .glass-folder-card:hover .glass-folder-file-item:nth-child(4),
-    .glass-folder-card.is-open .glass-folder-file-item:nth-child(4) { transform: translateY(10px); }
+    .glass-folder-card.is-open .glass-folder-file-item:nth-child(4) { transform: translateY(8px); }
 
-    /* Frosted Glass Front Cover - Closed by default covering sleeve */
+    /* Frosted Glass Front Cover - CLOSED BY DEFAULT covering the front sleeve */
     .glass-folder-front {
       position: relative;
-      margin-top: 76px;
+      margin-top: auto;
       margin-left: 0.5rem;
       margin-right: 0.5rem;
       margin-bottom: 0.5rem;
       border-radius: 1rem;
-      background: linear-gradient(145deg, rgba(255, 255, 255, 0.13) 0%, rgba(255, 255, 255, 0.03) 100%);
-      backdrop-filter: blur(22px) saturate(190%);
-      -webkit-backdrop-filter: blur(22px) saturate(190%);
-      border: 1px solid rgba(255, 255, 255, 0.22);
-      border-top: 1.5px solid rgba(255, 255, 255, 0.45);
-      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.35);
-      padding: 1.2rem 1.1rem;
+      background: linear-gradient(155deg, rgba(18, 26, 44, 0.9) 0%, rgba(6, 10, 20, 0.97) 100%);
+      backdrop-filter: blur(24px) saturate(200%);
+      -webkit-backdrop-filter: blur(24px) saturate(200%);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-top: 1.5px solid rgba(255, 255, 255, 0.42);
+      box-shadow: 0 -10px 30px -4px rgba(0, 0, 0, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+      padding: 1.15rem 1rem 1rem 1rem;
       z-index: 10;
       transform-origin: bottom center;
       transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
     }
 
-    /* OPEN ON HOVER: front leans downward revealing internal architecture files */
+    /* OPEN ON HOVER: Front leans outward in 3D perspective opening the mouth of the folder */
     .glass-folder-card:hover .glass-folder-front,
     .glass-folder-card.is-open .glass-folder-front {
-      transform: perspective(1000px) rotateX(-22deg) translateY(32px) scale(0.97);
-      box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.45);
+      transform: perspective(900px) rotateX(-16deg) translateY(6px);
+      box-shadow: 0 -8px 28px -4px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.45);
     }
 
     /* Selected state ring for active flight deck project */
     .glass-folder-card.is-selected .glass-folder-back {
-      border-color: rgba(56, 189, 248, 0.4);
-      box-shadow: 0 20px 45px -10px rgba(56, 189, 248, 0.18);
+      border-color: rgba(56, 189, 248, 0.5);
+      box-shadow: 0 20px 45px -10px rgba(56, 189, 248, 0.22);
     }
 
     .glass-folder-action-btn {
@@ -1601,13 +1641,62 @@
     /* ==========================================================================
        ADVANCED RESPONSIVE ENHANCEMENTS FOR ALL MOBILE & TABLET DEVICES
        ========================================================================== */
-    @media (max-width: 768px) {
-      /* Mobile drawer smooth entrance */
-      #mobile-nav-drawer {
-        transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-                    opacity 0.35s ease;
-      }
+    header {
+      z-index: 1000 !important;
+    }
 
+    #mobile-nav-backdrop {
+      position: fixed !important;
+      inset: 0 !important;
+      z-index: 990 !important;
+      background: rgba(0, 0, 0, 0.75) !important;
+      backdrop-filter: blur(8px) !important;
+      -webkit-backdrop-filter: blur(8px) !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+      transition: opacity 0.3s ease !important;
+    }
+
+    #mobile-nav-backdrop.is-active {
+      opacity: 1 !important;
+      pointer-events: auto !important;
+    }
+
+    #mobile-nav-drawer {
+      position: fixed !important;
+      top: 4rem !important; /* 64px, directly below header */
+      left: 0 !important;
+      right: 0 !important;
+      width: 100% !important;
+      z-index: 995 !important;
+      max-height: calc(100vh - 4.5rem) !important;
+      overflow-y: auto !important;
+      -webkit-overflow-scrolling: touch !important;
+      background: rgba(6, 9, 19, 0.98) !important;
+      backdrop-filter: blur(24px) saturate(200%) !important;
+      -webkit-backdrop-filter: blur(24px) saturate(200%) !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.15) !important;
+      box-shadow: 0 25px 60px -10px rgba(0, 0, 0, 0.9) !important;
+      transform: translateY(-120%) !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease !important;
+    }
+
+    #mobile-nav-drawer.is-active {
+      transform: translateY(0) !important;
+      opacity: 1 !important;
+      pointer-events: auto !important;
+    }
+
+    @media (min-width: 1024px) {
+      #mobile-nav-backdrop,
+      #mobile-nav-drawer {
+        display: none !important;
+      }
+    }
+
+    @media (max-width: 768px) {
       /* Station & Bento Cards Mobile Padding */
       .academic-station-card,
       .glass-panel-translucent,

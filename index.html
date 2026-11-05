@@ -176,8 +176,8 @@
   <!-- ==========================================================================
        CLEAN NAVIGATION BAR (ZERO SECTION NUMBERING)
        ========================================================================== -->
-  <header class="fixed top-0 left-0 w-full z-40 border-b border-white/10 bg-[#060913]/70 backdrop-blur-md">
-    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between text-xs font-mono">
+  <header class="fixed top-0 left-0 w-full z-50 border-b border-white/10 bg-[#060913]/85 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between text-xs font-mono">
       
       <!-- Brand & Status -->
       <a href="#hero" class="interactive-target flex items-center space-x-2.5 group" data-badge="HOME">
@@ -185,7 +185,7 @@
         <span class="font-bold text-slate-100 tracking-tight text-sm font-sans hover:text-white transition-colors">Rushikesh Jagtap</span>
       </a>
 
-      <!-- Apple Tahoe Liquid Glass Navigation Dock -->
+      <!-- Apple Tahoe Liquid Glass Navigation Dock (Desktop lg+) -->
       <nav id="navbar-liquid-nav" class="hidden lg:flex items-center relative p-1 rounded-full text-slate-300 font-medium text-xs">
         <!-- Tahoe Liquid Glass Sliding Pill Indicator -->
         <div id="liquid-glass-indicator" class="liquid-glass-pill"></div>
@@ -200,14 +200,89 @@
         <a href="#contact" class="nav-tab-link interactive-target px-3.5 py-1.5 rounded-full" data-target="contact" data-badge="DISPATCH">Contact</a>
       </nav>
 
-      <!-- Quick Status / Dispatch Link -->
-      <a href="#contact" class="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.08] backdrop-blur-xl hover:border-white/20 text-slate-300 hover:text-white transition-all text-[11px] font-mono interactive-target" data-badge="CONNECT">
-        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
-        <span>Open to Roles</span>
-      </a>
+      <!-- Right Header Controls: Quick Status + Mobile Hamburger Toggle -->
+      <div class="flex items-center gap-2.5">
+        <!-- Quick Status / Dispatch Link (Visible on sm and up) -->
+        <a href="#contact" class="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.08] backdrop-blur-xl hover:border-white/20 text-slate-300 hover:text-white transition-all text-[11px] font-mono interactive-target" data-badge="CONNECT">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>Open to Roles</span>
+        </a>
+
+        <!-- Mobile Hamburger Menu Button (Visible on < lg screens) -->
+        <button id="mobile-menu-btn" class="lg:hidden p-2.5 rounded-xl bg-white/[0.08] hover:bg-white/[0.15] active:bg-white/[0.22] border border-white/15 text-slate-200 hover:text-white transition-all focus:outline-none focus:ring-2 focus:ring-cyan-400/50 interactive-target flex items-center justify-center w-10 h-10 cursor-pointer" aria-label="Toggle navigation menu" aria-expanded="false" data-badge="MENU">
+          <span id="mobile-icon-bars" class="flex items-center justify-center pointer-events-none">
+            <i data-lucide="menu" class="w-5 h-5"></i>
+          </span>
+          <span id="mobile-icon-close" class="hidden flex items-center justify-center pointer-events-none">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </span>
+        </button>
+      </div>
 
     </div>
   </header>
+
+  <!-- Mobile Navigation Backdrop -->
+  <div id="mobile-nav-backdrop" aria-hidden="true"></div>
+
+  <!-- Mobile Navigation Dropdown Drawer -->
+  <div id="mobile-nav-drawer" class="px-4 sm:px-6 py-5">
+    <div class="max-w-md mx-auto space-y-3">
+      <!-- Section fields header -->
+      <div class="flex items-center justify-between pb-2.5 border-b border-white/10 text-[10px] font-mono text-slate-400">
+        <span class="text-cyan-400 font-semibold tracking-wider uppercase">NAVIGATION FIELDS</span>
+        <span class="flex items-center gap-1.5 text-slate-400"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>8 SECTIONS</span>
+      </div>
+
+      <!-- Links Grid -->
+      <div class="grid grid-cols-2 gap-2 font-mono text-xs">
+        <a href="#hero" class="mobile-nav-link flex items-center gap-2.5 p-3 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] active:bg-cyan-500/20 border border-white/10 hover:border-cyan-400/40 text-slate-200 hover:text-white transition-all" data-target="hero">
+          <i data-lucide="home" class="w-4 h-4 text-cyan-400 shrink-0"></i>
+          <span class="font-medium">Home</span>
+        </a>
+        <a href="#about" class="mobile-nav-link flex items-center gap-2.5 p-3 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] active:bg-indigo-500/20 border border-white/10 hover:border-indigo-400/40 text-slate-200 hover:text-white transition-all" data-target="about">
+          <i data-lucide="user" class="w-4 h-4 text-indigo-400 shrink-0"></i>
+          <span class="font-medium">About</span>
+        </a>
+        <a href="#education" class="mobile-nav-link flex items-center gap-2.5 p-3 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] active:bg-purple-500/20 border border-white/10 hover:border-purple-400/40 text-slate-200 hover:text-white transition-all" data-target="education">
+          <i data-lucide="graduation-cap" class="w-4 h-4 text-purple-400 shrink-0"></i>
+          <span class="font-medium">Education</span>
+        </a>
+        <a href="#stack" class="mobile-nav-link flex items-center gap-2.5 p-3 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] active:bg-blue-500/20 border border-white/10 hover:border-blue-400/40 text-slate-200 hover:text-white transition-all" data-target="stack">
+          <i data-lucide="cpu" class="w-4 h-4 text-blue-400 shrink-0"></i>
+          <span class="font-medium">Stack</span>
+        </a>
+        <a href="#projects" class="mobile-nav-link flex items-center gap-2.5 p-3 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] active:bg-emerald-500/20 border border-white/10 hover:border-emerald-400/40 text-slate-200 hover:text-white transition-all" data-target="projects">
+          <i data-lucide="folder-git-2" class="w-4 h-4 text-emerald-400 shrink-0"></i>
+          <span class="font-medium">Projects</span>
+        </a>
+        <a href="#achievements" class="mobile-nav-link flex items-center gap-2.5 p-3 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] active:bg-amber-500/20 border border-white/10 hover:border-amber-400/40 text-slate-200 hover:text-white transition-all" data-target="achievements">
+          <i data-lucide="trophy" class="w-4 h-4 text-amber-400 shrink-0"></i>
+          <span class="font-medium">Honors</span>
+        </a>
+        <a href="#certifications" class="mobile-nav-link flex items-center gap-2.5 p-3 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] active:bg-teal-500/20 border border-white/10 hover:border-teal-400/40 text-slate-200 hover:text-white transition-all" data-target="certifications">
+          <i data-lucide="award" class="w-4 h-4 text-teal-400 shrink-0"></i>
+          <span class="font-medium">Certs</span>
+        </a>
+        <a href="#contact" class="mobile-nav-link flex items-center gap-2.5 p-3 rounded-xl bg-white/[0.04] hover:bg-white/[0.08] active:bg-cyan-500/20 border border-white/10 hover:border-cyan-400/40 text-slate-200 hover:text-white transition-all" data-target="contact">
+          <i data-lucide="send" class="w-4 h-4 text-cyan-400 shrink-0"></i>
+          <span class="font-medium">Contact</span>
+        </a>
+      </div>
+
+      <!-- Quick Action / Status Footer -->
+      <div class="pt-3 border-t border-white/10 flex items-center justify-between text-xs">
+        <a href="https://drive.google.com/file/d/1_9i3WjY36Yt2z9bH5Xv1w5K_y9z8x8eQ/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-emerald-500/15 border border-emerald-500/30 text-emerald-300 font-mono text-[11px] font-semibold">
+          <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
+          <span>Resume PDF</span>
+        </a>
+        <a href="#contact" class="mobile-nav-link inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-cyan-500 text-slate-950 font-mono text-[11px] font-bold" data-target="contact">
+          <span>Get in Touch</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+        </a>
+      </div>
+    </div>
+  </div>
 
   <!-- ==========================================================================
        MAIN CONTENT CONTAINER (SEAMLESS ATMOSPHERIC TRANSITIONS)
@@ -728,8 +803,8 @@
           </div>
 
           <!-- Desk Prompt Footer -->
-          <p class="relative mt-12 text-center font-mono text-[11px] tracking-[0.18em] text-emerald-400/80 uppercase">
-            Hover folder to open &amp; fan out files &bull; Click to load flight deck &bull; Live Demo &amp; GitHub linked
+          <p class="relative mt-8 sm:mt-12 text-center font-mono text-[10px] sm:text-[11px] tracking-[0.14em] sm:tracking-[0.18em] text-emerald-400/80 uppercase px-2">
+            Hover or tap folder to inspect files &bull; Click card to launch flight deck &bull; Live Demo &amp; GitHub linked
           </p>
         </div>
 

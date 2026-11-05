@@ -600,6 +600,8 @@ lucide.createIcons();
     const USER_PROJECTS = [
       {
         id: "rag",
+        tabCode: "SYS-01 // RAG",
+        statusBadge: "PRODUCTION",
         title: "Multi-Tenant RAG AI System",
         category: "AI BACKEND & ISOLATED RETRIEVAL",
         status: "PRODUCTION ARCHITECTURE",
@@ -643,6 +645,8 @@ lucide.createIcons();
       },
       {
         id: "emotion",
+        tabCode: "SYS-02 // NLP",
+        statusBadge: "ACTIVE INFERENCE",
         title: "Emotion Scanner",
         category: "NLP DEEP LEARNING & INFERENCE",
         status: "LIVE WEB APPLICATION",
@@ -687,6 +691,8 @@ lucide.createIcons();
       },
       {
         id: "houseprice",
+        tabCode: "SYS-03 // ML",
+        statusBadge: "PIPELINE",
         title: "House Price Predictor",
         category: "APPLIED ML & REGRESSION API",
         status: "END-TO-END PIPELINE",
@@ -1129,7 +1135,6 @@ lucide.createIcons();
     const mobileMenuBtn = document.getElementById("mobile-menu-btn");
     const mobileNavDrawer = document.getElementById("mobile-nav-drawer");
     const mobileNavBackdrop = document.getElementById("mobile-nav-backdrop");
-    const mobileMenuIcon = document.getElementById("mobile-menu-icon");
     const mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
 
     let isMobileNavOpen = false;
@@ -1137,40 +1142,30 @@ lucide.createIcons();
     function openMobileNav() {
       if (!mobileNavDrawer) return;
       isMobileNavOpen = true;
-      mobileNavDrawer.classList.remove("-translate-y-full", "opacity-0", "pointer-events-none");
-      mobileNavDrawer.classList.add("translate-y-0", "opacity-100", "pointer-events-auto");
+      mobileNavDrawer.classList.add("is-active");
+      if (mobileNavBackdrop) mobileNavBackdrop.classList.add("is-active");
       
-      if (mobileNavBackdrop) {
-        mobileNavBackdrop.classList.remove("opacity-0", "pointer-events-none");
-        mobileNavBackdrop.classList.add("opacity-100", "pointer-events-auto");
-      }
-      if (mobileMenuBtn) {
-        mobileMenuBtn.setAttribute("aria-expanded", "true");
-      }
-      if (mobileMenuIcon) {
-        mobileMenuIcon.setAttribute("data-lucide", "x");
-        if (window.lucide) lucide.createIcons();
-      }
+      const iconBars = document.getElementById("mobile-icon-bars");
+      const iconClose = document.getElementById("mobile-icon-close");
+      if (iconBars) iconBars.classList.add("hidden");
+      if (iconClose) iconClose.classList.remove("hidden");
+
+      if (mobileMenuBtn) mobileMenuBtn.setAttribute("aria-expanded", "true");
       document.body.style.overflow = "hidden";
     }
 
     function closeMobileNav() {
       if (!mobileNavDrawer) return;
       isMobileNavOpen = false;
-      mobileNavDrawer.classList.remove("translate-y-0", "opacity-100", "pointer-events-auto");
-      mobileNavDrawer.classList.add("-translate-y-full", "opacity-0", "pointer-events-none");
+      mobileNavDrawer.classList.remove("is-active");
+      if (mobileNavBackdrop) mobileNavBackdrop.classList.remove("is-active");
       
-      if (mobileNavBackdrop) {
-        mobileNavBackdrop.classList.remove("opacity-100", "pointer-events-auto");
-        mobileNavBackdrop.classList.add("opacity-0", "pointer-events-none");
-      }
-      if (mobileMenuBtn) {
-        mobileMenuBtn.setAttribute("aria-expanded", "false");
-      }
-      if (mobileMenuIcon) {
-        mobileMenuIcon.setAttribute("data-lucide", "menu");
-        if (window.lucide) lucide.createIcons();
-      }
+      const iconBars = document.getElementById("mobile-icon-bars");
+      const iconClose = document.getElementById("mobile-icon-close");
+      if (iconBars) iconBars.classList.remove("hidden");
+      if (iconClose) iconClose.classList.add("hidden");
+
+      if (mobileMenuBtn) mobileMenuBtn.setAttribute("aria-expanded", "false");
       document.body.style.overflow = "";
     }
 
@@ -1186,7 +1181,10 @@ lucide.createIcons();
     }
 
     if (mobileNavBackdrop) {
-      mobileNavBackdrop.addEventListener("click", closeMobileNav);
+      mobileNavBackdrop.addEventListener("click", (e) => {
+        e.stopPropagation();
+        closeMobileNav();
+      });
     }
 
     mobileNavLinks.forEach(link => {
@@ -2063,15 +2061,26 @@ lucide.createIcons();
                 
                 <!-- Folder Tab Bar -->
                 <div class="glass-folder-tab-bar">
-                  <div class="glass-folder-tab-pill bg-${proj.statusColor}-500/15 border border-${proj.statusColor}-500/30 text-${proj.statusColor}-300">
+                  <div class="glass-folder-tab-pill bg-${proj.statusColor}-500/15 border border-${proj.statusColor}-500/30 text-${proj.statusColor}-300 shrink-0">
                     <i data-lucide="folder" class="w-3.5 h-3.5 text-${proj.statusColor}-400"></i>
-                    <span>${proj.title}</span>
+                    <span class="font-mono tracking-wider font-semibold text-[10px]">${proj.tabCode || ('SYS-0' + (idx + 1))}</span>
                   </div>
-                  <span class="text-[10px] font-mono text-slate-400">${proj.folderMeta || 'Production'}</span>
+                  <div class="flex items-center gap-1.5 text-[10px] font-mono text-slate-300 min-w-0">
+                    <span class="w-1.5 h-1.5 rounded-full bg-${proj.statusColor}-400 shrink-0 animate-pulse"></span>
+                    <span class="truncate text-slate-400 font-medium">${proj.statusBadge || 'READY'}</span>
+                  </div>
                 </div>
 
                 <!-- Long-Exposure Art Print Plate -->
-                <div class="glass-folder-art ${artClass}"></div>
+                <div class="glass-folder-art ${artClass}">
+                  <div class="glass-folder-art-dots" aria-hidden="true"></div>
+                  <div class="glass-folder-art-badge">
+                    <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-black/50 backdrop-blur-md border border-white/15 text-[10px] font-mono text-slate-200 shadow-md">
+                      <i data-lucide="lock" class="w-3 h-3 text-${proj.statusColor}-400"></i>
+                      <span>${proj.files.length} Internal Specs &bull; Hover to Open</span>
+                    </div>
+                  </div>
+                </div>
 
                 <!-- Nested Internal Files Drawer (Closed by default, fans out on hover) -->
                 <div class="glass-folder-files">
@@ -2086,23 +2095,23 @@ lucide.createIcons();
                   `).join('')}
                 </div>
 
-                <!-- Frosted Glass Front Cover (Closed by default, leans down on hover) -->
+                <!-- Frosted Glass Front Cover (Anchored cleanly flush to bottom) -->
                 <div class="glass-folder-front">
                   <div class="flex items-center justify-between text-xs font-mono mb-2">
-                    <span class="text-${proj.statusColor}-400 font-bold tracking-wider text-[10px]">${proj.category}</span>
-                    <span class="px-2 py-0.5 rounded-full bg-${proj.statusColor}-500/15 border border-${proj.statusColor}-500/30 text-${proj.statusColor}-300 text-[9.5px]">${proj.status}</span>
+                    <span class="text-${proj.statusColor}-400 font-bold tracking-wider text-[10px] truncate max-w-[65%]">${proj.category}</span>
+                    <span class="px-2 py-0.5 rounded-full bg-${proj.statusColor}-500/15 border border-${proj.statusColor}-500/30 text-${proj.statusColor}-300 text-[9px] shrink-0 font-medium">${proj.statusBadge || proj.status}</span>
                   </div>
 
-                  <h3 class="text-lg font-bold text-white font-sans tracking-tight mb-2">
+                  <h3 class="text-base sm:text-lg font-bold text-white font-sans tracking-tight mb-2 truncate" title="${proj.title}">
                     ${proj.title}
                   </h3>
 
-                  <p class="text-slate-300 text-xs leading-relaxed font-sans mb-3 line-clamp-3">
+                  <p class="text-slate-300 text-xs leading-relaxed font-sans mb-3 line-clamp-3 min-h-[3.6rem]">
                     ${proj.summary}
                   </p>
 
                   <!-- Tech stack badges -->
-                  <div class="flex flex-wrap gap-1 mb-3.5 font-mono text-[9.5px]">
+                  <div class="flex flex-wrap gap-1 mb-3.5 font-mono text-[9.5px] min-h-[2.6rem] items-center">
                     ${proj.techStack.slice(0, 4).map(t => `
                       <span class="px-2 py-0.5 rounded bg-white/10 text-slate-200 border border-white/10">${t}</span>
                     `).join('')}
@@ -2121,7 +2130,7 @@ lucide.createIcons();
                       <span>GitHub</span>
                     </a>
 
-                    <button class="glass-folder-toggle-btn p-2 rounded-lg bg-white/5 hover:bg-white/15 text-slate-300 hover:text-white border border-white/10" data-badge="EXPAND FILES" title="Toggle internal files">
+                    <button class="glass-folder-toggle-btn p-2 rounded-lg bg-white/5 hover:bg-white/15 text-slate-300 hover:text-white border border-white/10 transition-colors" data-badge="FILES" title="Toggle internal files">
                       <i data-lucide="folder-closed" class="w-3.5 h-3.5"></i>
                     </button>
                   </div>
@@ -2166,8 +2175,17 @@ lucide.createIcons();
           toggleBtn.addEventListener("click", (e) => {
             e.stopPropagation();
             const wasOpen = card.classList.contains("is-open");
-            cards.forEach(c => c.classList.remove("is-open"));
-            if (!wasOpen) card.classList.add("is-open");
+            cards.forEach(c => {
+              c.classList.remove("is-open");
+              const icon = c.querySelector(".glass-folder-toggle-btn [data-lucide]");
+              if (icon) icon.setAttribute("data-lucide", "folder-closed");
+            });
+            if (!wasOpen) {
+              card.classList.add("is-open");
+              const icon = card.querySelector(".glass-folder-toggle-btn [data-lucide]");
+              if (icon) icon.setAttribute("data-lucide", "folder-open");
+            }
+            if (window.lucide) lucide.createIcons();
             renderProjectDeck(idx);
           });
         }
