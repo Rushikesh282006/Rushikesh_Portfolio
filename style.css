@@ -391,7 +391,10 @@
     #halftone-wordmark-container {
       position: relative;
       width: 100%;
+      height: 240px;
       background: #05070c;
+      touch-action: pan-y;
+      overflow: hidden;
     }
 
     #halftone-wordmark-canvas {
@@ -1739,7 +1742,7 @@
     @media (max-width: 480px) {
       /* Halftone Wordmark on Extra Small Mobile */
       #halftone-wordmark-container {
-        height: 145px;
+        height: 140px;
       }
 
       /* Small screen padding adjustments */

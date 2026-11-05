@@ -1641,24 +1641,19 @@ lucide.createIcons();
       let isVisible = false;
       let animFrameId = null;
 
-      // Track footer visibility with IntersectionObserver
-      const observer = new IntersectionObserver((entries) => {
-        isVisible = entries[0].isIntersecting;
-        if (isVisible && !animFrameId) {
-          lastTime = performance.now();
-          animFrameId = requestAnimationFrame(animate);
-        }
-      }, { threshold: 0.05 });
-      observer.observe(footer);
+      let lastTime = performance.now();
+      let waveTimer = 0;
 
       function buildWordmarkGrid() {
         const rect = container.getBoundingClientRect();
         dpr = Math.min(window.devicePixelRatio || 1, 2);
-        width = Math.floor(rect.width * dpr);
-        height = Math.floor(rect.height * dpr);
+        const w = Math.floor(rect.width * dpr);
+        const h = Math.floor(rect.height * dpr);
 
-        if (width === 0 || height === 0) return;
+        if (w <= 0 || h <= 0) return;
 
+        width = w;
+        height = h;
         canvas.width = width;
         canvas.height = height;
 
@@ -1667,19 +1662,22 @@ lucide.createIcons();
         offCanvas.width = width;
         offCanvas.height = height;
         const offCtx = offCanvas.getContext("2d", { willReadFrequently: true });
+        if (!offCtx) return;
 
         offCtx.fillStyle = "#000000";
         offCtx.fillRect(0, 0, width, height);
 
         // Wordmark text sizing & optical vertical centering
         const wordmarkText = "RUSHIKESH";
-        const marginRatio = rect.width < 480 ? 0.88 : (rect.width < 768 ? 0.90 : 0.92);
+        const marginRatio = rect.width < 480 ? 0.90 : (rect.width < 768 ? 0.92 : 0.94);
         const targetTextWidth = width * marginRatio;
 
-        let fontSize = Math.floor(targetTextWidth / (wordmarkText.length * 0.58));
-        const maxFontHeight = Math.floor(height * (rect.width < 480 ? 0.68 : 0.72));
+        const fontStack = '"Space Grotesk", "Plus Jakarta Sans", system-ui, -apple-system, sans-serif';
 
-        offCtx.font = `900 ${fontSize}px "Space Grotesk", "Plus Jakarta Sans", -apple-system, sans-serif`;
+        let fontSize = Math.floor(targetTextWidth / (wordmarkText.length * 0.58));
+        const maxFontHeight = Math.floor(height * (rect.width < 480 ? 0.72 : 0.76));
+
+        offCtx.font = `700 ${fontSize}px ${fontStack}`;
         let measured = offCtx.measureText(wordmarkText).width;
         if (measured > 0) {
           fontSize = Math.floor(fontSize * (targetTextWidth / measured));
@@ -1688,17 +1686,16 @@ lucide.createIcons();
           fontSize = maxFontHeight;
         }
 
-        offCtx.font = `900 ${fontSize}px "Space Grotesk", "Plus Jakarta Sans", -apple-system, sans-serif`;
+        offCtx.font = `700 ${fontSize}px ${fontStack}`;
         measured = offCtx.measureText(wordmarkText).width;
-        if (measured > targetTextWidth) {
+        if (measured > targetTextWidth && measured > 0) {
           fontSize = Math.floor(fontSize * (targetTextWidth / measured));
-          offCtx.font = `900 ${fontSize}px "Space Grotesk", "Plus Jakarta Sans", -apple-system, sans-serif`;
+          offCtx.font = `700 ${fontSize}px ${fontStack}`;
         }
 
         offCtx.textAlign = "center";
         offCtx.textBaseline = "middle";
 
-        // Center vertically with balanced breathing room
         const centerY = Math.floor(height * 0.50);
 
         offCtx.fillStyle = "#ffffff";
@@ -1706,18 +1703,18 @@ lucide.createIcons();
 
         const imgData = offCtx.getImageData(0, 0, width, height).data;
 
-        // Adaptive grid spacing: dense dots on mobile for ultra-crisp readable letterforms
+        // Adaptive grid spacing
         let cssSpacing;
         if (rect.width < 420) {
-          cssSpacing = 3.8;
+          cssSpacing = 4.0;
         } else if (rect.width < 640) {
-          cssSpacing = 4.8;
+          cssSpacing = 5.0;
         } else if (rect.width < 1024) {
-          cssSpacing = 6.2;
+          cssSpacing = 6.4;
         } else {
-          cssSpacing = 7.8;
+          cssSpacing = 8.0;
         }
-        const spacing = Math.max(5, Math.round(cssSpacing * dpr));
+        const spacing = Math.max(6, Math.round(cssSpacing * dpr));
 
         const cols = Math.floor(width / spacing);
         const rows = Math.floor(height / spacing);
@@ -1727,32 +1724,45 @@ lucide.createIcons();
         const textLeft = (width - targetTextWidth) / 2;
         const newDots = [];
 
+        // Area sampling step
+        const sampleOffset = Math.max(1, Math.floor(spacing * 0.28));
+
         for (let y = offsetY; y < height; y += spacing) {
           for (let x = offsetX; x < width; x += spacing) {
             const px = Math.floor(x);
             const py = Math.floor(y);
             if (px < 0 || px >= width || py < 0 || py >= height) continue;
-            const idx = (py * width + px) * 4;
-            const brightness = imgData[idx] || 0;
 
-            const isText = brightness > 30;
+            // 3x3 area sampling for anti-aliasing and unbroken font contours
+            let sumBrightness = 0;
+            for (let sy = -sampleOffset; sy <= sampleOffset; sy += sampleOffset) {
+              for (let sx = -sampleOffset; sx <= sampleOffset; sx += sampleOffset) {
+                const spx = Math.max(0, Math.min(width - 1, px + sx));
+                const spy = Math.max(0, Math.min(height - 1, py + sy));
+                const sidx = (spy * width + spx) * 4;
+                sumBrightness += imgData[sidx] || 0;
+              }
+            }
+            const brightness = sumBrightness / 9;
+
+            const isText = brightness > 25;
             let baseRadius;
             let alpha;
 
             if (isText) {
-              const normB = brightness / 255;
+              const normB = Math.min(1, brightness / 255);
               baseRadius = spacing * (0.16 + normB * 0.28);
               alpha = 0.35 + normB * 0.65;
             } else {
-              baseRadius = Math.max(0.7, spacing * 0.08);
+              baseRadius = Math.max(0.6, spacing * 0.08);
               alpha = 0.07;
             }
 
-            // Gradient across wordmark: Electric Purple (#c084fc) to Cyan (#38bdf8)
+            // Gradient: Electric Purple (#c084fc: 192, 132, 252) to Sky Cyan (#38bdf8: 56, 189, 248)
             const ratioX = Math.max(0, Math.min(1, (x - textLeft) / (targetTextWidth || width)));
-            const r = Math.floor(192 + ratioX * (56 - 192));
-            const g = Math.floor(132 + ratioX * (189 - 132));
-            const b = Math.floor(252 + ratioX * (248 - 252));
+            const baseR = Math.floor(192 + ratioX * (56 - 192));
+            const baseG = Math.floor(132 + ratioX * (189 - 132));
+            const baseB = Math.floor(252 + ratioX * (248 - 252));
 
             newDots.push({
               x: x,
@@ -1764,9 +1774,10 @@ lucide.createIcons();
               isText: isText,
               baseRadius: baseRadius,
               currentRadius: baseRadius,
-              targetRadius: baseRadius,
               alpha: alpha,
-              color: `rgb(${r}, ${g}, ${b})`,
+              baseR: baseR,
+              baseG: baseG,
+              baseB: baseB,
               glowIntensity: 0
             });
           }
@@ -1775,99 +1786,56 @@ lucide.createIcons();
         dots = newDots;
       }
 
-      let lastWidth = 0;
-      let lastHeight = 0;
-      let resizeTimer = null;
-
-      function handleResize() {
-        clearTimeout(resizeTimer);
-        resizeTimer = setTimeout(() => {
-          const rect = container.getBoundingClientRect();
-          const curW = Math.floor(rect.width);
-          const curH = Math.floor(rect.height);
-          if (Math.abs(curW - lastWidth) > 2 || Math.abs(curH - lastHeight) > 2) {
-            lastWidth = curW;
-            lastHeight = curH;
-            buildWordmarkGrid();
-          }
-        }, 100);
-      }
-
-      window.addEventListener("resize", handleResize, { passive: true });
-
-      if (document.fonts && document.fonts.ready) {
-        document.fonts.ready.then(() => {
-          buildWordmarkGrid();
-        });
-      }
-
-      setTimeout(buildWordmarkGrid, 150);
-
-      // Pointer event helpers for mouse & touch
-      function updatePointerPos(clientX, clientY) {
+      // Pointer event helpers for unified Mouse, Touch, & Pen support
+      function getPointerCanvasPos(e) {
         const rect = container.getBoundingClientRect();
-        mouse.x = (clientX - rect.left) * dpr;
-        mouse.y = (clientY - rect.top) * dpr;
+        return {
+          x: (e.clientX - rect.left) * dpr,
+          y: (e.clientY - rect.top) * dpr
+        };
+      }
+
+      container.addEventListener("pointerdown", (e) => {
+        const pos = getPointerCanvasPos(e);
+        mouse.x = pos.x;
+        mouse.y = pos.y;
         mouse.active = true;
-      }
-
-      function triggerRipple(clientX, clientY) {
-        const rect = container.getBoundingClientRect();
-        const clickX = (clientX - rect.left) * dpr;
-        const clickY = (clientY - rect.top) * dpr;
 
         ripples.push({
-          x: clickX,
-          y: clickY,
+          x: pos.x,
+          y: pos.y,
           radius: 0,
-          maxRadius: Math.max(width, height) * 0.8,
-          speed: 10 * dpr,
-          thickness: 28 * dpr,
+          maxRadius: Math.max(width, height) * 0.85,
+          speed: 8 * dpr,
+          thickness: 30 * dpr,
           strength: 1.0
         });
-      }
-
-      // Mouse event listeners on wordmark canvas
-      container.addEventListener("mousemove", (e) => {
-        updatePointerPos(e.clientX, e.clientY);
-      }, { passive: true });
-
-      container.addEventListener("mouseleave", () => {
-        mouse.active = false;
-        mouse.x = -2000;
-        mouse.y = -2000;
-      }, { passive: true });
-
-      // Click shockwave ripple
-      container.addEventListener("click", (e) => {
-        triggerRipple(e.clientX, e.clientY);
       });
 
-      // Touch interaction support for mobile responsiveness
-      container.addEventListener("touchstart", (e) => {
-        if (e.touches && e.touches.length > 0) {
-          updatePointerPos(e.touches[0].clientX, e.touches[0].clientY);
-          triggerRipple(e.touches[0].clientX, e.touches[0].clientY);
-        }
-      }, { passive: true });
+      container.addEventListener("pointermove", (e) => {
+        const pos = getPointerCanvasPos(e);
+        mouse.x = pos.x;
+        mouse.y = pos.y;
+        mouse.active = true;
+      });
 
-      container.addEventListener("touchmove", (e) => {
-        if (e.touches && e.touches.length > 0) {
-          updatePointerPos(e.touches[0].clientX, e.touches[0].clientY);
-        }
-      }, { passive: true });
-
-      container.addEventListener("touchend", () => {
+      container.addEventListener("pointerup", () => {
         mouse.active = false;
         mouse.x = -2000;
         mouse.y = -2000;
-      }, { passive: true });
+      });
 
-      container.addEventListener("touchcancel", () => {
+      container.addEventListener("pointerleave", () => {
         mouse.active = false;
         mouse.x = -2000;
         mouse.y = -2000;
-      }, { passive: true });
+      });
+
+      container.addEventListener("pointercancel", () => {
+        mouse.active = false;
+        mouse.x = -2000;
+        mouse.y = -2000;
+      });
 
       // Hook up Back to Top button
       const backToTopBtn = document.getElementById("footer-back-to-top");
@@ -1886,9 +1854,6 @@ lucide.createIcons();
           }
         });
       });
-
-      let lastTime = performance.now();
-      let waveTimer = 0;
 
       function animate(now) {
         if (!isVisible) {
@@ -1912,21 +1877,32 @@ lucide.createIcons();
           }
         }
 
-        const mouseRadius = Math.min(130 * dpr, width * 0.35);
-        const springK = 0.07;
-        const damping = 0.82;
+        const mouseRadius = Math.min(120 * dpr, width * 0.30);
+        const springK = 0.08;
+        const damping = 0.84;
 
+        // Batch 1: Background grid dots rendered in ONE single GPU draw call
+        ctx.beginPath();
         for (let i = 0; i < dots.length; i++) {
           const dot = dots[i];
+          if (!dot.isText) {
+            ctx.moveTo(dot.x + dot.currentRadius, dot.y);
+            ctx.arc(dot.x, dot.y, dot.currentRadius, 0, Math.PI * 2);
+          }
+        }
+        ctx.fillStyle = "rgba(148, 163, 184, 0.09)";
+        ctx.fill();
+
+        // Batch 2: Update physics and draw interactive wordmark dots with warming glow
+        for (let i = 0; i < dots.length; i++) {
+          const dot = dots[i];
+          if (!dot.isText) continue;
 
           // 1. Spring restitution force back to origin
-          const fx = (dot.originX - dot.x) * springK;
-          const fy = (dot.originY - dot.y) * springK;
+          let fx = (dot.originX - dot.x) * springK;
+          let fy = (dot.originY - dot.y) * springK;
 
-          dot.vx = (dot.vx + fx) * damping;
-          dot.vy = (dot.vy + fy) * damping;
-
-          // 2. Cursor repulsion physics
+          // 2. Cursor repulsion physics (smooth sinusoidal falloff)
           let hoverFactor = 0;
           if (mouse.active) {
             const dx = dot.x - mouse.x;
@@ -1935,10 +1911,10 @@ lucide.createIcons();
 
             if (dist < mouseRadius && dist > 0) {
               hoverFactor = 1 - dist / mouseRadius;
-              const push = hoverFactor * hoverFactor * 5.5 * dpr;
+              const repulse = Math.sin(hoverFactor * (Math.PI / 2)) * 5.5 * dpr;
               const angle = Math.atan2(dy, dx);
-              dot.vx += Math.cos(angle) * push;
-              dot.vy += Math.sin(angle) * push;
+              fx += Math.cos(angle) * repulse;
+              fy += Math.sin(angle) * repulse;
             }
           }
 
@@ -1955,50 +1931,100 @@ lucide.createIcons();
               const ringForce = (1 - deltaR / rip.thickness) * rip.strength;
               rippleFactor = Math.max(rippleFactor, ringForce);
               const rAngle = Math.atan2(rdy, rdx);
-              dot.vx += Math.cos(rAngle) * ringForce * 5.5 * dpr;
-              dot.vy += Math.sin(rAngle) * ringForce * 5.5 * dpr;
+              fx += Math.cos(rAngle) * ringForce * 4.0 * dpr;
+              fy += Math.sin(rAngle) * ringForce * 4.0 * dpr;
             }
           }
 
-          // Position update
+          // Velocity and position integration
+          dot.vx = (dot.vx + fx) * damping;
+          dot.vy = (dot.vy + fy) * damping;
           dot.x += dot.vx;
           dot.y += dot.vy;
 
-          // Dynamic radius modulation proportional to dot base radius
-          const ambientWave = dot.isText ? Math.sin(dot.originX * 0.015 + waveTimer) * (dot.baseRadius * 0.16) : 0;
-          const targetR = dot.baseRadius * (1 + hoverFactor * 0.9 + rippleFactor * 1.2) + ambientWave;
-          dot.currentRadius += (targetR - dot.currentRadius) * 0.18;
+          // Gentle ambient wave when idle
+          const ambientWave = Math.sin(dot.originX * 0.012 + waveTimer) * (dot.baseRadius * 0.12);
+          const targetR = dot.baseRadius * (1 + hoverFactor * 0.75 + rippleFactor * 1.1) + ambientWave;
+          dot.currentRadius += (targetR - dot.currentRadius) * 0.2;
 
-          // Color illumination on interaction
-          const interactionGlow = Math.max(hoverFactor, rippleFactor);
-          dot.glowIntensity += (interactionGlow - dot.glowIntensity) * 0.2;
+          const targetGlow = Math.max(hoverFactor, rippleFactor);
+          dot.glowIntensity += (targetGlow - dot.glowIntensity) * 0.2;
 
-          // Render dot
+          // Warm in color as they move (21st.dev specification)
+          const dispX = dot.x - dot.originX;
+          const dispY = dot.y - dot.originY;
+          const dispDist = Math.sqrt(dispX * dispX + dispY * dispY);
+          const dispFactor = Math.min(1, dispDist / (14 * dpr));
+          const warm = Math.max(dispFactor, dot.glowIntensity);
+
+          // Shift towards luminous warm amber-gold when displaced or hovered
+          const r = Math.floor(dot.baseR + (255 - dot.baseR) * warm * 0.90);
+          const g = Math.floor(dot.baseG + (225 - dot.baseG) * warm * 0.85);
+          const b = Math.floor(dot.baseB + (120 - dot.baseB) * warm * 0.60);
+          const a = Math.min(1, dot.alpha + warm * 0.25);
+
           ctx.beginPath();
           ctx.arc(dot.x, dot.y, Math.max(0.4, dot.currentRadius), 0, Math.PI * 2);
-
-          if (dot.isText) {
-            if (dot.glowIntensity > 0.05) {
-              ctx.fillStyle = `rgba(255, 255, 255, ${Math.min(1, dot.alpha + dot.glowIntensity * 0.3)})`;
-              ctx.shadowColor = "rgba(192, 132, 252, 0.7)";
-              ctx.shadowBlur = 8 * dpr * dot.glowIntensity;
-            } else {
-              ctx.fillStyle = dot.color;
-              ctx.globalAlpha = dot.alpha;
-              ctx.shadowBlur = 0;
-            }
-          } else {
-            ctx.fillStyle = "rgba(148, 163, 184, 0.12)";
-            ctx.globalAlpha = dot.alpha + interactionGlow * 0.3;
-            ctx.shadowBlur = 0;
-          }
-
+          ctx.fillStyle = `rgba(${r}, ${g}, ${b}, ${a})`;
           ctx.fill();
-          ctx.globalAlpha = 1.0;
         }
 
         animFrameId = requestAnimationFrame(animate);
       }
+
+      // ResizeObserver on container ensures accurate sizing on initial render and all viewport changes
+      let resizeTimer = null;
+      if (window.ResizeObserver) {
+        const ro = new ResizeObserver((entries) => {
+          for (const entry of entries) {
+            const { width: w, height: h } = entry.contentRect;
+            if (w > 0 && h > 0) {
+              clearTimeout(resizeTimer);
+              resizeTimer = setTimeout(() => {
+                buildWordmarkGrid();
+              }, 60);
+            }
+          }
+        });
+        ro.observe(container);
+      } else {
+        window.addEventListener("resize", () => {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(buildWordmarkGrid, 60);
+        }, { passive: true });
+      }
+
+      // Re-rasterize when web fonts are ready
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(() => {
+          buildWordmarkGrid();
+        });
+      }
+
+      // Track container visibility with IntersectionObserver
+      const observer = new IntersectionObserver((entries) => {
+        isVisible = entries[0].isIntersecting;
+        if (isVisible) {
+          if (dots.length === 0) {
+            buildWordmarkGrid();
+          }
+          if (!animFrameId) {
+            lastTime = performance.now();
+            animFrameId = requestAnimationFrame(animate);
+          }
+        } else {
+          if (animFrameId) {
+            cancelAnimationFrame(animFrameId);
+            animFrameId = null;
+          }
+        }
+      }, { threshold: 0.01, rootMargin: "150px 0px" });
+
+      observer.observe(container);
+
+      // Initial grid build
+      buildWordmarkGrid();
+      setTimeout(buildWordmarkGrid, 250);
     })();
 
     /* ==========================================================================
