@@ -1719,7 +1719,7 @@
 
       /* Halftone Wordmark on Mobile */
       #halftone-wordmark-container {
-        height: 130px;
+        height: 160px;
         touch-action: pan-y;
       }
 
@@ -1737,6 +1737,11 @@
     }
 
     @media (max-width: 480px) {
+      /* Halftone Wordmark on Extra Small Mobile */
+      #halftone-wordmark-container {
+        height: 145px;
+      }
+
       /* Small screen padding adjustments */
       .academic-station-card {
         padding: 1.15rem 1rem;
@@ -1747,7 +1752,7 @@
       }
 
       .glass-folder-front {
-        margin-top: 45px;
+        margin-top: auto;
         padding: 0.9rem 0.8rem;
       }
 
