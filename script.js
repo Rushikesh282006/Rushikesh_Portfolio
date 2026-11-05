@@ -276,11 +276,16 @@ lucide.createIcons();
 
     window.addEventListener("mouseup", () => { isDragging = false; });
 
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let isTouchHorizontal = false;
+
     sphereCanvas.addEventListener("touchstart", (e) => {
       if (e.touches.length === 1) {
         isDragging = true;
-        lastMouseX = e.touches[0].clientX;
-        lastMouseY = e.touches[0].clientY;
+        touchStartX = lastMouseX = e.touches[0].clientX;
+        touchStartY = lastMouseY = e.touches[0].clientY;
+        isTouchHorizontal = false;
         velocityX = 0;
         velocityY = 0;
       }
@@ -288,18 +293,33 @@ lucide.createIcons();
 
     window.addEventListener("touchmove", (e) => {
       if (isDragging && e.touches.length === 1) {
-        const dx = e.touches[0].clientX - lastMouseX;
-        const dy = e.touches[0].clientY - lastMouseY;
-        velocityY = dx * 0.005;
-        velocityX = -dy * 0.005;
-        rotationY += velocityY;
-        rotationX += velocityX;
-        lastMouseX = e.touches[0].clientX;
-        lastMouseY = e.touches[0].clientY;
+        const curX = e.touches[0].clientX;
+        const curY = e.touches[0].clientY;
+        const totalDx = Math.abs(curX - touchStartX);
+        const totalDy = Math.abs(curY - touchStartY);
+
+        if (!isTouchHorizontal && totalDx > 8 && totalDx > totalDy) {
+          isTouchHorizontal = true;
+        }
+
+        // Only rotate sphere if horizontal movement is detected or on larger screens
+        if (isTouchHorizontal || window.innerWidth > 768) {
+          const dx = curX - lastMouseX;
+          const dy = curY - lastMouseY;
+          velocityY = dx * 0.004;
+          velocityX = -dy * 0.004;
+          rotationY += velocityY;
+          rotationX += velocityX;
+        }
+        lastMouseX = curX;
+        lastMouseY = curY;
       }
     }, { passive: true });
 
-    window.addEventListener("touchend", () => { isDragging = false; });
+    window.addEventListener("touchend", () => {
+      isDragging = false;
+      isTouchHorizontal = false;
+    }, { passive: true });
 
     sphereCanvas.addEventListener("click", (e) => {
       const rect = sphereCanvas.getBoundingClientRect();
@@ -756,6 +776,7 @@ lucide.createIcons();
     let rPos = { x: -100, y: -100 };
 
     window.addEventListener("mousemove", (e) => {
+      if (window.innerWidth <= 1024 || window.matchMedia("(pointer: coarse)").matches) return;
       cPos.x = e.clientX;
       cPos.y = e.clientY;
       cursorDot.style.left = `${cPos.x}px`;
@@ -771,13 +792,15 @@ lucide.createIcons();
           setGlobalAccent(theme.accent);
         }
       }
-    });
+    }, { passive: true });
 
     function ringLoop() {
-      rPos.x += (cPos.x - rPos.x) * 0.22;
-      rPos.y += (cPos.y - rPos.y) * 0.22;
-      cursorRing.style.left = `${rPos.x}px`;
-      cursorRing.style.top = `${rPos.y}px`;
+      if (window.innerWidth > 1024 && !window.matchMedia("(pointer: coarse)").matches) {
+        rPos.x += (cPos.x - rPos.x) * 0.22;
+        rPos.y += (cPos.y - rPos.y) * 0.22;
+        cursorRing.style.left = `${rPos.x}px`;
+        cursorRing.style.top = `${rPos.y}px`;
+      }
       requestAnimationFrame(ringLoop);
     }
     ringLoop();
@@ -1100,6 +1123,94 @@ lucide.createIcons();
       });
     }
 
+    /* ==========================================================================
+       RESPONSIVE MOBILE NAVIGATION DRAWER CONTROLLER
+       ========================================================================== */
+    const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+    const mobileNavDrawer = document.getElementById("mobile-nav-drawer");
+    const mobileNavBackdrop = document.getElementById("mobile-nav-backdrop");
+    const mobileMenuIcon = document.getElementById("mobile-menu-icon");
+    const mobileNavLinks = document.querySelectorAll(".mobile-nav-link");
+
+    let isMobileNavOpen = false;
+
+    function openMobileNav() {
+      if (!mobileNavDrawer) return;
+      isMobileNavOpen = true;
+      mobileNavDrawer.classList.remove("-translate-y-full", "opacity-0", "pointer-events-none");
+      mobileNavDrawer.classList.add("translate-y-0", "opacity-100", "pointer-events-auto");
+      
+      if (mobileNavBackdrop) {
+        mobileNavBackdrop.classList.remove("opacity-0", "pointer-events-none");
+        mobileNavBackdrop.classList.add("opacity-100", "pointer-events-auto");
+      }
+      if (mobileMenuBtn) {
+        mobileMenuBtn.setAttribute("aria-expanded", "true");
+      }
+      if (mobileMenuIcon) {
+        mobileMenuIcon.setAttribute("data-lucide", "x");
+        if (window.lucide) lucide.createIcons();
+      }
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeMobileNav() {
+      if (!mobileNavDrawer) return;
+      isMobileNavOpen = false;
+      mobileNavDrawer.classList.remove("translate-y-0", "opacity-100", "pointer-events-auto");
+      mobileNavDrawer.classList.add("-translate-y-full", "opacity-0", "pointer-events-none");
+      
+      if (mobileNavBackdrop) {
+        mobileNavBackdrop.classList.remove("opacity-100", "pointer-events-auto");
+        mobileNavBackdrop.classList.add("opacity-0", "pointer-events-none");
+      }
+      if (mobileMenuBtn) {
+        mobileMenuBtn.setAttribute("aria-expanded", "false");
+      }
+      if (mobileMenuIcon) {
+        mobileMenuIcon.setAttribute("data-lucide", "menu");
+        if (window.lucide) lucide.createIcons();
+      }
+      document.body.style.overflow = "";
+    }
+
+    if (mobileMenuBtn) {
+      mobileMenuBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        if (isMobileNavOpen) {
+          closeMobileNav();
+        } else {
+          openMobileNav();
+        }
+      });
+    }
+
+    if (mobileNavBackdrop) {
+      mobileNavBackdrop.addEventListener("click", closeMobileNav);
+    }
+
+    mobileNavLinks.forEach(link => {
+      link.addEventListener("click", (e) => {
+        const targetId = link.getAttribute("data-target");
+        closeMobileNav();
+        if (targetId && typeof handleNavClick === "function") {
+          handleNavClick(targetId, e);
+        }
+      });
+    });
+
+    window.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && isMobileNavOpen) {
+        closeMobileNav();
+      }
+    });
+
+    window.addEventListener("resize", () => {
+      if (window.innerWidth >= 1024 && isMobileNavOpen) {
+        closeMobileNav();
+      }
+    }, { passive: true });
+
     // Initial load calibration
     const initialHash = window.location.hash.replace("#", "");
     const initialTarget = (initialHash && document.getElementById(initialHash)) ? initialHash : "hero";
@@ -1129,6 +1240,15 @@ lucide.createIcons();
     const containerScrollCards = document.querySelectorAll(".container-scroll-card");
 
     function updateContainerScrollAnimations() {
+      // In mobile/tablet view (<= 1024px or touch devices), disable 3D container scroll tilt completely for buttery smooth native scrolling
+      if (window.innerWidth <= 1024 || window.matchMedia("(pointer: coarse)").matches) {
+        containerScrollCards.forEach((card) => {
+          if (card.style.transform !== "none") card.style.transform = "none";
+          if (card.style.opacity !== "1") card.style.opacity = "1";
+        });
+        return;
+      }
+
       const vh = window.innerHeight;
       
       containerScrollCards.forEach((card) => {
@@ -2106,19 +2226,19 @@ lucide.createIcons();
 
             <div class="min-h-[130px]">
               ${activeProjectView === 'impact' ? `
-                <p class="text-slate-200 text-base leading-relaxed mb-6 font-sans">
+                <p class="text-slate-200 text-sm sm:text-base leading-relaxed mb-5 sm:mb-6 font-sans">
                   ${proj.summary}
                 </p>
-                <div class="grid grid-cols-3 gap-3 font-mono">
+                <div class="grid grid-cols-3 gap-2 sm:gap-3 font-mono">
                   ${proj.metrics.map(m => `
-                    <div class="p-3 rounded-xl bg-white/[0.04] border border-white/10">
-                      <div class="text-[10px] text-slate-400 uppercase">${m.label}</div>
-                      <div class="text-lg font-bold text-emerald-400 mt-1">${m.value}</div>
+                    <div class="p-2.5 sm:p-3 rounded-xl bg-white/[0.04] border border-white/10 min-w-0 text-center sm:text-left">
+                      <div class="text-[9px] sm:text-[10px] text-slate-400 uppercase font-semibold truncate">${m.label}</div>
+                      <div class="text-base sm:text-lg font-bold text-emerald-400 mt-0.5 sm:mt-1 truncate">${m.value}</div>
                     </div>
                   `).join('')}
                 </div>
               ` : `
-                <div class="p-4 rounded-xl bg-black/70 border border-white/15 font-mono text-xs text-slate-200 overflow-x-auto whitespace-pre leading-snug">
+                <div class="p-3.5 sm:p-4 rounded-xl bg-black/70 border border-white/15 font-mono text-[11px] sm:text-xs text-slate-200 whitespace-pre-wrap break-words leading-relaxed">
 ${proj.specCode}
                 </div>
               `}
@@ -2126,20 +2246,20 @@ ${proj.specCode}
 
             <div class="pt-2">
               <div class="text-[11px] font-mono text-slate-400 mb-2 uppercase tracking-wider">Tech Stack:</div>
-              <div class="flex flex-wrap gap-1.5 font-mono text-xs">
+              <div class="flex flex-wrap gap-1.5 font-mono text-[11px] sm:text-xs">
                 ${proj.techStack.map(t => `
                   <span class="px-2.5 py-1 rounded-md bg-white/10 border border-white/15 text-slate-200">${t}</span>
                 `).join('')}
               </div>
             </div>
 
-            <div class="pt-4 flex flex-wrap items-center gap-3 font-mono text-xs">
-              <button onclick="navigator.clipboard.writeText('${proj.liveUrl}'); showToast('Copied Live URL: ${proj.liveUrl}');" class="interactive-target inline-flex items-center space-x-2 px-3.5 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 hover:text-emerald-300 border border-white/10 hover:border-emerald-500/30 transition-all" data-badge="COPY LIVE">
+            <div class="pt-3 sm:pt-4 flex flex-wrap items-center gap-2 sm:gap-3 font-mono text-xs">
+              <button onclick="navigator.clipboard.writeText('${proj.liveUrl}'); showToast('Copied Live URL: ${proj.liveUrl}');" class="interactive-target inline-flex items-center space-x-2 px-3 sm:px-3.5 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 hover:text-emerald-300 border border-white/10 hover:border-emerald-500/30 transition-all text-xs" data-badge="COPY LIVE">
                 <i data-lucide="copy" class="w-3.5 h-3.5"></i>
                 <span>Copy Live URL</span>
               </button>
 
-              <button onclick="navigator.clipboard.writeText('${proj.githubUrl}'); showToast('Copied GitHub URL: ${proj.githubUrl}');" class="interactive-target inline-flex items-center space-x-2 px-3.5 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 hover:text-cyan-300 border border-white/10 hover:border-cyan-500/30 transition-all" data-badge="COPY REPO">
+              <button onclick="navigator.clipboard.writeText('${proj.githubUrl}'); showToast('Copied GitHub URL: ${proj.githubUrl}');" class="interactive-target inline-flex items-center space-x-2 px-3 sm:px-3.5 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 hover:text-cyan-300 border border-white/10 hover:border-cyan-500/30 transition-all text-xs" data-badge="COPY REPO">
                 <i data-lucide="copy" class="w-3.5 h-3.5"></i>
                 <span>Copy Repo URL</span>
               </button>
@@ -2423,26 +2543,26 @@ ${proj.specCode}
 
       if (q.includes("rag") || q.includes("tenant") || q.includes("multi")) {
         renderProjectDeck(0);
-        document.getElementById("projects").scrollIntoView({ behavior: "smooth" });
+        handleNavClick("projects");
       } else if (q.includes("emotion") || q.includes("gru") || q.includes("nlp")) {
         renderProjectDeck(1);
-        document.getElementById("projects").scrollIntoView({ behavior: "smooth" });
+        handleNavClick("projects");
       } else if (q.includes("house") || q.includes("price") || q.includes("california")) {
         renderProjectDeck(2);
-        document.getElementById("projects").scrollIntoView({ behavior: "smooth" });
+        handleNavClick("projects");
       } else if (q.includes("sih") || q.includes("hackathon") || q.includes("rank") || q.includes("excellence")) {
-        document.getElementById("achievements").scrollIntoView({ behavior: "smooth" });
+        handleNavClick("achievements");
       } else if (q.includes("education") || q.includes("pillai") || q.includes("college") || q.includes("icles") || q.includes("dpvn") || q.includes("10th") || q.includes("boards")) {
-        document.getElementById("education").scrollIntoView({ behavior: "smooth" });
+        handleNavClick("education");
       } else if (q.includes("cert") || q.includes("agentic") || q.includes("java")) {
-        document.getElementById("certifications").scrollIntoView({ behavior: "smooth" });
+        handleNavClick("certifications");
       } else if (q.includes("stack") || q.includes("python") || q.includes("fastapi") || q.includes("sphere")) {
-        document.getElementById("stack").scrollIntoView({ behavior: "smooth" });
+        handleNavClick("stack");
       } else if (q.includes("loader") || q.includes("welcome")) {
         showWelcomeLoader();
         showToast("Replaying Welcome Loader...");
       } else if (q.includes("@") || q.includes("contact") || q.includes("hire")) {
-        document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
+        handleNavClick("contact");
       } else {
         showToast(`Searching for: ${q}`);
       }
@@ -2525,11 +2645,16 @@ ${proj.specCode}
       // Auto-dismiss after welcome sequence illuminates fully
       const welcomeTimer = setTimeout(dismissPreloader, 2800);
 
-      // Instant dismiss on click or keyboard
+      // Instant dismiss on click, touch or keyboard
       preloader.addEventListener("click", () => {
         clearTimeout(welcomeTimer);
         dismissPreloader();
       });
+
+      preloader.addEventListener("touchstart", () => {
+        clearTimeout(welcomeTimer);
+        dismissPreloader();
+      }, { passive: true });
 
       window.addEventListener("keydown", (e) => {
         if (e.key === "Escape" || e.key === " " || e.key === "Enter") {

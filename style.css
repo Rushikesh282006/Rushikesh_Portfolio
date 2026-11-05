@@ -1,17 +1,30 @@
 /* ==========================================================================
-       CORE RESET & CURSOR
+       CORE RESET & RESPONSIVE FOUNDATIONS
        ========================================================================== */
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+    }
+
     * {
       box-sizing: border-box;
-      cursor: none !important;
+    }
+
+    @media (hover: hover) and (pointer: fine) and (min-width: 1025px) {
+      * {
+        cursor: none !important;
+      }
     }
 
     body {
       background-color: #060913;
       color: #e2e8f0;
       overflow-x: hidden;
+      width: 100%;
       font-feature-settings: "cv02", "cv03", "cv04", "cv11";
       -webkit-font-smoothing: antialiased;
+      -webkit-tap-highlight-color: transparent;
+      -webkit-overflow-scrolling: touch;
       transition: background-color 1.4s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
@@ -94,7 +107,7 @@
       background: rgba(245, 158, 11, 0.16);
     }
 
-    @media (pointer: coarse) {
+    @media (hover: none), (pointer: coarse), (max-width: 1024px) {
       * { cursor: auto !important; }
       #cursor-dot, #cursor-ring, #cursor-badge { display: none !important; }
     }
@@ -396,18 +409,34 @@
 
     /* ==========================================================================
        ACETERNITY UI CONTAINER SCROLL 3D PERSPECTIVE SYSTEM
+       (Active on Desktop; disabled in mobile view for buttery smooth native scrolling)
        ========================================================================== */
-    .container-scroll-wrapper {
-      perspective: 1200px;
-      perspective-origin: 50% 25%;
+    @media (min-width: 1025px) {
+      .container-scroll-wrapper {
+        perspective: 1200px;
+        perspective-origin: 50% 25%;
+      }
+
+      .container-scroll-card {
+        transform-style: preserve-3d;
+        transform-origin: 50% 0%;
+        will-change: transform, opacity;
+        transform: perspective(1200px) rotateX(0deg) scale(1) translateY(0px);
+        transition: transform 0.12s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.12s ease;
+      }
     }
 
-    .container-scroll-card {
-      transform-style: preserve-3d;
-      transform-origin: 50% 0%;
-      will-change: transform, opacity;
-      transform: perspective(1200px) rotateX(0deg) scale(1) translateY(0px);
-      transition: transform 0.12s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.12s ease;
+    @media (max-width: 1024px) {
+      .container-scroll-wrapper {
+        perspective: none !important;
+      }
+
+      .container-scroll-card {
+        transform: none !important;
+        opacity: 1 !important;
+        will-change: auto !important;
+        transition: none !important;
+      }
     }
 
     /* ==========================================================================
@@ -570,6 +599,13 @@
       overflow: hidden;
     }
 
+    @media (max-width: 640px) {
+      .glass-folder-desk {
+        padding: 1.25rem 0.65rem 1.75rem 0.65rem;
+        border-radius: 1.15rem;
+      }
+    }
+
     .glass-folder-desk-dots {
       position: absolute;
       inset: 0;
@@ -587,6 +623,12 @@
       justify-items: center;
       position: relative;
       z-index: 10;
+    }
+
+    @media (max-width: 640px) {
+      .glass-folder-grid {
+        gap: 2.25rem 1rem;
+      }
     }
 
     @media (min-width: 768px) {
@@ -608,6 +650,13 @@
       perspective: 1000px;
       user-select: none;
       transition: transform 0.3s ease;
+    }
+
+    @media (max-width: 640px) {
+      .glass-folder-card {
+        max-width: 100%;
+        perspective: none;
+      }
     }
 
     .glass-folder-wrapper {
@@ -937,13 +986,21 @@
     #tech-sphere-canvas {
       width: 100%;
       height: 520px;
-      touch-action: none;
+      touch-action: pan-y;
       display: block;
+    }
+
+    @media (max-width: 1024px) {
+      #tech-sphere-canvas {
+        height: 420px;
+        touch-action: pan-y;
+      }
     }
 
     @media (max-width: 640px) {
       #tech-sphere-canvas {
-        height: 380px;
+        height: 300px;
+        touch-action: pan-y;
       }
     }
 
@@ -1538,5 +1595,80 @@
       }
       100% {
         filter: hue-rotate(0deg);
+      }
+    }
+
+    /* ==========================================================================
+       ADVANCED RESPONSIVE ENHANCEMENTS FOR ALL MOBILE & TABLET DEVICES
+       ========================================================================== */
+    @media (max-width: 768px) {
+      /* Mobile drawer smooth entrance */
+      #mobile-nav-drawer {
+        transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+                    opacity 0.35s ease;
+      }
+
+      /* Station & Bento Cards Mobile Padding */
+      .academic-station-card,
+      .glass-panel-translucent,
+      .glass-panel-ultra-translucent {
+        border-radius: 1.15rem;
+      }
+
+      /* Certification Cards Mobile Tuning */
+      .uiverse-cert-card {
+        padding: 1.35rem 1.15rem;
+        gap: 0.95rem;
+        border-radius: 1.15rem;
+      }
+      .uiverse-cert-card .card_title {
+        font-size: 1.1rem;
+      }
+      .uiverse-cert-card .list_text {
+        font-size: 0.76rem;
+      }
+
+      /* Halftone Wordmark on Mobile */
+      #halftone-wordmark-container {
+        height: 130px;
+        touch-action: pan-y;
+      }
+
+      /* Welcome Preloader Mobile */
+      .loader-wrapper {
+        font-size: clamp(1.1rem, 4.5vw, 1.8rem);
+        min-height: 80px;
+        margin: 1rem auto;
+      }
+
+      /* Smooth word breaking for titles & code blocks */
+      h1, h2, h3, h4 {
+        word-break: break-word;
+      }
+    }
+
+    @media (max-width: 480px) {
+      /* Small screen padding adjustments */
+      .academic-station-card {
+        padding: 1.15rem 1rem;
+      }
+
+      .glass-folder-desk {
+        padding: 1rem 0.5rem 1.5rem 0.5rem;
+      }
+
+      .glass-folder-front {
+        margin-top: 45px;
+        padding: 0.9rem 0.8rem;
+      }
+
+      .clean-project-deck {
+        padding: 1rem 0.85rem !important;
+      }
+
+      /* Preloader letter sizing for 320px-375px screens */
+      .loader-wrapper {
+        font-size: 1.15rem;
+        max-width: 95vw;
       }
     }
