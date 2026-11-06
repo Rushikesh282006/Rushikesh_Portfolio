@@ -1,8 +1,25 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en" class="dark scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <script>
+    /* Instant Theme Hydration to prevent FOUC / flash of dark theme */
+    (function() {
+      try {
+        var saved = localStorage.getItem("portfolio-theme");
+        var prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+        var theme = saved ? saved : (prefersDark ? "dark" : "dark");
+        if (theme === "light") {
+          document.documentElement.classList.remove("dark");
+          document.documentElement.classList.add("light");
+        } else {
+          document.documentElement.classList.add("dark");
+          document.documentElement.classList.remove("light");
+        }
+      } catch (e) {}
+    })();
+  </script>
   <title>Rushikesh Jagtap — Systems, Backend & Applied ML Engineer</title>
   <meta name="description" content="Portfolio of Rushikesh Jagtap — Information Technology engineering student & software developer specializing in multi-tenant RAG systems, asynchronous FastAPI architectures, and applied machine learning pipelines." />
   <meta name="author" content="Rushikesh Jagtap" />
@@ -56,7 +73,7 @@
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
-  <link rel="stylesheet" href="style.css?v=halftone_v4">
+  <link rel="stylesheet" href="style.css?v=halftone_hd_v2">
 </head>
 <body class="selection:bg-cyan-500/20 selection:text-cyan-300">
 
@@ -200,13 +217,23 @@
         <a href="#contact" class="nav-tab-link interactive-target px-3.5 py-1.5 rounded-full" data-target="contact" data-badge="DISPATCH">Contact</a>
       </nav>
 
-      <!-- Right Header Controls: Quick Status + Mobile Hamburger Toggle -->
-      <div class="flex items-center gap-2.5">
+      <!-- Right Header Controls: Quick Status + Theme Toggle + Mobile Hamburger Toggle -->
+      <div class="flex items-center gap-2 sm:gap-2.5">
         <!-- Direct Resume Link -->
         <a href="https://docs.google.com/document/d/1dOHS29FmBjt-exeaCgEvz0BjPtjli1OU/edit?usp=drivesdk&ouid=111938768538808610171&rtpof=true&sd=true" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 hover:bg-emerald-500/20 hover:text-emerald-200 transition-all text-[11px] font-mono interactive-target" data-badge="RESUME">
           <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
           <span>Resume</span>
         </a>
+
+        <!-- Theme Toggle Button (Desktop & Tablet) -->
+        <button id="theme-toggle-btn" class="p-2 rounded-xl bg-white/[0.08] hover:bg-white/[0.15] border border-white/15 text-slate-200 hover:text-white transition-all interactive-target flex items-center justify-center w-9 h-9 sm:w-10 sm:h-10 cursor-pointer" aria-label="Toggle light/dark theme" title="Toggle theme mode" data-badge="THEME">
+          <span id="theme-icon-sun" class="flex items-center justify-center text-amber-300 pointer-events-none">
+            <i data-lucide="sun" class="w-4 h-4 sm:w-4.5 sm:h-4.5"></i>
+          </span>
+          <span id="theme-icon-moon" class="hidden flex items-center justify-center text-indigo-400 pointer-events-none">
+            <i data-lucide="moon" class="w-4 h-4 sm:w-4.5 sm:h-4.5"></i>
+          </span>
+        </button>
 
         <!-- Quick Status / Dispatch Link (Visible on md and up) -->
         <a href="#contact" class="hidden md:inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/[0.08] backdrop-blur-xl hover:border-white/20 text-slate-300 hover:text-white transition-all text-[11px] font-mono interactive-target" data-badge="CONNECT">
@@ -238,6 +265,20 @@
       <div class="flex items-center justify-between pb-2.5 border-b border-white/10 text-[10px] font-mono text-slate-400">
         <span class="text-cyan-400 font-semibold tracking-wider uppercase">NAVIGATION FIELDS</span>
         <span class="flex items-center gap-1.5 text-slate-400"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>8 SECTIONS</span>
+      </div>
+
+      <!-- Mobile Theme Selector Bar -->
+      <div class="flex items-center justify-between p-2.5 rounded-xl bg-white/[0.04] border border-white/10 text-xs font-mono">
+        <div class="flex items-center gap-2 text-slate-300">
+          <i data-lucide="palette" class="w-4 h-4 text-cyan-400"></i>
+          <span class="font-medium">Theme Mode</span>
+        </div>
+        <button id="mobile-theme-toggle-btn" class="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-white/10 hover:bg-white/20 text-slate-200 text-[11px] font-mono transition-all interactive-target" data-badge="THEME">
+          <span id="mobile-theme-label" class="flex items-center gap-1.5">
+            <i data-lucide="sun" class="w-3.5 h-3.5 text-amber-300"></i>
+            <span>Switch Theme</span>
+          </span>
+        </button>
       </div>
 
       <!-- Links Grid -->
@@ -1444,7 +1485,7 @@
     </div>
 
     <!-- Interactive Halftone Wordmark Canvas Container (Properly Centered & Aligned) -->
-    <div class="relative w-full h-[140px] sm:h-[160px] md:h-[200px] lg:h-[240px] mt-2 mb-4 overflow-hidden select-none cursor-pointer" id="halftone-wordmark-container">
+    <div class="relative w-full h-[180px] sm:h-[210px] md:h-[240px] lg:h-[280px] xl:h-[320px] mt-2 mb-4 overflow-hidden select-none cursor-pointer" id="halftone-wordmark-container">
       <canvas id="halftone-wordmark-canvas" class="w-full h-full block"></canvas>
       <div class="halftone-wordmark-fade pointer-events-none"></div>
     </div>
@@ -1459,6 +1500,6 @@
   <!-- ==========================================================================
        JAVASCRIPT LOGIC ENGINE
        ========================================================================== -->
-  <script src="script.js?v=halftone_v4"></script>
+  <script src="script.js?v=halftone_hd_v2"></script>
 </body>
 </html>

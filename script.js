@@ -371,17 +371,19 @@ lucide.createIcons();
       const centerY = sphereH / 2;
       const fov = 480;
 
+      const isLightMode = document.documentElement.classList.contains("light") || document.body.classList.contains("theme-light");
+
       sphereCtx.save();
       sphereCtx.beginPath();
       sphereCtx.arc(centerX, centerY, sphereRadius * 0.96, 0, Math.PI * 2);
-      sphereCtx.strokeStyle = "rgba(192, 132, 252, 0.12)";
+      sphereCtx.strokeStyle = isLightMode ? "rgba(147, 51, 234, 0.22)" : "rgba(192, 132, 252, 0.12)";
       sphereCtx.lineWidth = 1.2;
       sphereCtx.setLineDash([4, 6]);
       sphereCtx.stroke();
 
       sphereCtx.beginPath();
       sphereCtx.ellipse(centerX, centerY, sphereRadius * 1.05, sphereRadius * 0.35, rotationY * 0.5, 0, Math.PI * 2);
-      sphereCtx.strokeStyle = "rgba(56, 189, 248, 0.15)";
+      sphereCtx.strokeStyle = isLightMode ? "rgba(2, 132, 199, 0.22)" : "rgba(56, 189, 248, 0.15)";
       sphereCtx.lineWidth = 1;
       sphereCtx.stroke();
       sphereCtx.restore();
@@ -434,26 +436,34 @@ lucide.createIcons();
         sphereCtx.roundRect(-boxWidth / 2, -boxHeight / 2, boxWidth, boxHeight, r);
 
         if (isSelected) {
-          sphereCtx.fillStyle = `rgba(192, 132, 252, ${Math.max(0.85, finalAlpha)})`;
-          sphereCtx.strokeStyle = "#ffffff";
+          sphereCtx.fillStyle = isLightMode 
+            ? `rgba(126, 34, 206, ${Math.max(0.92, finalAlpha)})` 
+            : `rgba(192, 132, 252, ${Math.max(0.85, finalAlpha)})`;
+          sphereCtx.strokeStyle = isLightMode ? "#6b21a8" : "#ffffff";
           sphereCtx.lineWidth = 2;
-          sphereCtx.shadowColor = "#c084fc";
+          sphereCtx.shadowColor = isLightMode ? "rgba(126, 34, 206, 0.4)" : "#c084fc";
           sphereCtx.shadowBlur = 18;
         } else if (isHovered) {
-          sphereCtx.fillStyle = `rgba(56, 189, 248, ${Math.max(0.8, finalAlpha)})`;
-          sphereCtx.strokeStyle = "#38bdf8";
+          sphereCtx.fillStyle = isLightMode 
+            ? `rgba(2, 132, 199, ${Math.max(0.92, finalAlpha)})` 
+            : `rgba(56, 189, 248, ${Math.max(0.8, finalAlpha)})`;
+          sphereCtx.strokeStyle = isLightMode ? "#0369a1" : "#38bdf8";
           sphereCtx.lineWidth = 1.5;
-          sphereCtx.shadowColor = "#38bdf8";
+          sphereCtx.shadowColor = isLightMode ? "rgba(2, 132, 199, 0.4)" : "#38bdf8";
           sphereCtx.shadowBlur = 14;
         } else if (matchesFilter) {
-          sphereCtx.fillStyle = `rgba(18, 14, 34, ${0.75 * finalAlpha})`;
-          sphereCtx.strokeStyle = `rgba(192, 132, 252, ${0.45 * finalAlpha})`;
+          sphereCtx.fillStyle = isLightMode 
+            ? `rgba(255, 255, 255, ${Math.max(0.88, 0.96 * finalAlpha)})`
+            : `rgba(18, 14, 34, ${0.75 * finalAlpha})`;
+          sphereCtx.strokeStyle = isLightMode
+            ? `rgba(147, 51, 234, ${0.55 * finalAlpha})`
+            : `rgba(192, 132, 252, ${0.45 * finalAlpha})`;
           sphereCtx.lineWidth = 1;
-          sphereCtx.shadowColor = "rgba(0,0,0,0.5)";
+          sphereCtx.shadowColor = isLightMode ? "rgba(15, 23, 42, 0.15)" : "rgba(0,0,0,0.5)";
           sphereCtx.shadowBlur = 6;
         } else {
-          sphereCtx.fillStyle = `rgba(10, 10, 20, 0.25)`;
-          sphereCtx.strokeStyle = `rgba(255, 255, 255, 0.05)`;
+          sphereCtx.fillStyle = isLightMode ? `rgba(241, 245, 249, 0.55)` : `rgba(10, 10, 20, 0.25)`;
+          sphereCtx.strokeStyle = isLightMode ? `rgba(203, 213, 225, 0.5)` : `rgba(255, 255, 255, 0.05)`;
           sphereCtx.lineWidth = 0.5;
         }
 
@@ -461,9 +471,11 @@ lucide.createIcons();
         sphereCtx.stroke();
         sphereCtx.shadowBlur = 0;
 
-        sphereCtx.fillStyle = isSelected 
-          ? "#090d16" 
-          : (isHovered ? "#060913" : (matchesFilter ? `rgba(241, 245, 249, ${Math.max(0.4, finalAlpha)})` : `rgba(148, 163, 184, 0.25)`));
+        sphereCtx.fillStyle = (isSelected || isHovered)
+          ? "#ffffff"
+          : (matchesFilter 
+              ? (isLightMode ? `rgba(15, 23, 42, ${Math.max(0.85, finalAlpha)})` : `rgba(241, 245, 249, ${Math.max(0.4, finalAlpha)})`) 
+              : (isLightMode ? `rgba(100, 116, 139, 0.5)` : `rgba(148, 163, 184, 0.25)`));
         sphereCtx.textAlign = "center";
         sphereCtx.textBaseline = "middle";
         sphereCtx.fillText(labelText, 0, 1);
@@ -792,8 +804,10 @@ lucide.createIcons();
 
       // Dynamically match pointer & cursor color to the section currently under the cursor
       const hoveredSec = e.target && e.target.closest ? e.target.closest("section") : null;
-      if (hoveredSec && hoveredSec.id && sectionThemes[hoveredSec.id]) {
-        const theme = sectionThemes[hoveredSec.id];
+      const isLightPointer = document.documentElement.classList.contains("light") || document.body.classList.contains("theme-light");
+      const activeThemeMap = isLightPointer ? sectionThemesLight : sectionThemes;
+      if (hoveredSec && hoveredSec.id && activeThemeMap[hoveredSec.id]) {
+        const theme = activeThemeMap[hoveredSec.id];
         if (theme && theme.accent) {
           setGlobalAccent(theme.accent);
         }
@@ -923,6 +937,73 @@ lucide.createIcons();
       }
     };
 
+    const sectionThemesLight = {
+      hero: {
+        bodyBg: "#f8fafc",
+        pColor: "rgba(14, 165, 233, 0.35)",
+        sColor: "rgba(99, 102, 241, 0.28)",
+        aColor: "rgba(20, 184, 166, 0.22)",
+        pPos: "translate(0px, 0px)",
+        accent: "#0284c7"
+      },
+      about: {
+        bodyBg: "#fbf7ff",
+        pColor: "rgba(99, 102, 241, 0.35)",
+        sColor: "rgba(168, 85, 247, 0.28)",
+        aColor: "rgba(56, 189, 248, 0.22)",
+        pPos: "translate(-80px, 120px)",
+        accent: "#4f46e5"
+      },
+      education: {
+        bodyBg: "#f2f8ff",
+        pColor: "rgba(59, 130, 246, 0.35)",
+        sColor: "rgba(14, 165, 233, 0.28)",
+        aColor: "rgba(99, 102, 241, 0.22)",
+        pPos: "translate(80px, -60px)",
+        accent: "#2563eb"
+      },
+      stack: {
+        bodyBg: "#fdf5ff",
+        pColor: "rgba(168, 85, 247, 0.35)",
+        sColor: "rgba(236, 72, 153, 0.25)",
+        aColor: "rgba(139, 92, 246, 0.22)",
+        pPos: "translate(50px, 90px)",
+        accent: "#9333ea"
+      },
+      projects: {
+        bodyBg: "#f1fcf5",
+        pColor: "rgba(16, 185, 129, 0.35)",
+        sColor: "rgba(20, 184, 166, 0.26)",
+        aColor: "rgba(5, 150, 105, 0.22)",
+        pPos: "translate(-60px, -50px)",
+        accent: "#059669"
+      },
+      achievements: {
+        bodyBg: "#fffdf2",
+        pColor: "rgba(245, 158, 11, 0.38)",
+        sColor: "rgba(251, 191, 36, 0.28)",
+        aColor: "rgba(217, 119, 6, 0.22)",
+        pPos: "translate(40px, 70px)",
+        accent: "#d97706"
+      },
+      certifications: {
+        bodyBg: "#f2f9ff",
+        pColor: "rgba(14, 165, 233, 0.35)",
+        sColor: "rgba(99, 102, 241, 0.28)",
+        aColor: "rgba(6, 182, 212, 0.22)",
+        pPos: "translate(-40px, 40px)",
+        accent: "#0284c7"
+      },
+      contact: {
+        bodyBg: "#faf5ff",
+        pColor: "rgba(168, 85, 247, 0.35)",
+        sColor: "rgba(192, 132, 252, 0.28)",
+        aColor: "rgba(56, 189, 248, 0.22)",
+        pPos: "translate(0px, -30px)",
+        accent: "#7c3aed"
+      }
+    };
+
     /* ==========================================================================
        SYNCHRONIZED ACTIVE SECTION CONTROLLER & APPLE TAHOE LIQUID GLASS NAV
        ========================================================================== */
@@ -969,8 +1050,9 @@ lucide.createIcons();
       if (!sId) return;
       currentActiveNavId = sId;
 
-      // 1. Shift atmospheric themes & background mood
-      const theme = sectionThemes[sId];
+      // 1. Shift atmospheric themes & background mood (adaptive for light and dark modes)
+      const isLight = document.documentElement.classList.contains("light") || document.body.classList.contains("theme-light");
+      const theme = (isLight && sectionThemesLight[sId]) ? sectionThemesLight[sId] : sectionThemes[sId];
       if (theme) {
         document.body.style.backgroundColor = theme.bodyBg;
         if (blobPrimary) {
@@ -1209,6 +1291,75 @@ lucide.createIcons();
       }
     }, { passive: true });
 
+    /* ==========================================================================
+       THEME CONTROLLER (LIGHT / DARK SYSTEM WITH PERSISTENCE & EVENT BROADCAST)
+       ========================================================================== */
+    function initThemeController() {
+      const themeToggleBtn = document.getElementById("theme-toggle-btn");
+      const mobileThemeToggleBtn = document.getElementById("mobile-theme-toggle-btn");
+      const sunIcon = document.getElementById("theme-icon-sun");
+      const moonIcon = document.getElementById("theme-icon-moon");
+      const mobileThemeLabel = document.getElementById("mobile-theme-label");
+
+      const savedTheme = localStorage.getItem("portfolio-theme");
+      let currentTheme = savedTheme 
+        ? savedTheme 
+        : (document.documentElement.classList.contains("light") ? "light" : "dark");
+
+      function applyTheme(theme, broadcast = true) {
+        currentTheme = theme;
+        if (theme === "light") {
+          document.documentElement.classList.remove("dark");
+          document.documentElement.classList.add("light");
+          document.body.classList.add("theme-light");
+          if (sunIcon) sunIcon.classList.add("hidden");
+          if (moonIcon) moonIcon.classList.remove("hidden");
+          if (mobileThemeLabel) {
+            mobileThemeLabel.innerHTML = '<i data-lucide="moon" class="w-3.5 h-3.5 text-indigo-400"></i><span>Dark Mode</span>';
+          }
+        } else {
+          document.documentElement.classList.add("dark");
+          document.documentElement.classList.remove("light");
+          document.body.classList.remove("theme-light");
+          if (sunIcon) sunIcon.classList.remove("hidden");
+          if (moonIcon) moonIcon.classList.add("hidden");
+          if (mobileThemeLabel) {
+            mobileThemeLabel.innerHTML = '<i data-lucide="sun" class="w-3.5 h-3.5 text-amber-300"></i><span>Light Mode</span>';
+          }
+        }
+
+        localStorage.setItem("portfolio-theme", theme);
+
+        if (typeof lucide !== "undefined" && lucide.createIcons) {
+          lucide.createIcons();
+        }
+
+        if (typeof setActiveSection === "function" && currentActiveNavId) {
+          setActiveSection(currentActiveNavId);
+        }
+
+        if (broadcast) {
+          window.dispatchEvent(new CustomEvent("portfolio-theme-change", { detail: { theme } }));
+        }
+      }
+
+      function toggleTheme() {
+        const nextTheme = currentTheme === "dark" ? "light" : "dark";
+        applyTheme(nextTheme, true);
+        showToast(nextTheme === "light" ? "Switched to Light Mode" : "Switched to Dark Mode");
+      }
+
+      if (themeToggleBtn) {
+        themeToggleBtn.addEventListener("click", toggleTheme);
+      }
+      if (mobileThemeToggleBtn) {
+        mobileThemeToggleBtn.addEventListener("click", toggleTheme);
+      }
+
+      applyTheme(currentTheme, false);
+    }
+    initThemeController();
+
     // Initial load calibration
     const initialHash = window.location.hash.replace("#", "");
     const initialTarget = (initialHash && document.getElementById(initialHash)) ? initialHash : "hero";
@@ -1316,11 +1467,18 @@ lucide.createIcons();
       const numLines = 18;
       const step = height / numLines;
 
+      const isLightCanvas = document.documentElement.classList.contains("light") || document.body.classList.contains("theme-light");
+
       for (let i = 0; i < numLines; i++) {
         const baseY = i * step;
         ctx.beginPath();
-        ctx.strokeStyle = `rgba(255, 255, 255, ${0.02 + (i / numLines) * 0.035})`;
-        ctx.lineWidth = 1;
+        if (isLightCanvas) {
+          ctx.strokeStyle = `rgba(14, 165, 233, ${0.05 + (i / numLines) * 0.08})`;
+          ctx.lineWidth = 1.1;
+        } else {
+          ctx.strokeStyle = `rgba(255, 255, 255, ${0.02 + (i / numLines) * 0.035})`;
+          ctx.lineWidth = 1;
+        }
 
         const res = 26;
         for (let x = 0; x <= width + res; x += res) {
@@ -1619,8 +1777,8 @@ lucide.createIcons();
 
     /* ==========================================================================
        HALFTONE WORDMARK FOOTER ENGINE (KEDHARESWER NAIDU 21ST.DEV SPECIFICATION)
-       Interactive physics-driven halftone typography with spring restitution,
-       cursor repulsion, dynamic color shifting, and click shockwave ripples
+       High-density interactive halftone typography with multi-sample rasterization,
+       spring restitution, cursor repulsion, dynamic theme gradients, and click shockwave ripples
        ========================================================================== */
     (function initHalftoneWordmarkFooter() {
       const container = document.getElementById("halftone-wordmark-container");
@@ -1669,15 +1827,28 @@ lucide.createIcons();
 
         // Wordmark text sizing & optical vertical centering
         const wordmarkText = "RUSHIKESH";
-        const marginRatio = rect.width < 480 ? 0.90 : (rect.width < 768 ? 0.92 : 0.94);
+        const marginRatio = rect.width < 480 ? 0.94 : (rect.width < 768 ? 0.93 : 0.92);
         const targetTextWidth = width * marginRatio;
 
         const fontStack = '"Space Grotesk", "Plus Jakarta Sans", system-ui, -apple-system, sans-serif';
 
-        let fontSize = Math.floor(targetTextWidth / (wordmarkText.length * 0.58));
-        const maxFontHeight = Math.floor(height * (rect.width < 480 ? 0.72 : 0.76));
+        // High-density adaptive grid spacing (2.6px mobile to 3.8px desktop)
+        let cssSpacing;
+        if (rect.width < 480) {
+          cssSpacing = 2.6; // High density on mobile: yields ~45-55 dots tall letters!
+        } else if (rect.width < 768) {
+          cssSpacing = 3.0; // High density on tablet
+        } else if (rect.width < 1200) {
+          cssSpacing = 3.6; // Crisp display on laptops & desktops
+        } else {
+          cssSpacing = 4.0; // Ultra-wide 4K
+        }
+        const spacing = Math.max(3, Math.round(cssSpacing * dpr));
 
-        offCtx.font = `700 ${fontSize}px ${fontStack}`;
+        let fontSize = Math.floor(targetTextWidth / (wordmarkText.length * 0.58));
+        const maxFontHeight = Math.floor(height * 0.82);
+
+        offCtx.font = `800 ${fontSize}px ${fontStack}`;
         let measured = offCtx.measureText(wordmarkText).width;
         if (measured > 0) {
           fontSize = Math.floor(fontSize * (targetTextWidth / measured));
@@ -1686,11 +1857,11 @@ lucide.createIcons();
           fontSize = maxFontHeight;
         }
 
-        offCtx.font = `700 ${fontSize}px ${fontStack}`;
+        offCtx.font = `800 ${fontSize}px ${fontStack}`;
         measured = offCtx.measureText(wordmarkText).width;
         if (measured > targetTextWidth && measured > 0) {
           fontSize = Math.floor(fontSize * (targetTextWidth / measured));
-          offCtx.font = `700 ${fontSize}px ${fontStack}`;
+          offCtx.font = `800 ${fontSize}px ${fontStack}`;
         }
 
         offCtx.textAlign = "center";
@@ -1698,23 +1869,15 @@ lucide.createIcons();
 
         const centerY = Math.floor(height * 0.50);
 
+        // Render stroke + fill to fortify glyph contours (prevents thin stroke drop-outs in 'R', 'U', 'S')
+        offCtx.lineJoin = "round";
+        offCtx.lineWidth = Math.max(1.5, spacing * 0.35);
+        offCtx.strokeStyle = "#ffffff";
+        offCtx.strokeText(wordmarkText, width / 2, centerY);
         offCtx.fillStyle = "#ffffff";
         offCtx.fillText(wordmarkText, width / 2, centerY);
 
         const imgData = offCtx.getImageData(0, 0, width, height).data;
-
-        // Adaptive grid spacing
-        let cssSpacing;
-        if (rect.width < 420) {
-          cssSpacing = 4.0;
-        } else if (rect.width < 640) {
-          cssSpacing = 5.0;
-        } else if (rect.width < 1024) {
-          cssSpacing = 6.4;
-        } else {
-          cssSpacing = 8.0;
-        }
-        const spacing = Math.max(6, Math.round(cssSpacing * dpr));
 
         const cols = Math.floor(width / spacing);
         const rows = Math.floor(height / spacing);
@@ -1724,8 +1887,19 @@ lucide.createIcons();
         const textLeft = (width - targetTextWidth) / 2;
         const newDots = [];
 
-        // Area sampling step
-        const sampleOffset = Math.max(1, Math.floor(spacing * 0.28));
+        // 9-point multi-sample offsets covering 90%+ of the cell area (eliminates blind spots)
+        const sampleOffset = Math.max(1, Math.round(spacing * 0.32));
+        const samplePoints = [
+          [0, 0],
+          [-sampleOffset, 0],
+          [sampleOffset, 0],
+          [0, -sampleOffset],
+          [0, sampleOffset],
+          [-sampleOffset, -sampleOffset],
+          [sampleOffset, -sampleOffset],
+          [-sampleOffset, sampleOffset],
+          [sampleOffset, sampleOffset]
+        ];
 
         for (let y = offsetY; y < height; y += spacing) {
           for (let x = offsetX; x < width; x += spacing) {
@@ -1733,36 +1907,60 @@ lucide.createIcons();
             const py = Math.floor(y);
             if (px < 0 || px >= width || py < 0 || py >= height) continue;
 
-            // 3x3 area sampling for anti-aliasing and unbroken font contours
             let sumBrightness = 0;
-            for (let sy = -sampleOffset; sy <= sampleOffset; sy += sampleOffset) {
-              for (let sx = -sampleOffset; sx <= sampleOffset; sx += sampleOffset) {
-                const spx = Math.max(0, Math.min(width - 1, px + sx));
-                const spy = Math.max(0, Math.min(height - 1, py + sy));
-                const sidx = (spy * width + spx) * 4;
-                sumBrightness += imgData[sidx] || 0;
-              }
+            for (let s = 0; s < samplePoints.length; s++) {
+              const spx = Math.max(0, Math.min(width - 1, px + samplePoints[s][0]));
+              const spy = Math.max(0, Math.min(height - 1, py + samplePoints[s][1]));
+              const sidx = (spy * width + spx) * 4;
+              sumBrightness += imgData[sidx] || 0;
             }
-            const brightness = sumBrightness / 9;
+            const brightness = sumBrightness / samplePoints.length;
 
-            const isText = brightness > 25;
+            const isText = brightness > 18;
             let baseRadius;
             let alpha;
 
             if (isText) {
               const normB = Math.min(1, brightness / 255);
-              baseRadius = spacing * (0.16 + normB * 0.28);
-              alpha = 0.35 + normB * 0.65;
+              baseRadius = spacing * (0.18 + normB * 0.30);
+              alpha = 0.40 + normB * 0.60;
             } else {
-              baseRadius = Math.max(0.6, spacing * 0.08);
-              alpha = 0.07;
+              baseRadius = Math.max(0.5, spacing * 0.08);
+              alpha = 0.08;
             }
 
-            // Gradient: Electric Purple (#c084fc: 192, 132, 252) to Sky Cyan (#38bdf8: 56, 189, 248)
+            // Adaptive Gradient per theme mode
+            const isLightWordmark = document.documentElement.classList.contains("light") || document.body.classList.contains("theme-light");
             const ratioX = Math.max(0, Math.min(1, (x - textLeft) / (targetTextWidth || width)));
-            const baseR = Math.floor(192 + ratioX * (56 - 192));
-            const baseG = Math.floor(132 + ratioX * (189 - 132));
-            const baseB = Math.floor(252 + ratioX * (248 - 252));
+            let baseR, baseG, baseB;
+
+            if (isLightWordmark) {
+              // Light Mode: Deep Royal Indigo (#4338ca) -> Electric Violet (#7c3aed) -> Ocean Azure (#0284c7)
+              if (ratioX < 0.5) {
+                const t = ratioX * 2;
+                baseR = Math.floor(67 + t * (124 - 67));
+                baseG = Math.floor(56 + t * (58 - 56));
+                baseB = Math.floor(202 + t * (237 - 202));
+              } else {
+                const t = (ratioX - 0.5) * 2;
+                baseR = Math.floor(124 + t * (2 - 124));
+                baseG = Math.floor(58 + t * (132 - 58));
+                baseB = Math.floor(237 + t * (199 - 237));
+              }
+            } else {
+              // Dark Mode: Electric Lilac (#c084fc) -> Vivid Sky (#60a5fa) -> Radiant Cyan (#38bdf8)
+              if (ratioX < 0.5) {
+                const t = ratioX * 2;
+                baseR = Math.floor(192 + t * (96 - 192));
+                baseG = Math.floor(132 + t * (165 - 132));
+                baseB = Math.floor(252 + t * (250 - 252));
+              } else {
+                const t = (ratioX - 0.5) * 2;
+                baseR = Math.floor(96 + t * (56 - 96));
+                baseG = Math.floor(165 + t * (189 - 165));
+                baseB = Math.floor(250 + t * (248 - 250));
+              }
+            }
 
             newDots.push({
               x: x,
@@ -1877,12 +2075,9 @@ lucide.createIcons();
           }
         }
 
-        const mouseRadius = Math.min(120 * dpr, width * 0.30);
-        const springK = 0.08;
-        const damping = 0.84;
-
         // Batch 1: Background grid dots rendered in ONE single GPU draw call
         ctx.beginPath();
+        const isLightBatch = document.documentElement.classList.contains("light") || document.body.classList.contains("theme-light");
         for (let i = 0; i < dots.length; i++) {
           const dot = dots[i];
           if (!dot.isText) {
@@ -1890,10 +2085,16 @@ lucide.createIcons();
             ctx.arc(dot.x, dot.y, dot.currentRadius, 0, Math.PI * 2);
           }
         }
-        ctx.fillStyle = "rgba(148, 163, 184, 0.09)";
+        ctx.fillStyle = isLightBatch ? "rgba(100, 116, 139, 0.20)" : "rgba(148, 163, 184, 0.08)";
         ctx.fill();
 
         // Batch 2: Update physics and draw interactive wordmark dots with warming glow
+        const mouseRadius = Math.min(130 * dpr, Math.max(70 * dpr, width * 0.18));
+        const mouseRadiusSq = mouseRadius * mouseRadius;
+        const springK = 0.09;
+        const damping = 0.82;
+        const maxWarmDisp = 14 * dpr;
+
         for (let i = 0; i < dots.length; i++) {
           const dot = dots[i];
           if (!dot.isText) continue;
@@ -1902,19 +2103,23 @@ lucide.createIcons();
           let fx = (dot.originX - dot.x) * springK;
           let fy = (dot.originY - dot.y) * springK;
 
-          // 2. Cursor repulsion physics (smooth sinusoidal falloff)
+          // 2. Cursor repulsion physics (smooth sinusoidal falloff with fast bounding box check)
           let hoverFactor = 0;
           if (mouse.active) {
             const dx = dot.x - mouse.x;
-            const dy = dot.y - mouse.y;
-            const dist = Math.sqrt(dx * dx + dy * dy);
-
-            if (dist < mouseRadius && dist > 0) {
-              hoverFactor = 1 - dist / mouseRadius;
-              const repulse = Math.sin(hoverFactor * (Math.PI / 2)) * 5.5 * dpr;
-              const angle = Math.atan2(dy, dx);
-              fx += Math.cos(angle) * repulse;
-              fy += Math.sin(angle) * repulse;
+            if (Math.abs(dx) < mouseRadius) {
+              const dy = dot.y - mouse.y;
+              if (Math.abs(dy) < mouseRadius) {
+                const distSq = dx * dx + dy * dy;
+                if (distSq < mouseRadiusSq && distSq > 0) {
+                  const dist = Math.sqrt(distSq);
+                  hoverFactor = 1 - dist / mouseRadius;
+                  const repulse = Math.sin(hoverFactor * 1.5707963) * 6.0 * dpr;
+                  const angle = Math.atan2(dy, dx);
+                  fx += Math.cos(angle) * repulse;
+                  fy += Math.sin(angle) * repulse;
+                }
+              }
             }
           }
 
@@ -1923,16 +2128,20 @@ lucide.createIcons();
           for (let r = 0; r < ripples.length; r++) {
             const rip = ripples[r];
             const rdx = dot.x - rip.x;
-            const rdy = dot.y - rip.y;
-            const rdist = Math.sqrt(rdx * rdx + rdy * rdy);
-            const deltaR = Math.abs(rdist - rip.radius);
+            if (Math.abs(rdx) < rip.radius + rip.thickness) {
+              const rdy = dot.y - rip.y;
+              if (Math.abs(rdy) < rip.radius + rip.thickness) {
+                const rdist = Math.sqrt(rdx * rdx + rdy * rdy);
+                const deltaR = Math.abs(rdist - rip.radius);
 
-            if (deltaR < rip.thickness) {
-              const ringForce = (1 - deltaR / rip.thickness) * rip.strength;
-              rippleFactor = Math.max(rippleFactor, ringForce);
-              const rAngle = Math.atan2(rdy, rdx);
-              fx += Math.cos(rAngle) * ringForce * 4.0 * dpr;
-              fy += Math.sin(rAngle) * ringForce * 4.0 * dpr;
+                if (deltaR < rip.thickness) {
+                  const ringForce = (1 - deltaR / rip.thickness) * rip.strength;
+                  rippleFactor = Math.max(rippleFactor, ringForce);
+                  const rAngle = Math.atan2(rdy, rdx);
+                  fx += Math.cos(rAngle) * ringForce * 4.5 * dpr;
+                  fy += Math.sin(rAngle) * ringForce * 4.5 * dpr;
+                }
+              }
             }
           }
 
@@ -1943,25 +2152,35 @@ lucide.createIcons();
           dot.y += dot.vy;
 
           // Gentle ambient wave when idle
-          const ambientWave = Math.sin(dot.originX * 0.012 + waveTimer) * (dot.baseRadius * 0.12);
-          const targetR = dot.baseRadius * (1 + hoverFactor * 0.75 + rippleFactor * 1.1) + ambientWave;
-          dot.currentRadius += (targetR - dot.currentRadius) * 0.2;
+          const ambientWave = Math.sin(dot.originX * 0.01 + waveTimer) * (dot.baseRadius * 0.10);
+          const targetR = dot.baseRadius * (1 + hoverFactor * 0.70 + rippleFactor * 1.0) + ambientWave;
+          dot.currentRadius += (targetR - dot.currentRadius) * 0.22;
 
           const targetGlow = Math.max(hoverFactor, rippleFactor);
-          dot.glowIntensity += (targetGlow - dot.glowIntensity) * 0.2;
+          dot.glowIntensity += (targetGlow - dot.glowIntensity) * 0.22;
 
           // Warm in color as they move (21st.dev specification)
           const dispX = dot.x - dot.originX;
           const dispY = dot.y - dot.originY;
           const dispDist = Math.sqrt(dispX * dispX + dispY * dispY);
-          const dispFactor = Math.min(1, dispDist / (14 * dpr));
+          const dispFactor = Math.min(1, dispDist / maxWarmDisp);
           const warm = Math.max(dispFactor, dot.glowIntensity);
 
-          // Shift towards luminous warm amber-gold when displaced or hovered
-          const r = Math.floor(dot.baseR + (255 - dot.baseR) * warm * 0.90);
-          const g = Math.floor(dot.baseG + (225 - dot.baseG) * warm * 0.85);
-          const b = Math.floor(dot.baseB + (120 - dot.baseB) * warm * 0.60);
-          const a = Math.min(1, dot.alpha + warm * 0.25);
+          // Dynamic displacement & hover bloom color shift
+          let r, g, b, a;
+          if (isLightBatch) {
+            // Light Mode: Shift towards intense electric indigo-sapphire with solid opacity (crisp on white background)
+            r = Math.floor(dot.baseR + (49 - dot.baseR) * warm * 0.90);
+            g = Math.floor(dot.baseG + (46 - dot.baseG) * warm * 0.90);
+            b = Math.floor(dot.baseB + (129 - dot.baseB) * warm * 0.90);
+            a = Math.min(1, Math.max(0.70, dot.alpha + warm * 0.30));
+          } else {
+            // Dark Mode: Shift towards luminous warm amber-gold
+            r = Math.floor(dot.baseR + (255 - dot.baseR) * warm * 0.90);
+            g = Math.floor(dot.baseG + (225 - dot.baseG) * warm * 0.85);
+            b = Math.floor(dot.baseB + (120 - dot.baseB) * warm * 0.60);
+            a = Math.min(1, dot.alpha + warm * 0.25);
+          }
 
           ctx.beginPath();
           ctx.arc(dot.x, dot.y, Math.max(0.4, dot.currentRadius), 0, Math.PI * 2);
@@ -2000,6 +2219,15 @@ lucide.createIcons();
           buildWordmarkGrid();
         });
       }
+
+      // Fallback timeouts to ensure re-rasterization after external font paint
+      setTimeout(buildWordmarkGrid, 300);
+      setTimeout(buildWordmarkGrid, 900);
+
+      // Re-rasterize when theme mode changes
+      window.addEventListener("portfolio-theme-change", () => {
+        buildWordmarkGrid();
+      });
 
       // Track container visibility with IntersectionObserver
       const observer = new IntersectionObserver((entries) => {
@@ -2105,18 +2333,23 @@ lucide.createIcons();
           }
         }
 
+        const isLightMode = document.documentElement.classList.contains("light") || document.body.classList.contains("theme-light");
+        const activeHue = isLightMode 
+          ? (i % 3 === 0 ? "79, 70, 229" : (i % 3 === 1 ? "2, 132, 199" : "147, 51, 234")) 
+          : node.hue;
+
         aboutCtx.beginPath();
         aboutCtx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
-        aboutCtx.fillStyle = `rgba(${node.hue}, 0.95)`;
-        aboutCtx.shadowColor = `rgba(${node.hue}, 1)`;
-        aboutCtx.shadowBlur = 14;
+        aboutCtx.fillStyle = `rgba(${activeHue}, 0.95)`;
+        aboutCtx.shadowColor = `rgba(${activeHue}, ${isLightMode ? 0.35 : 1})`;
+        aboutCtx.shadowBlur = isLightMode ? 6 : 14;
         aboutCtx.fill();
         aboutCtx.shadowBlur = 0;
 
         if (node.label) {
           aboutCtx.font = "bold 10.5px 'JetBrains Mono', monospace";
-          aboutCtx.fillStyle = `rgba(241, 245, 249, 0.9)`;
-          aboutCtx.shadowColor = "rgba(0,0,0,0.9)";
+          aboutCtx.fillStyle = isLightMode ? "rgba(15, 23, 42, 0.95)" : "rgba(241, 245, 249, 0.9)";
+          aboutCtx.shadowColor = isLightMode ? "rgba(255, 255, 255, 0.9)" : "rgba(0,0,0,0.9)";
           aboutCtx.shadowBlur = 4;
           aboutCtx.fillText(node.label, node.x + node.radius + 6, node.y + 3.5);
           aboutCtx.shadowBlur = 0;
@@ -2132,9 +2365,9 @@ lucide.createIcons();
             aboutCtx.beginPath();
             aboutCtx.moveTo(node.x, node.y);
             aboutCtx.lineTo(other.x, other.y);
-            const alpha = (1 - distance / 140) * 0.55;
-            aboutCtx.strokeStyle = `rgba(${node.hue}, ${alpha})`;
-            aboutCtx.lineWidth = 1.2;
+            const alpha = (1 - distance / 140) * (isLightMode ? 0.45 : 0.55);
+            aboutCtx.strokeStyle = `rgba(${activeHue}, ${alpha})`;
+            aboutCtx.lineWidth = isLightMode ? 1.0 : 1.2;
             aboutCtx.stroke();
           }
         }
@@ -2651,6 +2884,11 @@ ${proj.specCode}
 
     renderGlassFolders();
     renderProjectDeck(0);
+
+    window.addEventListener("portfolio-theme-change", () => {
+      renderGlassFolders();
+      renderProjectDeck(currentProjectIdx);
+    });
 
     /* ==========================================================================
        HERO SEARCH BAR AUTOCOMPLETE & ROUTING (CALM NON-RADAR)

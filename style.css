@@ -391,10 +391,18 @@
     #halftone-wordmark-container {
       position: relative;
       width: 100%;
-      height: 240px;
+      height: 280px;
+      min-height: 280px;
       background: #05070c;
       touch-action: pan-y;
       overflow: hidden;
+    }
+
+    @media (min-width: 1440px) {
+      #halftone-wordmark-container {
+        height: 320px;
+        min-height: 320px;
+      }
     }
 
     #halftone-wordmark-canvas {
@@ -1720,9 +1728,10 @@
         font-size: 0.76rem;
       }
 
-      /* Halftone Wordmark on Mobile */
+      /* Halftone Wordmark on Mobile / Tablet */
       #halftone-wordmark-container {
-        height: 160px;
+        height: 210px;
+        min-height: 210px;
         touch-action: pan-y;
       }
 
@@ -1742,7 +1751,8 @@
     @media (max-width: 480px) {
       /* Halftone Wordmark on Extra Small Mobile */
       #halftone-wordmark-container {
-        height: 140px;
+        height: 180px;
+        min-height: 180px;
       }
 
       /* Small screen padding adjustments */
@@ -1769,3 +1779,1013 @@
         max-width: 95vw;
       }
     }
+
+/* ==========================================================================
+   LIGHT THEME SPECIFICATION (APPLE / VERCEL LUMINOUS PORCELAIN)
+   High-contrast, iridescent frosted glass surfaces, dynamic atmospheric
+   section transitions, technical micro-grid textures, and vibrant accents
+   ========================================================================== */
+
+html.light,
+body.theme-light {
+  background-color: #f8fafc;
+  color: #1e293b;
+  transition: background-color 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+/* Crisp Light Mode Scrollbars */
+html.light::-webkit-scrollbar-track,
+body.theme-light::-webkit-scrollbar-track {
+  background: #f1f5f9 !important;
+}
+
+html.light::-webkit-scrollbar-thumb,
+body.theme-light::-webkit-scrollbar-thumb {
+  background: #cbd5e1 !important;
+  border-radius: 9999px !important;
+  border: 2px solid #f1f5f9 !important;
+}
+
+html.light::-webkit-scrollbar-thumb:hover,
+body.theme-light::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8 !important;
+}
+
+/* Remove all dark text shadows across light theme for razor-sharp typography */
+body.theme-light,
+body.theme-light * {
+  text-shadow: none !important;
+}
+
+body.theme-light ::selection {
+  background: rgba(14, 165, 233, 0.25);
+  color: #0284c7;
+}
+
+/* --------------------------------------------------------------------------
+   PRELOADER IN LIGHT MODE
+   -------------------------------------------------------------------------- */
+html.light #portfolio-preloader,
+body.theme-light #portfolio-preloader {
+  background-color: #f8fafc !important;
+}
+
+html.light .loader-word,
+body.theme-light .loader-word,
+html.light .loader-letter,
+body.theme-light .loader-letter {
+  color: #0f172a !important;
+}
+
+html.light #portfolio-preloader .text-slate-400,
+html.light #portfolio-preloader .text-slate-500,
+body.theme-light #portfolio-preloader .text-slate-400,
+body.theme-light #portfolio-preloader .text-slate-500 {
+  color: #64748b !important;
+}
+
+html.light .loader,
+body.theme-light .loader {
+  mix-blend-mode: multiply !important;
+}
+
+/* --------------------------------------------------------------------------
+   DYNAMIC SECTION ATMOSPHERIC BACKDROPS (ELIMINATES BLANK WHITE EMPTINESS)
+   -------------------------------------------------------------------------- */
+body.theme-light .section-theme-hero {
+  background: radial-gradient(ellipse 90% 65% at 50% -5%, rgba(14, 165, 233, 0.18) 0%, rgba(99, 102, 241, 0.08) 45%, transparent 80%) !important;
+  position: relative;
+}
+
+/* Technical Coordinate Grid in Hero (Linear / Vercel Aesthetic) */
+body.theme-light .section-theme-hero::before {
+  display: block !important;
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(90deg, rgba(14, 165, 233, 0.08) 1px, transparent 1px),
+    linear-gradient(180deg, rgba(14, 165, 233, 0.06) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+  z-index: 1;
+  mask-image: radial-gradient(ellipse 80% 65% at 50% 20%, black 25%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 65% at 50% 20%, black 25%, transparent 80%);
+}
+
+body.theme-light .section-theme-about {
+  background: radial-gradient(ellipse 90% 70% at 50% 30%, rgba(99, 102, 241, 0.16) 0%, rgba(168, 85, 247, 0.08) 50%, transparent 85%) !important;
+}
+
+body.theme-light .section-theme-education {
+  background: radial-gradient(ellipse 90% 65% at 50% 35%, rgba(59, 130, 246, 0.16) 0%, rgba(14, 165, 233, 0.08) 50%, transparent 85%) !important;
+}
+
+body.theme-light .section-theme-stack {
+  background: radial-gradient(ellipse 90% 70% at 50% 35%, rgba(168, 85, 247, 0.18) 0%, rgba(236, 72, 153, 0.08) 55%, transparent 85%) !important;
+}
+
+body.theme-light .section-theme-projects {
+  background: radial-gradient(ellipse 90% 70% at 50% 35%, rgba(16, 185, 129, 0.16) 0%, rgba(20, 184, 166, 0.08) 50%, transparent 85%) !important;
+}
+
+body.theme-light .section-theme-achievements {
+  background: radial-gradient(ellipse 90% 70% at 50% 35%, rgba(245, 158, 11, 0.18) 0%, rgba(251, 191, 36, 0.09) 50%, transparent 85%) !important;
+}
+
+body.theme-light .section-theme-certifications {
+  background: radial-gradient(ellipse 90% 70% at 50% 35%, rgba(14, 165, 233, 0.18) 0%, rgba(99, 102, 241, 0.10) 50%, transparent 85%) !important;
+}
+
+body.theme-light .section-theme-contact {
+  background: radial-gradient(ellipse 90% 70% at 50% 30%, rgba(147, 51, 234, 0.16) 0%, rgba(56, 189, 248, 0.08) 50%, transparent 85%) !important;
+}
+
+/* Silky atmospheric transition veils between sections */
+body.theme-light .ambient-section-veil {
+  display: block !important;
+  opacity: 0.65;
+}
+
+body.theme-light .veil-top {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.75) 0%, transparent 100%) !important;
+}
+
+body.theme-light .veil-bottom {
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0.75) 0%, transparent 100%) !important;
+}
+
+/* Certifications & Achievements Canvas Backdrops */
+body.theme-light .gradient-dots-container {
+  background-color: transparent !important;
+}
+
+body.theme-light .gradient-dots-vignette {
+  background: radial-gradient(ellipse 90% 80% at 50% 50%, transparent 45%, rgba(240, 249, 255, 0.85) 95%) !important;
+}
+
+body.theme-light .gradient-dots-mesh {
+  opacity: 0.28 !important;
+}
+
+body.theme-light .fluid-particles-container {
+  background-color: transparent !important;
+}
+
+body.theme-light .fluid-particles-vignette {
+  background: radial-gradient(ellipse 90% 80% at 50% 50%, transparent 45%, rgba(255, 251, 235, 0.85) 95%) !important;
+}
+
+/* Northern Lights Aurora Engine on Contact Section */
+body.theme-light .aurora-bg-mesh {
+  opacity: 0.45 !important;
+  filter: blur(40px) !important;
+  background-image: 
+    repeating-linear-gradient(100deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.85) 7%, transparent 10%, transparent 12%, rgba(255, 255, 255, 0.85) 16%),
+    repeating-linear-gradient(100deg, rgba(99, 102, 241, 0.45) 10%, rgba(192, 132, 252, 0.45) 15%, rgba(56, 189, 248, 0.45) 20%, rgba(168, 85, 247, 0.4) 25%, rgba(59, 130, 246, 0.4) 30%) !important;
+}
+
+body.theme-light .aurora-bg-mesh::after {
+  display: block !important;
+  opacity: 0.35 !important;
+  background-image: 
+    repeating-linear-gradient(100deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.85) 7%, transparent 10%, transparent 12%, rgba(255, 255, 255, 0.85) 16%),
+    repeating-linear-gradient(100deg, rgba(244, 63, 94, 0.4) 10%, rgba(56, 189, 248, 0.45) 15%, rgba(129, 140, 248, 0.45) 20%, rgba(168, 85, 247, 0.4) 25%, rgba(20, 184, 166, 0.4) 30%) !important;
+  mix-blend-mode: soft-light !important;
+}
+
+/* --------------------------------------------------------------------------
+   IRIDESCENT LIQUID GLASS SURFACES (APPLE VISIONOS / TAHOE AESTHETIC)
+   -------------------------------------------------------------------------- */
+body.theme-light .glass-panel,
+body.theme-light .glass-panel-translucent,
+body.theme-light .glass-panel-ultra-translucent,
+body.theme-light .bento-card,
+body.theme-light .academic-station-card,
+body.theme-light .sphere-container-glass,
+body.theme-light .clean-project-deck {
+  background: rgba(255, 255, 255, 0.88) !important;
+  backdrop-filter: blur(24px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(24px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.95) !important;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.9) !important;
+  box-shadow: 
+    0 1px 3px 0 rgba(0, 0, 0, 0.03),
+    0 8px 24px -4px rgba(15, 23, 42, 0.06),
+    0 20px 48px -12px rgba(14, 165, 233, 0.08),
+    inset 0 1px 0 rgba(255, 255, 255, 1) !important;
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease, border-color 0.35s ease !important;
+}
+
+body.theme-light .glass-panel:hover,
+body.theme-light .glass-panel-translucent:hover,
+body.theme-light .glass-panel-ultra-translucent:hover,
+body.theme-light .bento-card:hover,
+body.theme-light .academic-station-card:hover {
+  transform: translateY(-4px) !important;
+  border-color: rgba(255, 255, 255, 1) !important;
+  box-shadow: 
+    0 4px 12px 0 rgba(0, 0, 0, 0.04),
+    0 16px 36px -4px rgba(15, 23, 42, 0.08),
+    0 28px 60px -12px rgba(14, 165, 233, 0.16),
+    inset 0 1px 0 rgba(255, 255, 255, 1) !important;
+}
+
+/* Section-Tailored Card Glow Accents */
+body.theme-light #about .glass-panel-ultra-translucent {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.03), 0 8px 24px -4px rgba(15, 23, 42, 0.06), 0 20px 48px -12px rgba(99, 102, 241, 0.12), inset 0 1px 0 #ffffff !important;
+}
+
+body.theme-light #education .academic-station-card {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.03), 0 8px 24px -4px rgba(15, 23, 42, 0.06), 0 20px 48px -12px rgba(59, 130, 246, 0.12), inset 0 1px 0 #ffffff !important;
+}
+
+body.theme-light #stack .sphere-container-glass,
+body.theme-light #stack .glass-panel-translucent {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.03), 0 8px 24px -4px rgba(15, 23, 42, 0.06), 0 20px 48px -12px rgba(168, 85, 247, 0.14), inset 0 1px 0 #ffffff !important;
+}
+
+body.theme-light #projects .glass-folder-desk,
+body.theme-light #projects .clean-project-deck {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.03), 0 8px 24px -4px rgba(15, 23, 42, 0.06), 0 20px 48px -12px rgba(16, 185, 129, 0.12), inset 0 1px 0 #ffffff !important;
+}
+
+body.theme-light #achievements .glass-panel-translucent {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.03), 0 8px 24px -4px rgba(15, 23, 42, 0.06), 0 20px 48px -12px rgba(245, 158, 11, 0.14), inset 0 1px 0 #ffffff !important;
+}
+
+body.theme-light #contact .glass-panel-translucent {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.03), 0 8px 24px -4px rgba(15, 23, 42, 0.06), 0 24px 60px -12px rgba(147, 51, 234, 0.16), inset 0 1px 0 #ffffff !important;
+}
+
+body.theme-light .glass-panel-subtle {
+  background-color: rgba(255, 255, 255, 0.92) !important;
+  border: 1px solid rgba(226, 232, 240, 0.9) !important;
+  color: #334155 !important;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.04) !important;
+}
+
+/* Dark inset wells become radiant light gradient containers */
+body.theme-light .bg-black\/20,
+body.theme-light .bg-black\/30,
+body.theme-light .bg-black\/40,
+body.theme-light .bg-black\/50,
+body.theme-light .bg-black\/60,
+body.theme-light .bg-black\/70,
+body.theme-light .bg-black\/80 {
+  background: linear-gradient(135deg, rgba(248, 250, 252, 0.95) 0%, rgba(241, 245, 249, 0.95) 100%) !important;
+  border-color: rgba(226, 232, 240, 0.95) !important;
+}
+
+/* About Bento Sub-Cards (Vibrant Micro-Cards) */
+body.theme-light #about .p-3\.5.rounded-xl {
+  background: linear-gradient(135deg, rgba(245, 243, 255, 0.95) 0%, rgba(255, 255, 255, 0.95) 100%) !important;
+  border: 1px solid rgba(99, 102, 241, 0.25) !important;
+  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.08) !important;
+}
+
+body.theme-light #about .p-3\.5.rounded-xl:hover {
+  border-color: rgba(99, 102, 241, 0.5) !important;
+  box-shadow: 0 6px 18px rgba(99, 102, 241, 0.14) !important;
+}
+
+/* Tech Stack Implementation Card */
+body.theme-light .bg-purple-950\/20 {
+  background: linear-gradient(135deg, rgba(250, 245, 255, 0.95) 0%, rgba(255, 255, 255, 0.95) 100%) !important;
+  border: 1px solid rgba(168, 85, 247, 0.25) !important;
+  box-shadow: 0 4px 14px rgba(168, 85, 247, 0.08) !important;
+}
+
+/* Education Grade Wells */
+body.theme-light #education .academic-station-card .bg-black\/40 {
+  background: linear-gradient(135deg, #f0f9ff 0%, #ffffff 100%) !important;
+  border: 1px solid rgba(14, 165, 233, 0.3) !important;
+  box-shadow: 0 2px 10px rgba(14, 165, 233, 0.08) !important;
+}
+
+body.theme-light .runway-track-glow {
+  background: linear-gradient(90deg, rgba(2, 132, 199, 0.15) 0%, rgba(2, 132, 199, 0.65) 50%, rgba(2, 132, 199, 0.15) 100%) !important;
+  box-shadow: 0 0 14px rgba(2, 132, 199, 0.35) !important;
+}
+
+/* --------------------------------------------------------------------------
+   TYPOGRAPHY HIERARCHY & JEWEL GRADIENT HEADLINES
+   -------------------------------------------------------------------------- */
+body.theme-light h1,
+body.theme-light h2,
+body.theme-light h3,
+body.theme-light h4,
+body.theme-light h5,
+body.theme-light h6 {
+  color: #0f172a !important;
+  letter-spacing: -0.02em;
+}
+
+/* Hero Title Jewel Sheen */
+body.theme-light #hero h1,
+body.theme-light #hero-typewriter {
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 40%, #0369a1 75%, #4338ca 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+body.theme-light p {
+  color: #334155 !important;
+}
+
+body.theme-light .text-slate-100 {
+  color: #0f172a !important;
+}
+
+body.theme-light .text-slate-200 {
+  color: #1e293b !important;
+}
+
+body.theme-light .text-slate-300 {
+  color: #334155 !important;
+}
+
+body.theme-light .text-slate-400 {
+  color: #64748b !important;
+}
+
+body.theme-light .text-slate-500 {
+  color: #64748b !important;
+}
+
+/* Crucial: Content text-white elements convert to deep dark slate #0f172a */
+body.theme-light .text-white {
+  color: #0f172a !important;
+}
+
+/* Saturated Jewel Accent Colors (High Contrast & Vibrant) */
+body.theme-light .text-cyan-300,
+body.theme-light .text-cyan-400 {
+  color: #0284c7 !important;
+}
+
+body.theme-light .text-indigo-300,
+body.theme-light .text-indigo-400 {
+  color: #4338ca !important;
+}
+
+body.theme-light .text-emerald-300,
+body.theme-light .text-emerald-400 {
+  color: #15803d !important;
+}
+
+body.theme-light .text-amber-300,
+body.theme-light .text-amber-400 {
+  color: #b45309 !important;
+}
+
+body.theme-light .text-purple-200,
+body.theme-light .text-purple-300,
+body.theme-light .text-purple-400 {
+  color: #7e22ce !important;
+}
+
+body.theme-light .text-teal-400 {
+  color: #0d9488 !important;
+}
+
+/* --------------------------------------------------------------------------
+   BADGES & CATEGORY PILLS (Apple-Grade Contrast Chips)
+   -------------------------------------------------------------------------- */
+body.theme-light .bg-cyan-500\/10,
+body.theme-light .bg-cyan-500\/15,
+body.theme-light .bg-cyan-500\/20 {
+  background-color: #e0f2fe !important;
+  border-color: #bae6fd !important;
+  color: #0284c7 !important;
+  font-weight: 600 !important;
+}
+
+body.theme-light .bg-purple-500\/10,
+body.theme-light .bg-purple-500\/15,
+body.theme-light .bg-purple-500\/20 {
+  background-color: #f3e8ff !important;
+  border-color: #e9d5ff !important;
+  color: #7e22ce !important;
+  font-weight: 600 !important;
+}
+
+body.theme-light .bg-emerald-500\/10,
+body.theme-light .bg-emerald-500\/15,
+body.theme-light .bg-emerald-500\/20 {
+  background-color: #dcfce7 !important;
+  border-color: #bbf7d0 !important;
+  color: #15803d !important;
+  font-weight: 600 !important;
+}
+
+body.theme-light .bg-amber-500\/10,
+body.theme-light .bg-amber-500\/15,
+body.theme-light .bg-amber-500\/20 {
+  background-color: #fef3c7 !important;
+  border-color: #fde68a !important;
+  color: #b45309 !important;
+  font-weight: 600 !important;
+}
+
+body.theme-light .bg-indigo-500\/10,
+body.theme-light .bg-indigo-500\/15,
+body.theme-light .bg-indigo-500\/20 {
+  background-color: #e0e7ff !important;
+  border-color: #c7d2fe !important;
+  color: #4338ca !important;
+  font-weight: 600 !important;
+}
+
+/* --------------------------------------------------------------------------
+   CTA BUTTONS (White on Dark/Gradient, High-Contrast Dark on Emerald/Cyan)
+   -------------------------------------------------------------------------- */
+body.theme-light .bg-gradient-to-r,
+body.theme-light .bg-gradient-to-r *,
+body.theme-light button[type="submit"],
+body.theme-light button[type="submit"] *,
+body.theme-light .bg-indigo-600,
+body.theme-light .bg-indigo-600 *,
+body.theme-light .bg-purple-600,
+body.theme-light .bg-purple-600 *,
+body.theme-light .bg-blue-600,
+body.theme-light .bg-blue-600 *,
+body.theme-light #hero-search-exec,
+body.theme-light #hero-search-exec *,
+body.theme-light a[data-badge="RESUME"],
+body.theme-light a[data-badge="RESUME"] *,
+body.theme-light .sphere-filter-btn.bg-purple-500\/20,
+body.theme-light .sphere-filter-btn.bg-purple-500\/20 * {
+  color: #ffffff !important;
+}
+
+body.theme-light .glass-folder-action-btn.bg-emerald-500,
+body.theme-light .glass-folder-action-btn.bg-emerald-500 *,
+body.theme-light a.bg-emerald-500,
+body.theme-light a.bg-emerald-500 *,
+body.theme-light button.bg-emerald-500,
+body.theme-light button.bg-emerald-500 *,
+body.theme-light #deck-impact-btn.bg-emerald-500,
+body.theme-light #deck-spec-btn.bg-emerald-500,
+body.theme-light #rag-sim-btn,
+body.theme-light #emotion-sim-btn {
+  color: #092e20 !important;
+  font-weight: 700 !important;
+}
+
+body.theme-light a.bg-cyan-500,
+body.theme-light a.bg-cyan-500 *,
+body.theme-light button.bg-cyan-500,
+body.theme-light button.bg-cyan-500 * {
+  color: #082f49 !important;
+  font-weight: 700 !important;
+}
+
+/* --------------------------------------------------------------------------
+   HERO SEARCH SHELL & PORTRAIT FRAME
+   -------------------------------------------------------------------------- */
+body.theme-light .glass-search-shell {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border: 1px solid rgba(14, 165, 233, 0.35) !important;
+  box-shadow: 0 12px 36px -4px rgba(14, 165, 233, 0.14), 0 0 0 1px rgba(14, 165, 233, 0.18) !important;
+}
+
+body.theme-light .glass-search-shell:focus-within {
+  border-color: #0284c7 !important;
+  box-shadow: 0 16px 40px -4px rgba(2, 132, 199, 0.22), 0 0 0 3px rgba(2, 132, 199, 0.2) !important;
+}
+
+body.theme-light #hero-search-input {
+  color: #0f172a !important;
+}
+
+body.theme-light #hero-search-input::placeholder {
+  color: #94a3b8 !important;
+}
+
+body.theme-light #hero-search-exec {
+  background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.3) !important;
+}
+
+body.theme-light #hero-search-exec:hover {
+  background: linear-gradient(135deg, #0369a1 0%, #1d4ed8 100%) !important;
+}
+
+body.theme-light .quick-pill {
+  background: rgba(255, 255, 255, 0.9) !important;
+  border: 1px solid rgba(226, 232, 240, 0.9) !important;
+  color: #475569 !important;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04) !important;
+}
+
+body.theme-light .quick-pill:hover {
+  background: #e0f2fe !important;
+  border-color: #0284c7 !important;
+  color: #0284c7 !important;
+}
+
+body.theme-light #search-instant-results {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  box-shadow: 0 20px 45px -4px rgba(15, 23, 42, 0.14) !important;
+}
+
+body.theme-light .portrait-photo-card {
+  background-color: rgba(255, 255, 255, 0.92) !important;
+  border: 1px solid rgba(255, 255, 255, 0.95) !important;
+  box-shadow: 0 24px 50px -10px rgba(14, 165, 233, 0.18), 0 0 0 1px rgba(14, 165, 233, 0.25) !important;
+}
+
+body.theme-light .portrait-photo-card .bg-black\/60 {
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%) !important;
+  border-color: #e2e8f0 !important;
+}
+
+/* --------------------------------------------------------------------------
+   HEADER & APPLE TAHOE LIQUID GLASS NAV
+   -------------------------------------------------------------------------- */
+body.theme-light header {
+  background-color: rgba(255, 255, 255, 0.88) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.8) !important;
+  box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.04) !important;
+}
+
+body.theme-light #navbar-liquid-nav {
+  background-color: #f1f5f9 !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+body.theme-light .nav-tab-link {
+  color: #64748b !important;
+}
+
+body.theme-light .nav-tab-link:hover,
+body.theme-light .nav-tab-link.active {
+  color: #0f172a !important;
+  font-weight: 600 !important;
+}
+
+body.theme-light .liquid-glass-pill {
+  background-color: #ffffff !important;
+  border: 1px solid rgba(203, 213, 225, 0.85) !important;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.08) !important;
+}
+
+body.theme-light #theme-toggle-btn,
+body.theme-light #mobile-menu-btn {
+  background-color: #f1f5f9 !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #1e293b !important;
+}
+
+body.theme-light #theme-toggle-btn:hover,
+body.theme-light #mobile-menu-btn:hover {
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+}
+
+/* Mobile Drawer */
+body.theme-light #mobile-nav-backdrop {
+  background-color: rgba(15, 23, 42, 0.4) !important;
+}
+
+body.theme-light #mobile-nav-drawer {
+  background-color: rgba(255, 255, 255, 0.98) !important;
+  border-bottom: 1px solid #e2e8f0 !important;
+  box-shadow: 0 20px 45px -10px rgba(15, 23, 42, 0.12) !important;
+}
+
+body.theme-light .mobile-nav-link {
+  background-color: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #334155 !important;
+}
+
+body.theme-light .mobile-nav-link:hover {
+  background-color: #ffffff !important;
+  color: #0f172a !important;
+  border-color: #cbd5e1 !important;
+}
+
+body.theme-light #mobile-theme-toggle-btn {
+  background-color: #f1f5f9 !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #1e293b !important;
+}
+
+body.theme-light #mobile-menu-close-btn:hover {
+  color: #0f172a !important;
+}
+
+/* --------------------------------------------------------------------------
+   TECH STACK 3D SPHERE & INSPECTOR
+   -------------------------------------------------------------------------- */
+body.theme-light .sphere-filter-btn {
+  background-color: rgba(255, 255, 255, 0.9) !important;
+  border: 1px solid rgba(226, 232, 240, 0.9) !important;
+  color: #475569 !important;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.03) !important;
+}
+
+body.theme-light .sphere-filter-btn:hover {
+  background-color: #f1f5f9 !important;
+  color: #0f172a !important;
+}
+
+body.theme-light .sphere-filter-btn.bg-purple-500\/20 {
+  background: linear-gradient(135deg, #7e22ce 0%, #4338ca 100%) !important;
+  border-color: #7e22ce !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(126, 34, 206, 0.25) !important;
+}
+
+/* --------------------------------------------------------------------------
+   PROJECTS: GLASS FOLDERS & FLIGHT DECK
+   -------------------------------------------------------------------------- */
+body.theme-light .glass-folder-desk {
+  background: linear-gradient(135deg, #f0fdf4 0%, #ffffff 50%, #ecfdf5 100%) !important;
+  border: 1px solid rgba(16, 185, 129, 0.25) !important;
+  box-shadow: 0 16px 48px -8px rgba(16, 185, 129, 0.12) !important;
+}
+
+body.theme-light .glass-folder-desk-dots {
+  background-image: radial-gradient(#10b981 1.2px, transparent 1.4px) !important;
+  opacity: 0.22 !important;
+}
+
+body.theme-light .glass-folder-back {
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%) !important;
+  border: 1px solid rgba(226, 232, 240, 0.95) !important;
+  box-shadow: 0 12px 32px -4px rgba(16, 185, 129, 0.10) !important;
+}
+
+body.theme-light .glass-folder-tab-bar {
+  background: linear-gradient(90deg, #f0fdf4 0%, #ffffff 100%) !important;
+  border-bottom: 1px solid rgba(226, 232, 240, 0.8) !important;
+  color: #0f172a !important;
+}
+
+body.theme-light .glass-folder-front {
+  background: rgba(255, 255, 255, 0.92) !important;
+  backdrop-filter: blur(28px) saturate(200%) !important;
+  border: 1.5px solid rgba(255, 255, 255, 1) !important;
+  border-top: 2px solid rgba(255, 255, 255, 1) !important;
+  box-shadow: 0 -10px 28px -4px rgba(16, 185, 129, 0.08), 0 12px 32px -4px rgba(15, 23, 42, 0.08), inset 0 1px 0 #ffffff !important;
+}
+
+body.theme-light .glass-folder-card:hover .glass-folder-front,
+body.theme-light .glass-folder-card.is-open .glass-folder-front {
+  box-shadow: 0 -12px 32px -4px rgba(16, 185, 129, 0.14), 0 16px 40px -4px rgba(15, 23, 42, 0.12), inset 0 1px 0 #ffffff !important;
+}
+
+body.theme-light .glass-folder-art-badge > div {
+  background: rgba(255, 255, 255, 0.94) !important;
+  border: 1px solid rgba(226, 232, 240, 0.95) !important;
+  color: #0f172a !important;
+}
+
+body.theme-light .glass-folder-front span.bg-white\/10 {
+  background: #f1f5f9 !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #334155 !important;
+}
+
+body.theme-light .glass-folder-art.art-aurora {
+  background: linear-gradient(135deg, #059669 0%, #10b981 40%, #06b6d4 100%) !important;
+}
+
+body.theme-light .glass-folder-art.art-dusk {
+  background: linear-gradient(135deg, #7c3aed 0%, #a855f7 40%, #ec4899 100%) !important;
+}
+
+body.theme-light .glass-folder-art.art-ember {
+  background: linear-gradient(135deg, #d97706 0%, #f59e0b 40%, #ef4444 100%) !important;
+}
+
+body.theme-light .glass-folder-file-item {
+  background: #ffffff !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #1e293b !important;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.08) !important;
+}
+
+body.theme-light .glass-folder-toggle-btn {
+  background: #f1f5f9 !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #475569 !important;
+}
+
+body.theme-light .glass-folder-toggle-btn:hover {
+  background: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+body.theme-light .glass-folder-action-btn:not(.bg-emerald-500) {
+  background: #f1f5f9 !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+body.theme-light .glass-folder-action-btn:not(.bg-emerald-500):hover {
+  background: #e2e8f0 !important;
+}
+
+/* --------------------------------------------------------------------------
+   FLIGHT DECK WORKBENCH
+   -------------------------------------------------------------------------- */
+body.theme-light .clean-project-deck a.bg-gradient-to-br,
+body.theme-light .clean-project-deck a[data-badge="LIVE DEMO"] {
+  background: linear-gradient(135deg, #ecfdf5 0%, #ffffff 50%, #d1fae5 100%) !important;
+  border: 1px solid rgba(16, 185, 129, 0.35) !important;
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.12) !important;
+}
+
+body.theme-light .clean-project-deck a[data-badge="LIVE DEMO"]:hover {
+  border-color: #10b981 !important;
+  box-shadow: 0 14px 32px rgba(16, 185, 129, 0.2) !important;
+}
+
+body.theme-light .clean-project-deck a[data-badge="GITHUB REPO"] {
+  background: linear-gradient(135deg, #f8fafc 0%, #ffffff 50%, #e0f2fe 100%) !important;
+  border: 1px solid rgba(2, 132, 199, 0.3) !important;
+  box-shadow: 0 8px 24px rgba(2, 132, 199, 0.10) !important;
+}
+
+body.theme-light .clean-project-deck a[data-badge="GITHUB REPO"]:hover {
+  border-color: #0284c7 !important;
+  box-shadow: 0 14px 32px rgba(2, 132, 199, 0.18) !important;
+}
+
+body.theme-light .clean-project-deck a[data-badge="LIVE DEMO"] h4,
+body.theme-light .clean-project-deck a[data-badge="GITHUB REPO"] h4 {
+  color: #0f172a !important;
+}
+
+body.theme-light .clean-project-deck a[data-badge="LIVE DEMO"] p,
+body.theme-light .clean-project-deck a[data-badge="GITHUB REPO"] p {
+  color: #475569 !important;
+}
+
+body.theme-light .clean-project-deck a[data-badge="LIVE DEMO"] .text-slate-400,
+body.theme-light .clean-project-deck a[data-badge="GITHUB REPO"] .text-slate-400 {
+  color: #64748b !important;
+}
+
+body.theme-light .clean-project-deck .bg-black\/50 {
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+body.theme-light .clean-project-deck #deck-impact-btn:not(.bg-emerald-500),
+body.theme-light .clean-project-deck #deck-spec-btn:not(.bg-emerald-500) {
+  color: #64748b !important;
+}
+
+body.theme-light .clean-project-deck #deck-impact-btn:not(.bg-emerald-500):hover,
+body.theme-light .clean-project-deck #deck-spec-btn:not(.bg-emerald-500):hover {
+  color: #0f172a !important;
+  background: #e2e8f0 !important;
+}
+
+body.theme-light .clean-project-deck .bg-black\/70,
+body.theme-light .clean-project-deck .bg-black\/80,
+body.theme-light #rag-sim-output,
+body.theme-light #emotion-sim-output,
+body.theme-light #housing-sim-output {
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+  color: #1e293b !important;
+}
+
+body.theme-light #rag-sim-input,
+body.theme-light #emotion-sim-input {
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+body.theme-light .clean-project-deck .bg-white\/\[0\.04\] {
+  background: #f8fafc !important;
+  border: 1px solid #e2e8f0 !important;
+}
+
+body.theme-light .clean-project-deck button.bg-white\/5 {
+  background: #f1f5f9 !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #334155 !important;
+}
+
+body.theme-light .clean-project-deck button.bg-white\/5:hover {
+  background: #e2e8f0 !important;
+  color: #0f172a !important;
+}
+
+/* --------------------------------------------------------------------------
+   CERTIFICATIONS VAULT (ROTATING CONIC LASER LINE)
+   -------------------------------------------------------------------------- */
+body.theme-light .uiverse-cert-card {
+  background: #ffffff !important;
+  box-shadow: 0 16px 44px -8px rgba(2, 132, 199, 0.16), 0 0 0 1px rgba(2, 132, 199, 0.2) !important;
+}
+
+body.theme-light .uiverse-cert-card:hover {
+  box-shadow: 0 24px 60px -8px rgba(2, 132, 199, 0.28), 0 0 25px rgba(2, 132, 199, 0.25) !important;
+}
+
+body.theme-light .uiverse-cert-card::before {
+  background: conic-gradient(
+    transparent 0deg,
+    transparent 45deg,
+    rgba(2, 132, 199, 0.95) 90deg,
+    rgba(99, 102, 241, 0.85) 130deg,
+    rgba(168, 85, 247, 0.75) 160deg,
+    transparent 200deg,
+    transparent 360deg
+  ) !important;
+}
+
+body.theme-light .uiverse-cert-card::after {
+  background: #ffffff !important;
+}
+
+body.theme-light .uiverse-cert-card .card_title {
+  color: #0f172a !important;
+}
+
+body.theme-light .uiverse-cert-card .card_paragraph {
+  color: #0284c7 !important;
+  font-weight: 700 !important;
+}
+
+body.theme-light .uiverse-cert-card .line {
+  background: linear-gradient(90deg, rgba(2, 132, 199, 0.4) 0%, rgba(226, 232, 240, 0.8) 50%, transparent 100%) !important;
+}
+
+body.theme-light .uiverse-cert-card .check {
+  background: #e0f2fe !important;
+  border: 1px solid #bae6fd !important;
+  box-shadow: 0 0 8px rgba(2, 132, 199, 0.2) !important;
+}
+
+body.theme-light .uiverse-cert-card .check_svg {
+  fill: #0284c7 !important;
+}
+
+body.theme-light .uiverse-cert-card .list_text {
+  color: #334155 !important;
+}
+
+body.theme-light .uiverse-cert-card .button {
+  background: #f1f5f9 !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #0284c7 !important;
+  font-weight: 700 !important;
+}
+
+body.theme-light .uiverse-cert-card .button:hover {
+  background: #0284c7 !important;
+  border-color: #0284c7 !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.3) !important;
+}
+
+/* --------------------------------------------------------------------------
+   CONTACT SECTION & FORM
+   -------------------------------------------------------------------------- */
+body.theme-light #contact-form input,
+body.theme-light #contact-form textarea {
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+body.theme-light #contact-form input:focus,
+body.theme-light #contact-form textarea:focus {
+  border-color: #8b5cf6 !important;
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.18) !important;
+}
+
+body.theme-light #contact-form input::placeholder,
+body.theme-light #contact-form textarea::placeholder {
+  color: #94a3b8 !important;
+}
+
+body.theme-light #contact-form label {
+  color: #334155 !important;
+}
+
+body.theme-light a[data-badge="EMAIL"],
+body.theme-light a[data-badge="PHONE"],
+body.theme-light a[data-badge="LINKEDIN"],
+body.theme-light a[data-badge="GITHUB"] {
+  background: #ffffff !important;
+  border: 1px solid rgba(226, 232, 240, 0.9) !important;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06) !important;
+}
+
+body.theme-light a[data-badge="GITHUB"] svg {
+  fill: #0f172a !important;
+  color: #0f172a !important;
+}
+
+body.theme-light button[type="submit"] {
+  background: linear-gradient(135deg, #8b5cf6 0%, #6366f1 50%, #3b82f6 100%) !important;
+  color: #ffffff !important;
+  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.3) !important;
+}
+
+body.theme-light button[type="submit"]:hover {
+  background: linear-gradient(135deg, #7c3aed 0%, #4f46e5 50%, #2563eb 100%) !important;
+  box-shadow: 0 12px 28px rgba(99, 102, 241, 0.4) !important;
+}
+
+/* --------------------------------------------------------------------------
+   FOOTER & HALFTONE WORDMARK
+   -------------------------------------------------------------------------- */
+body.theme-light footer,
+body.theme-light #site-footer {
+  border-top: 1px solid #e2e8f0 !important;
+  background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%) !important;
+}
+
+body.theme-light .footer-nav-link {
+  color: #64748b !important;
+}
+
+body.theme-light .footer-nav-link:hover {
+  color: #0284c7 !important;
+}
+
+body.theme-light #footer-back-to-top {
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #334155 !important;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.04) !important;
+}
+
+body.theme-light #footer-back-to-top:hover {
+  background: #f1f5f9 !important;
+  color: #0f172a !important;
+  border-color: #94a3b8 !important;
+}
+
+body.theme-light .ambient-footer-glow {
+  background: radial-gradient(ellipse at 50% 0%, rgba(99, 102, 241, 0.16) 0%, rgba(2, 132, 199, 0.08) 45%, transparent 70%) !important;
+}
+
+body.theme-light #halftone-wordmark-container {
+  background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 50%, #e2e8f0 100%) !important;
+}
+
+body.theme-light .halftone-wordmark-fade {
+  background: linear-gradient(to bottom, rgba(248, 250, 252, 0.8) 0%, transparent 20%, transparent 80%, rgba(226, 232, 240, 0.9) 100%) !important;
+}
+
+/* --------------------------------------------------------------------------
+   HUD PIPS & CURSOR
+   -------------------------------------------------------------------------- */
+body.theme-light .hud-pip {
+  background: rgba(100, 116, 139, 0.35);
+  border-color: rgba(100, 116, 139, 0.45);
+}
+
+body.theme-light .hud-pip .pip-tooltip {
+  background: #ffffff !important;
+  border: 1px solid #cbd5e1 !important;
+  color: #0f172a !important;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.1) !important;
+}
+
+body.theme-light #cursor-dot {
+  background: var(--active-cursor-color, #0284c7);
+  box-shadow: 0 0 10px rgba(2, 132, 199, 0.4);
+}
+
+body.theme-light #cursor-ring {
+  border-color: var(--active-cursor-border, rgba(2, 132, 199, 0.55));
+  background: var(--active-cursor-subtle-bg, rgba(2, 132, 199, 0.05));
+}
+
+body.theme-light #cursor-badge {
+  background: rgba(255, 255, 255, 0.98);
+  border-color: var(--active-cursor-border, rgba(2, 132, 199, 0.4));
+  color: var(--active-cursor-color, #0284c7);
+  box-shadow: 0 4px 18px rgba(15, 23, 42, 0.12);
+}
+
+/* --------------------------------------------------------------------------
+   TOAST NOTIFICATION
+   -------------------------------------------------------------------------- */
+body.theme-light #toast-element {
+  background: #ffffff !important;
+  color: #0f172a !important;
+  border: 1px solid #0284c7 !important;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.12) !important;
+}
+
+
+
