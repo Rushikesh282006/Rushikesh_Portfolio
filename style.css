@@ -215,32 +215,32 @@
     .section-theme-about {
       --section-accent: #818cf8;
       --section-glow: rgba(129, 140, 248, 0.25);
-      background: radial-gradient(ellipse 100% 85% at 50% 40%, rgba(30, 27, 75, 0.5) 0%, rgba(13, 10, 35, 0.75) 55%, transparent 100%);
+      background: radial-gradient(ellipse 75% 60% at 50% 50%, rgba(30, 27, 75, 0.40) 0%, rgba(13, 10, 35, 0.18) 45%, transparent 75%);
     }
     .section-theme-education {
       --section-accent: #3b82f6;
       --section-glow: rgba(59, 130, 246, 0.25);
-      background: radial-gradient(ellipse 100% 85% at 50% 40%, rgba(15, 34, 74, 0.55) 0%, rgba(7, 16, 38, 0.78) 55%, transparent 100%);
+      background: radial-gradient(ellipse 75% 60% at 50% 50%, rgba(15, 34, 74, 0.42) 0%, rgba(7, 16, 38, 0.20) 45%, transparent 75%);
     }
     .section-theme-stack {
       --section-accent: #c084fc;
       --section-glow: rgba(192, 132, 252, 0.25);
-      background: radial-gradient(ellipse 100% 85% at 50% 40%, rgba(56, 17, 79, 0.52) 0%, rgba(20, 8, 32, 0.8) 55%, transparent 100%);
+      background: radial-gradient(ellipse 75% 60% at 50% 50%, rgba(56, 17, 79, 0.42) 0%, rgba(20, 8, 32, 0.20) 45%, transparent 75%);
     }
     .section-theme-projects {
       --section-accent: #10b981;
       --section-glow: rgba(16, 185, 129, 0.25);
-      background: radial-gradient(ellipse 100% 85% at 50% 40%, rgba(6, 44, 34, 0.55) 0%, rgba(4, 20, 16, 0.82) 55%, transparent 100%);
+      background: radial-gradient(ellipse 75% 60% at 50% 50%, rgba(6, 44, 34, 0.42) 0%, rgba(4, 20, 16, 0.20) 45%, transparent 75%);
     }
     .section-theme-achievements {
       --section-accent: #f59e0b;
       --section-glow: rgba(245, 158, 11, 0.25);
-      background: radial-gradient(ellipse 100% 85% at 50% 40%, rgba(69, 36, 10, 0.5) 0%, rgba(26, 13, 4, 0.8) 55%, transparent 100%);
+      background: radial-gradient(ellipse 75% 60% at 50% 50%, rgba(69, 36, 10, 0.40) 0%, rgba(26, 13, 4, 0.18) 45%, transparent 75%);
     }
     .section-theme-certifications {
       --section-accent: #38bdf8;
       --section-glow: rgba(56, 189, 248, 0.25);
-      background: radial-gradient(ellipse 90% 70% at 50% 45%, rgba(14, 34, 66, 0.7) 0%, rgba(8, 16, 34, 0.9) 60%, rgba(5, 9, 20, 0.98) 100%);
+      background: radial-gradient(ellipse 75% 60% at 50% 50%, rgba(14, 34, 66, 0.48) 0%, rgba(8, 16, 34, 0.22) 45%, transparent 75%);
     }
 
     /* ==========================================================================
@@ -276,12 +276,13 @@
       width: 150%;
       height: 150%;
       background: 
-        radial-gradient(circle at 20% 25%, rgba(56, 189, 248, 0.92) 0%, transparent 45%),
-        radial-gradient(circle at 80% 30%, rgba(99, 102, 241, 0.88) 0%, transparent 45%),
-        radial-gradient(circle at 45% 75%, rgba(14, 165, 233, 0.85) 0%, transparent 45%),
-        radial-gradient(circle at 85% 85%, rgba(59, 130, 246, 0.8) 0%, transparent 40%),
-        radial-gradient(circle at 15% 85%, rgba(129, 140, 248, 0.75) 0%, transparent 40%);
-      filter: blur(50px);
+        radial-gradient(circle at 20% 25%, rgba(56, 189, 248, 0.65) 0%, transparent 45%),
+        radial-gradient(circle at 80% 30%, rgba(99, 102, 241, 0.58) 0%, transparent 45%),
+        radial-gradient(circle at 45% 75%, rgba(14, 165, 233, 0.52) 0%, transparent 45%),
+        radial-gradient(circle at 85% 85%, rgba(59, 130, 246, 0.48) 0%, transparent 40%),
+        radial-gradient(circle at 15% 85%, rgba(129, 140, 248, 0.48) 0%, transparent 40%);
+      filter: blur(45px);
+      opacity: 0.42;
       animation: gradient-dots-cycle 20s ease-in-out infinite alternate;
       will-change: transform;
     }
@@ -303,10 +304,10 @@
 
     .gradient-dots-cursor-glow {
       position: absolute;
-      width: 360px;
-      height: 360px;
+      width: 340px;
+      height: 340px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(56, 189, 248, 0.95) 0%, rgba(99, 102, 241, 0.4) 45%, transparent 70%);
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.8) 0%, rgba(99, 102, 241, 0.35) 45%, transparent 70%);
       transform: translate(-50%, -50%);
       pointer-events: none;
       opacity: 0;
@@ -353,25 +354,67 @@
     .section-theme-contact {
       --section-accent: #c084fc;
       --section-glow: rgba(192, 132, 252, 0.25);
-      background: radial-gradient(ellipse 100% 85% at 50% 40%, rgba(48, 14, 72, 0.58) 0%, rgba(18, 7, 30, 0.9) 65%, transparent 100%);
+      background: radial-gradient(ellipse 75% 60% at 50% 50%, rgba(48, 14, 72, 0.42) 0%, rgba(18, 7, 30, 0.18) 45%, transparent 75%);
     }
 
-    /* Ambient atmosphere transition veil (replaces harsh borders) */
+    /* Ambient atmosphere transition veil (200px luxurious feathering) */
     .ambient-section-veil {
       position: absolute;
       left: 0;
       right: 0;
-      height: 120px;
+      height: 200px;
       pointer-events: none;
-      z-index: 1;
+      z-index: 2;
     }
     .veil-top {
       top: 0;
-      background: linear-gradient(180deg, rgba(6, 9, 19, 0.75) 0%, transparent 100%);
+      background: linear-gradient(180deg, 
+        #05070c 0%, 
+        rgba(5, 7, 12, 0.88) 30%, 
+        rgba(5, 7, 12, 0.45) 60%, 
+        rgba(5, 7, 12, 0.10) 85%, 
+        transparent 100%
+      );
     }
     .veil-bottom {
       bottom: 0;
-      background: linear-gradient(0deg, rgba(6, 9, 19, 0.75) 0%, transparent 100%);
+      background: linear-gradient(0deg, 
+        #05070c 0%, 
+        rgba(5, 7, 12, 0.88) 30%, 
+        rgba(5, 7, 12, 0.45) 60%, 
+        rgba(5, 7, 12, 0.10) 85%, 
+        transparent 100%
+      );
+    }
+
+    /* Soft edge masks for background canvases & particle systems (eliminates harsh box cuts) */
+    #about-neural-canvas,
+    .about-constellation-vignette,
+    .fluid-particles-container,
+    .gradient-dots-container,
+    .aurora-bg-container {
+      mask-image: linear-gradient(to bottom, transparent 0%, black 140px, black calc(100% - 140px), transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 140px, black calc(100% - 140px), transparent 100%);
+    }
+
+    /* Subtle architectural illuminated seam connecting adjacent sections */
+    .section-transition-seam {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(85%, 580px);
+      height: 1px;
+      background: radial-gradient(ellipse at center, rgba(56, 189, 248, 0.35) 0%, rgba(99, 102, 241, 0.15) 50%, transparent 100%);
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    .about-constellation-vignette {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: radial-gradient(circle at 50% 40%, transparent 35%, rgba(5, 7, 12, 0.55) 85%);
     }
 
     /* ==========================================================================
@@ -1159,6 +1202,8 @@
       width: 100%;
       border-radius: 1.25rem;
       overflow: hidden;
+      isolation: isolate;
+      transform: translateZ(0);
       background: #080d1a;
       box-shadow: 0 20px 45px -12px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(255, 255, 255, 0.05);
       transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.35s ease;
@@ -1182,6 +1227,7 @@
         transparent 360deg
       );
       animation: rotateCertBorder 6s linear infinite;
+      will-change: transform;
       z-index: -2;
       pointer-events: none;
     }
@@ -1317,6 +1363,47 @@
       color: #ffffff;
       box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
       transform: translateY(-2px);
+    }
+
+    /* ==========================================================================
+       DIRECT CONTACT CHANNELS (HARDWARE ACCELERATED - ELIMINATES FIRST-HOVER BLACK FLASH)
+       ========================================================================== */
+    .contact-channel-btn {
+      position: relative;
+      transform: translate3d(0, 0, 0);
+      -webkit-transform: translate3d(0, 0, 0);
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      perspective: 1000px;
+      -webkit-perspective: 1000px;
+      will-change: transform, box-shadow;
+      isolation: isolate;
+      contain: layout style;
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
+                  background-color 0.25s ease, 
+                  border-color 0.25s ease, 
+                  box-shadow 0.25s ease !important;
+    }
+
+    .contact-channel-btn:hover {
+      transform: translate3d(0, -4px, 0) scale(1.1) !important;
+      -webkit-transform: translate3d(0, -4px, 0) scale(1.1) !important;
+    }
+
+    .contact-channel-btn svg,
+    .contact-channel-btn i {
+      transform: translate3d(0, 0, 0);
+      -webkit-transform: translate3d(0, 0, 0);
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      pointer-events: none;
+      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    }
+
+    .contact-channel-btn:hover svg,
+    .contact-channel-btn:hover i {
+      transform: scale(1.1) translate3d(0, 0, 0) !important;
+      -webkit-transform: scale(1.1) translate3d(0, 0, 0) !important;
     }
 
     /* ==========================================================================
@@ -1715,17 +1802,70 @@
         border-radius: 1.15rem;
       }
 
-      /* Certification Cards Mobile Tuning */
+      /* Gradient Dots Background Mobile Optimization (Eliminates Glare & Lag) */
+      .gradient-dots-mesh {
+        animation: none !important;
+        filter: blur(20px) !important;
+        opacity: 0.26 !important;
+        transform: none !important;
+        will-change: auto !important;
+      }
+
+      .gradient-dots-cursor-glow {
+        display: none !important;
+        opacity: 0 !important;
+        visibility: hidden !important;
+      }
+
+      /* Certification Cards Mobile Tuning (Eliminates Conic Leak Glare & Restores 60fps) */
       .uiverse-cert-card {
         padding: 1.35rem 1.15rem;
         gap: 0.95rem;
         border-radius: 1.15rem;
+        isolation: isolate;
+        transform: translateZ(0);
+        background: #080d1a !important;
+        box-shadow: 0 12px 30px -8px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(56, 189, 248, 0.15) !important;
+      }
+      .uiverse-cert-card::before {
+        content: "";
+        position: absolute;
+        inset: 0 !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        animation: none !important;
+        background: linear-gradient(135deg, rgba(56, 189, 248, 0.5) 0%, rgba(99, 102, 241, 0.25) 50%, rgba(56, 189, 248, 0.12) 100%) !important;
+        border-radius: 1.15rem !important;
+        z-index: -2;
+        pointer-events: none;
+      }
+      .uiverse-cert-card::after {
+        content: "";
+        position: absolute;
+        inset: 1.5px !important;
+        border-radius: calc(1.15rem - 1.5px) !important;
+        background: linear-gradient(180deg, #0a1122 0%, #060913 100%) !important;
+        z-index: -1;
+        pointer-events: none;
       }
       .uiverse-cert-card .card_title {
         font-size: 1.1rem;
       }
       .uiverse-cert-card .list_text {
         font-size: 0.76rem;
+      }
+
+      body.theme-light .uiverse-cert-card {
+        background: #ffffff !important;
+        box-shadow: 0 12px 32px -6px rgba(2, 132, 199, 0.14), 0 0 0 1px rgba(2, 132, 199, 0.18) !important;
+      }
+      body.theme-light .uiverse-cert-card::before {
+        background: linear-gradient(135deg, rgba(2, 132, 199, 0.45) 0%, rgba(99, 102, 241, 0.22) 50%, rgba(14, 165, 233, 0.15) 100%) !important;
+      }
+      body.theme-light .uiverse-cert-card::after {
+        background: #ffffff !important;
       }
 
       /* Halftone Wordmark on Mobile / Tablet */
@@ -1790,7 +1930,7 @@ html.light,
 body.theme-light {
   background-color: #f8fafc;
   color: #1e293b;
-  transition: background-color 0.6s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  transition: background-color 1.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
 /* Crisp Light Mode Scrollbars */
@@ -1853,7 +1993,7 @@ body.theme-light .loader {
    DYNAMIC SECTION ATMOSPHERIC BACKDROPS (ELIMINATES BLANK WHITE EMPTINESS)
    -------------------------------------------------------------------------- */
 body.theme-light .section-theme-hero {
-  background: radial-gradient(ellipse 90% 65% at 50% -5%, rgba(14, 165, 233, 0.18) 0%, rgba(99, 102, 241, 0.08) 45%, transparent 80%) !important;
+  background: radial-gradient(ellipse 75% 60% at 50% 30%, rgba(14, 165, 233, 0.14) 0%, rgba(99, 102, 241, 0.06) 45%, transparent 75%) !important;
   position: relative;
 }
 
@@ -1869,50 +2009,71 @@ body.theme-light .section-theme-hero::before {
   background-size: 48px 48px;
   pointer-events: none;
   z-index: 1;
-  mask-image: radial-gradient(ellipse 80% 65% at 50% 20%, black 25%, transparent 80%);
-  -webkit-mask-image: radial-gradient(ellipse 80% 65% at 50% 20%, black 25%, transparent 80%);
+  mask-image: radial-gradient(ellipse 80% 55% at 50% 25%, black 20%, transparent 68%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 55% at 50% 25%, black 20%, transparent 68%);
 }
 
 body.theme-light .section-theme-about {
-  background: radial-gradient(ellipse 90% 70% at 50% 30%, rgba(99, 102, 241, 0.16) 0%, rgba(168, 85, 247, 0.08) 50%, transparent 85%) !important;
+  background: radial-gradient(ellipse 75% 60% at 50% 50%, rgba(99, 102, 241, 0.12) 0%, rgba(168, 85, 247, 0.05) 45%, transparent 75%) !important;
 }
 
 body.theme-light .section-theme-education {
-  background: radial-gradient(ellipse 90% 65% at 50% 35%, rgba(59, 130, 246, 0.16) 0%, rgba(14, 165, 233, 0.08) 50%, transparent 85%) !important;
+  background: radial-gradient(ellipse 75% 60% at 50% 50%, rgba(59, 130, 246, 0.12) 0%, rgba(14, 165, 233, 0.05) 45%, transparent 75%) !important;
 }
 
 body.theme-light .section-theme-stack {
-  background: radial-gradient(ellipse 90% 70% at 50% 35%, rgba(168, 85, 247, 0.18) 0%, rgba(236, 72, 153, 0.08) 55%, transparent 85%) !important;
+  background: radial-gradient(ellipse 75% 60% at 50% 50%, rgba(168, 85, 247, 0.14) 0%, rgba(236, 72, 153, 0.05) 45%, transparent 75%) !important;
 }
 
 body.theme-light .section-theme-projects {
-  background: radial-gradient(ellipse 90% 70% at 50% 35%, rgba(16, 185, 129, 0.16) 0%, rgba(20, 184, 166, 0.08) 50%, transparent 85%) !important;
+  background: radial-gradient(ellipse 75% 60% at 50% 50%, rgba(16, 185, 129, 0.12) 0%, rgba(20, 184, 166, 0.05) 45%, transparent 75%) !important;
 }
 
 body.theme-light .section-theme-achievements {
-  background: radial-gradient(ellipse 90% 70% at 50% 35%, rgba(245, 158, 11, 0.18) 0%, rgba(251, 191, 36, 0.09) 50%, transparent 85%) !important;
+  background: radial-gradient(ellipse 75% 60% at 50% 50%, rgba(245, 158, 11, 0.14) 0%, rgba(251, 191, 36, 0.06) 45%, transparent 75%) !important;
 }
 
 body.theme-light .section-theme-certifications {
-  background: radial-gradient(ellipse 90% 70% at 50% 35%, rgba(14, 165, 233, 0.18) 0%, rgba(99, 102, 241, 0.10) 50%, transparent 85%) !important;
+  background: radial-gradient(ellipse 75% 60% at 50% 50%, rgba(14, 165, 233, 0.14) 0%, rgba(99, 102, 241, 0.06) 45%, transparent 75%) !important;
 }
 
 body.theme-light .section-theme-contact {
-  background: radial-gradient(ellipse 90% 70% at 50% 30%, rgba(147, 51, 234, 0.16) 0%, rgba(56, 189, 248, 0.08) 50%, transparent 85%) !important;
+  background: radial-gradient(ellipse 75% 60% at 50% 50%, rgba(147, 51, 234, 0.12) 0%, rgba(56, 189, 248, 0.05) 45%, transparent 75%) !important;
 }
 
-/* Silky atmospheric transition veils between sections */
+/* Silky atmospheric transition veils between sections in Light Mode */
 body.theme-light .ambient-section-veil {
   display: block !important;
-  opacity: 0.65;
+  opacity: 1 !important;
+  height: 200px !important;
 }
 
 body.theme-light .veil-top {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.75) 0%, transparent 100%) !important;
+  background: linear-gradient(180deg, 
+    #f8fafc 0%, 
+    rgba(248, 250, 252, 0.92) 25%, 
+    rgba(248, 250, 252, 0.60) 55%, 
+    rgba(248, 250, 252, 0.15) 80%, 
+    transparent 100%
+  ) !important;
 }
 
 body.theme-light .veil-bottom {
-  background: linear-gradient(0deg, rgba(255, 255, 255, 0.75) 0%, transparent 100%) !important;
+  background: linear-gradient(0deg, 
+    #f8fafc 0%, 
+    rgba(248, 250, 252, 0.92) 25%, 
+    rgba(248, 250, 252, 0.60) 55%, 
+    rgba(248, 250, 252, 0.15) 80%, 
+    transparent 100%
+  ) !important;
+}
+
+body.theme-light .about-constellation-vignette {
+  background: radial-gradient(circle at 50% 40%, transparent 35%, rgba(248, 250, 252, 0.5) 85%) !important;
+}
+
+body.theme-light .section-transition-seam {
+  background: radial-gradient(ellipse at center, rgba(99, 102, 241, 0.28) 0%, rgba(14, 165, 233, 0.12) 50%, transparent 100%) !important;
 }
 
 /* Certifications & Achievements Canvas Backdrops */
@@ -1925,7 +2086,11 @@ body.theme-light .gradient-dots-vignette {
 }
 
 body.theme-light .gradient-dots-mesh {
-  opacity: 0.28 !important;
+  opacity: 0.22 !important;
+}
+
+body.theme-light .gradient-dots-cursor-glow {
+  background: radial-gradient(circle, rgba(14, 165, 233, 0.45) 0%, rgba(99, 102, 241, 0.2) 45%, transparent 70%) !important;
 }
 
 body.theme-light .fluid-particles-container {
@@ -2213,8 +2378,6 @@ body.theme-light .bg-blue-600,
 body.theme-light .bg-blue-600 *,
 body.theme-light #hero-search-exec,
 body.theme-light #hero-search-exec *,
-body.theme-light a[data-badge="RESUME"],
-body.theme-light a[data-badge="RESUME"] *,
 body.theme-light .sphere-filter-btn.bg-purple-500\/20,
 body.theme-light .sphere-filter-btn.bg-purple-500\/20 * {
   color: #ffffff !important;
@@ -2272,6 +2435,80 @@ body.theme-light #hero-search-exec {
 
 body.theme-light #hero-search-exec:hover {
   background: linear-gradient(135deg, #0369a1 0%, #1d4ed8 100%) !important;
+}
+
+/* ==========================================================================
+   HERO CTA ACTION BUTTONS (HIGH CONTRAST, VISIBLE BOXES, CRISP TYPOGRAPHY)
+   ========================================================================== */
+body.theme-light .hero-cta-projects {
+  background: linear-gradient(135deg, #0284c7 0%, #2563eb 100%) !important;
+  color: #ffffff !important;
+  border: none !important;
+  box-shadow: 0 4px 16px -2px rgba(2, 132, 199, 0.35) !important;
+}
+body.theme-light .hero-cta-projects:hover {
+  background: linear-gradient(135deg, #0369a1 0%, #1d4ed8 100%) !important;
+  box-shadow: 0 6px 22px -2px rgba(2, 132, 199, 0.45) !important;
+}
+body.theme-light .hero-cta-projects * {
+  color: #ffffff !important;
+}
+
+body.theme-light .hero-cta-resume,
+body.theme-light a[data-badge="RESUME"] {
+  background: #ecfdf5 !important;
+  border: 1.5px solid #10b981 !important;
+  color: #065f46 !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 14px -2px rgba(16, 185, 129, 0.20), inset 0 1px 0 #ffffff !important;
+}
+body.theme-light .hero-cta-resume:hover,
+body.theme-light a[data-badge="RESUME"]:hover {
+  background: #d1fae5 !important;
+  border-color: #059669 !important;
+  color: #047857 !important;
+  box-shadow: 0 6px 20px -2px rgba(16, 185, 129, 0.32) !important;
+}
+body.theme-light .hero-cta-resume *,
+body.theme-light a[data-badge="RESUME"] * {
+  color: #065f46 !important;
+}
+body.theme-light .hero-cta-resume:hover *,
+body.theme-light a[data-badge="RESUME"]:hover * {
+  color: #047857 !important;
+}
+
+body.theme-light .hero-cta-contact,
+body.theme-light a[data-badge="CONTACT"] {
+  background: #ffffff !important;
+  border: 1.5px solid #cbd5e1 !important;
+  color: #0f172a !important;
+  font-weight: 700 !important;
+  box-shadow: 0 4px 14px -2px rgba(15, 23, 42, 0.08), inset 0 1px 0 #ffffff !important;
+}
+body.theme-light .hero-cta-contact:hover,
+body.theme-light a[data-badge="CONTACT"]:hover {
+  background: #f8fafc !important;
+  border-color: #0284c7 !important;
+  color: #0284c7 !important;
+  box-shadow: 0 6px 20px -2px rgba(2, 132, 199, 0.20) !important;
+}
+body.theme-light .hero-cta-contact *,
+body.theme-light a[data-badge="CONTACT"] * {
+  color: #0f172a !important;
+}
+body.theme-light .hero-cta-contact:hover *,
+body.theme-light a[data-badge="CONTACT"]:hover * {
+  color: #0284c7 !important;
+}
+
+body.theme-light #mobile-drawer a[href*="docs.google.com"] {
+  background: #ecfdf5 !important;
+  border: 1.5px solid #10b981 !important;
+  color: #065f46 !important;
+}
+body.theme-light #mobile-drawer a[href*="docs.google.com"] * {
+  color: #065f46 !important;
 }
 
 body.theme-light .quick-pill {
@@ -2678,6 +2915,7 @@ body.theme-light #contact-form label {
   color: #334155 !important;
 }
 
+body.theme-light .contact-channel-btn,
 body.theme-light a[data-badge="EMAIL"],
 body.theme-light a[data-badge="PHONE"],
 body.theme-light a[data-badge="LINKEDIN"],
@@ -2687,6 +2925,31 @@ body.theme-light a[data-badge="GITHUB"] {
   box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06) !important;
 }
 
+body.theme-light .contact-channel-btn[data-badge="EMAIL"]:hover {
+  background: #fef2f2 !important;
+  border-color: rgba(239, 68, 68, 0.5) !important;
+  box-shadow: 0 8px 24px rgba(239, 68, 68, 0.2) !important;
+}
+
+body.theme-light .contact-channel-btn[data-badge="PHONE"]:hover {
+  background: #ecfdf5 !important;
+  border-color: rgba(16, 185, 129, 0.5) !important;
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.2) !important;
+}
+
+body.theme-light .contact-channel-btn[data-badge="LINKEDIN"]:hover {
+  background: #f0f7ff !important;
+  border-color: rgba(10, 102, 194, 0.5) !important;
+  box-shadow: 0 8px 24px rgba(10, 102, 194, 0.2) !important;
+}
+
+body.theme-light .contact-channel-btn[data-badge="GITHUB"]:hover {
+  background: #f8fafc !important;
+  border-color: rgba(15, 23, 42, 0.4) !important;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.15) !important;
+}
+
+body.theme-light .contact-channel-btn[data-badge="GITHUB"] svg,
 body.theme-light a[data-badge="GITHUB"] svg {
   fill: #0f172a !important;
   color: #0f172a !important;
@@ -2708,7 +2971,7 @@ body.theme-light button[type="submit"]:hover {
    -------------------------------------------------------------------------- */
 body.theme-light footer,
 body.theme-light #site-footer {
-  border-top: 1px solid #e2e8f0 !important;
+  border-top: none !important;
   background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%) !important;
 }
 

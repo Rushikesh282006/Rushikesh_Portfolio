@@ -345,9 +345,31 @@ lucide.createIcons();
       showToast("3D Sphere view reset to center");
     });
 
+    let isSphereVisible = false;
+    let sphereAnimFrameId = null;
+
+    const stackSectionEl = document.getElementById("stack");
+    if (stackSectionEl && window.IntersectionObserver) {
+      const sphereObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          isSphereVisible = entry.isIntersecting;
+          if (isSphereVisible && !sphereAnimFrameId) {
+            sphereAnimFrameId = requestAnimationFrame(render3DSphere);
+          }
+        });
+      }, { threshold: 0.05 });
+      sphereObserver.observe(stackSectionEl);
+    } else {
+      isSphereVisible = true;
+    }
+
     function render3DSphere() {
+      if (!isSphereVisible || document.hidden) {
+        sphereAnimFrameId = null;
+        return;
+      }
       if (!sphereW || !sphereH) {
-        requestAnimationFrame(render3DSphere);
+        sphereAnimFrameId = requestAnimationFrame(render3DSphere);
         return;
       }
 
@@ -483,9 +505,11 @@ lucide.createIcons();
         sphereCtx.restore();
       }
 
-      requestAnimationFrame(render3DSphere);
+      sphereAnimFrameId = requestAnimationFrame(render3DSphere);
     }
-    render3DSphere();
+    if (isSphereVisible) {
+      sphereAnimFrameId = requestAnimationFrame(render3DSphere);
+    }
 
     /* ==========================================================================
        UIVERSE GOOEY LAVA COMPONENT LOADER HELPER (BY ANDREW-MANZYK)
@@ -814,16 +838,28 @@ lucide.createIcons();
       }
     }, { passive: true });
 
+    let ringAnimId = null;
     function ringLoop() {
-      if (window.innerWidth > 1024 && !window.matchMedia("(pointer: coarse)").matches) {
-        rPos.x += (cPos.x - rPos.x) * 0.22;
-        rPos.y += (cPos.y - rPos.y) * 0.22;
-        cursorRing.style.left = `${rPos.x}px`;
-        cursorRing.style.top = `${rPos.y}px`;
+      if (window.innerWidth <= 1024 || window.matchMedia("(pointer: coarse)").matches) {
+        ringAnimId = null;
+        return;
       }
-      requestAnimationFrame(ringLoop);
+      rPos.x += (cPos.x - rPos.x) * 0.22;
+      rPos.y += (cPos.y - rPos.y) * 0.22;
+      cursorRing.style.left = `${rPos.x}px`;
+      cursorRing.style.top = `${rPos.y}px`;
+      ringAnimId = requestAnimationFrame(ringLoop);
     }
-    ringLoop();
+    if (window.innerWidth > 1024 && !window.matchMedia("(pointer: coarse)").matches) {
+      ringAnimId = requestAnimationFrame(ringLoop);
+    }
+
+    window.addEventListener("resize", () => {
+      const isCoarse = window.innerWidth <= 1024 || window.matchMedia("(pointer: coarse)").matches;
+      if (!isCoarse && !ringAnimId) {
+        ringAnimId = requestAnimationFrame(ringLoop);
+      }
+    }, { passive: true });
 
     function attachCursorHandlers() {
       document.querySelectorAll(".interactive-target, a, button, input, textarea").forEach((el) => {
@@ -1459,13 +1495,19 @@ lucide.createIcons();
     });
 
     function renderAmbientCanvas() {
+      if (document.hidden) {
+        requestAnimationFrame(renderAmbientCanvas);
+        return;
+      }
       ctx.clearRect(0, 0, width, height);
       mouse.x += (mouse.targetX - mouse.x) * 0.05;
       mouse.y += (mouse.targetY - mouse.y) * 0.05;
       time += 0.0016;
 
-      const numLines = 18;
+      const isMobile = window.innerWidth <= 768;
+      const numLines = isMobile ? 8 : 18;
       const step = height / numLines;
+      const res = isMobile ? 44 : 26;
 
       const isLightCanvas = document.documentElement.classList.contains("light") || document.body.classList.contains("theme-light");
 
@@ -1480,7 +1522,6 @@ lucide.createIcons();
           ctx.lineWidth = 1;
         }
 
-        const res = 26;
         for (let x = 0; x <= width + res; x += res) {
           const wave = Math.sin(x * 0.0016 + time * 0.5) * Math.cos(baseY * 0.0016 + time * 0.4);
           const dx = x - mouse.x;
@@ -1760,14 +1801,31 @@ lucide.createIcons();
       const cursorGlow = document.getElementById("cert-cursor-glow");
       if (!section || !cursorGlow) return;
 
-      section.addEventListener("mousemove", (e) => {
-        const rect = section.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
+      const isCoarseOrMobile = () => window.innerWidth <= 768 || window.matchMedia("(pointer: coarse)").matches;
+      if (isCoarseOrMobile()) {
+        cursorGlow.style.display = "none";
+        return;
+      }
 
-        cursorGlow.style.left = `${x}px`;
-        cursorGlow.style.top = `${y}px`;
-        cursorGlow.style.opacity = "1";
+      let isThrottled = false;
+      section.addEventListener("mousemove", (e) => {
+        if (isCoarseOrMobile()) {
+          cursorGlow.style.display = "none";
+          return;
+        }
+        if (!isThrottled) {
+          isThrottled = true;
+          requestAnimationFrame(() => {
+            const rect = section.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+
+            cursorGlow.style.left = `${x}px`;
+            cursorGlow.style.top = `${y}px`;
+            cursorGlow.style.opacity = "0.75";
+            isThrottled = false;
+          });
+        }
       }, { passive: true });
 
       section.addEventListener("mouseleave", () => {
@@ -2291,7 +2349,8 @@ lucide.createIcons();
     ];
 
     const neuralNodes = [];
-    const NUM_NODES = 48;
+    const isMobileAbout = window.innerWidth <= 768;
+    const NUM_NODES = isMobileAbout ? 22 : 48;
 
     for (let i = 0; i < NUM_NODES; i++) {
       neuralNodes.push({
@@ -2305,13 +2364,38 @@ lucide.createIcons();
       });
     }
 
+    let isAboutVisible = false;
+    let aboutAnimFrameId = null;
+
+    const aboutSectionEl = document.getElementById("about");
+    if (aboutSectionEl && window.IntersectionObserver) {
+      const aboutObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          isAboutVisible = entry.isIntersecting;
+          if (isAboutVisible && !aboutAnimFrameId) {
+            aboutAnimFrameId = requestAnimationFrame(renderAboutNeuralConstellation);
+          }
+        });
+      }, { threshold: 0.05 });
+      aboutObserver.observe(aboutSectionEl);
+    } else {
+      isAboutVisible = true;
+    }
+
     function renderAboutNeuralConstellation() {
+      if (!isAboutVisible || document.hidden) {
+        aboutAnimFrameId = null;
+        return;
+      }
       if (!aboutW || !aboutH) {
-        requestAnimationFrame(renderAboutNeuralConstellation);
+        aboutAnimFrameId = requestAnimationFrame(renderAboutNeuralConstellation);
         return;
       }
 
       aboutCtx.clearRect(0, 0, aboutW, aboutH);
+
+      const isMobileView = window.innerWidth <= 768;
+      const isLightMode = document.documentElement.classList.contains("light") || document.body.classList.contains("theme-light");
 
       for (let i = 0; i < neuralNodes.length; i++) {
         const node = neuralNodes[i];
@@ -2333,7 +2417,6 @@ lucide.createIcons();
           }
         }
 
-        const isLightMode = document.documentElement.classList.contains("light") || document.body.classList.contains("theme-light");
         const activeHue = isLightMode 
           ? (i % 3 === 0 ? "79, 70, 229" : (i % 3 === 1 ? "2, 132, 199" : "147, 51, 234")) 
           : node.hue;
@@ -2341,18 +2424,26 @@ lucide.createIcons();
         aboutCtx.beginPath();
         aboutCtx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
         aboutCtx.fillStyle = `rgba(${activeHue}, 0.95)`;
-        aboutCtx.shadowColor = `rgba(${activeHue}, ${isLightMode ? 0.35 : 1})`;
-        aboutCtx.shadowBlur = isLightMode ? 6 : 14;
+        if (!isMobileView) {
+          aboutCtx.shadowColor = `rgba(${activeHue}, ${isLightMode ? 0.35 : 1})`;
+          aboutCtx.shadowBlur = isLightMode ? 6 : 14;
+        }
         aboutCtx.fill();
-        aboutCtx.shadowBlur = 0;
+        if (!isMobileView) {
+          aboutCtx.shadowBlur = 0;
+        }
 
         if (node.label) {
           aboutCtx.font = "bold 10.5px 'JetBrains Mono', monospace";
           aboutCtx.fillStyle = isLightMode ? "rgba(15, 23, 42, 0.95)" : "rgba(241, 245, 249, 0.9)";
-          aboutCtx.shadowColor = isLightMode ? "rgba(255, 255, 255, 0.9)" : "rgba(0,0,0,0.9)";
-          aboutCtx.shadowBlur = 4;
+          if (!isMobileView) {
+            aboutCtx.shadowColor = isLightMode ? "rgba(255, 255, 255, 0.9)" : "rgba(0,0,0,0.9)";
+            aboutCtx.shadowBlur = 4;
+          }
           aboutCtx.fillText(node.label, node.x + node.radius + 6, node.y + 3.5);
-          aboutCtx.shadowBlur = 0;
+          if (!isMobileView) {
+            aboutCtx.shadowBlur = 0;
+          }
         }
 
         for (let j = i + 1; j < neuralNodes.length; j++) {
@@ -2373,9 +2464,11 @@ lucide.createIcons();
         }
       }
 
-      requestAnimationFrame(renderAboutNeuralConstellation);
+      aboutAnimFrameId = requestAnimationFrame(renderAboutNeuralConstellation);
     }
-    renderAboutNeuralConstellation();
+    if (isAboutVisible) {
+      aboutAnimFrameId = requestAnimationFrame(renderAboutNeuralConstellation);
+    }
 
     /* ==========================================================================
        DYNAMIC GLASS FOLDERS & PROJECT FLIGHT DECK RENDERER
